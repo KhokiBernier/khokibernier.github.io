@@ -94,5 +94,54 @@ df_stats['Starter'] = (df_stats.GS.astype(int) > 40).astype('int')
 
 Step 2: Built multivariate regression and random forest regresor models for key basketball statistics (points, rebounds, assists, etc) using data pulled in previous setp.
 
+Regression Model:
 
+Import libraries and create RMSE Function
+{% highlight ruby %}
+import matplotlib.pyplot as plt
+import math
+import pylab
 
+from scipy import stats
+import statsmodels.api as sm
+
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
+
+%matplotlib inline
+
+#function to calculate rmse (root mean squared error)
+def rmse(actual, prediction):
+    mse = mean_squared_error(actual,prediction)
+    rmse = math.sqrt(mse)
+    return(rmse)
+{% endhighlight %}
+
+Build Model and evaluate RMSE:
+{% highlight ruby %}
+data_ppg = df_stats[['Age','PTS','PTS_1yp','PTS_2yp','PTS_3yp','MP_1yp','MP_2yp','MP_3yp','PG','SG','SF','PF','Center','Traded','Starter','Years_Pro_Now']]
+#Build the model: Define input variable and our output variable (x,y)
+X_ppg = data_ppg.drop('PTS_x', axis=1)
+Y_ppg = data_ppg[['PTS_x']]
+#split dataset into training and testing portion
+x_train_ppg, x_test_ppg, y_train_ppg, y_test_ppg = train_test_split(X_ppg,Y_ppg, test_size = .20, random_state = 1)
+#create an instance of our model
+rm_ppg = LinearRegression()
+#fit the model
+rm_ppg.fit(x_train_ppg,y_train_ppg)
+y_predict_ppg = rm_ppg.predict(x_test_ppg)
+#evaluate model
+X2 = sm.add_constant(X_ppg)
+#create OLS model
+model_ppg = sm.OLS(Y_ppg,X2)
+est_ppg = model_ppg.fit()
+print(est_ppg.summary())
+#check for normality of residuals
+sm.qqplot(est_ppg.resid,line='s')
+pylab.show()
+print("RMSE: {:.4}".format(rmse(y_test_ppg, y_predict_ppg)))
+{% endhighlight %}
+
+<img src="/assets/img/R2.png">
+<img src="/assets/img/Residuals-Graph.png">
