@@ -144,4 +144,4 @@ print("RMSE: {:.4}".format(rmse(y_test_ppg, y_predict_ppg)))
 {% endhighlight %}
 
 <img src="/assets/img/R2.jpg">
-<img src="/assets/img/Residuals-Graph.jpg">
+<img src="/assets/img/Residual-Graph.jpg">
