@@ -145,3 +145,4 @@ print("RMSE: {:.4}".format(rmse(y_test_ppg, y_predict_ppg)))
 
 <img src="/assets/img/R2.jpg">
 <img src="/assets/img/Residual-Graph.jpg">
+<img src="/assets/img/KBVESPN.jpg">
