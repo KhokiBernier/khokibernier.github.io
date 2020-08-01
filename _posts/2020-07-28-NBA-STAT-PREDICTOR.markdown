@@ -157,3 +157,4 @@ print(PTS_rfmodel.score(x_test,y_test))
 y_predicted = PTS_rfmodel.predict(x_test)
 print("RMSE = ",math.sqrt(mean_squared_error(y_test, y_predicted)))
 {% endhighlight %}
+<img src="/assets/img/RF.png">
