@@ -122,8 +122,8 @@ Build Model and evaluate RMSE:
 {% highlight ruby %}
 data_ppg = df_stats[['Age','PTS','PTS_1yp','PTS_2yp','PTS_3yp','MP_1yp','MP_2yp','MP_3yp','PG','SG','SF','PF','Center','Traded','Starter','Years_Pro_Now']]
 #Build the model: Define input variable and our output variable (x,y)
-X_ppg = data_ppg.drop('PTS_x', axis=1)
-Y_ppg = data_ppg[['PTS_x']]
+X_ppg = data_ppg.drop('PTS', axis=1)
+Y_ppg = data_ppg[['PTS']]
 #split dataset into training and testing portion
 x_train_ppg, x_test_ppg, y_train_ppg, y_test_ppg = train_test_split(X_ppg,Y_ppg, test_size = .20, random_state = 1)
 #create an instance of our model
@@ -150,13 +150,10 @@ Random Forest Regressor:
 {% highlight ruby %}
 from sklearn.ensemble import RandomForestRegressor
 #PTS Random Forest Regressor
-data = df_w_py[df_w_py.Years_Pro_Now >= 3]
-data = data[['Age','PTS_x','MP_y','MP','MP3','PTS_y','PTS','PTS3','PG','SG','SF','PF','Center','Traded','Starter']].replace('','0').astype(float)
-x_train, x_test, y_train, y_test = train_test_split(data.drop('PTS_x', axis=1), data['PTS_x'],test_size = .2)
-PTS_3model = RandomForestRegressor()
-PTS_3model.fit(x_train, y_train)
-print(PTS_3model.score(x_test,y_test))
-y_predicted = PTS_3model.predict(x_test)
-from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
+x_train, x_test, y_train, y_test = train_test_split(data_ppg.drop('PTS', axis=1), data['PTS'],test_size = .2)
+PTS_rfmodel = RandomForestRegressor()
+PTS_rfmodel.fit(x_train, y_train)
+print(PTS_rfmodel.score(x_test,y_test))
+y_predicted = PTS_rfmodel.predict(x_test)
 print("RMSE = ",math.sqrt(mean_squared_error(y_test, y_predicted)))
 {% endhighlight %}
