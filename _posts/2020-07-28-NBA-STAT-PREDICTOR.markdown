@@ -37,7 +37,7 @@ My Model vs ESPN's Projections below:
 
 ! [image tooltip here](/assets/img/KBVESPN.jpg)
 
-Step 1: Webscrapped and wrangled 15+ years of NBA team and player data from basketball-reference.com and espn.com.
+**Step 1: Webscrapped and wrangled 15+ years of NBA team and player data from basketball-reference.com and espn.com.**
 
 - Performed with BeautifulSoup and urlib libraries. 
 - Looped through the url with the year as a variable
@@ -92,7 +92,7 @@ The following snippet shows how I added additional variables with an example of 
 df_stats['Starter'] = (df_stats.GS.astype(int) > 40).astype('int')
 {% endhighlight %}
 
-Step 2: Built multivariate regression and random forest regresor models for key basketball statistics (points, rebounds, assists, etc) using data pulled in previous setp.
+**Step 2: Built multivariate regression and random forest regresor models for key basketball statistics (points, rebounds, assists, etc) using data pulled in previous setp.**
 
 Regression Model:
 
@@ -149,4 +149,4 @@ print("RMSE: {:.4}".format(rmse(y_test_ppg, y_predict_ppg)))
 Random Forest Regressor Model:
 <img src="/assets/img/RF.png">
 
-Step 3: Built a prediction matrix for each basketball statistic and age that calculates league avg percent change (e.g. if the average player's points per game increases by 8% from when they start the season at age 24 versus age 25, the points prediction for a player turning 25 is 8% more than prior year)
+**Step 3: Built a prediction matrix for each basketball statistic and age that calculates league avg percent change (e.g. if the average player's points per game increases by 8% from when they start the season at age 24 versus age 25, the points prediction for a player turning 25 is 8% more than prior year)**
