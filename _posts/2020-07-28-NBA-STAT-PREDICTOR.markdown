@@ -152,3 +152,44 @@ Random Forest Regressor Model:
 
 **Step 3: Built a prediction matrix for each basketball statistic and age that calculates league avg percent change** (e.g. if the average player's points per game increases by 8% from when they start the season at age 24 versus age 25, the points prediction for a player turning 25 is 8% more than prior year)
 
+- Building Prediction Matrix:
+{% highlight ruby %}
+###Build Matrix:
+#Variable to store all player percent change values for each stat
+pcnt_change_agg = numpy.arange(15).reshape(1,15)
+#loop through each player's career stats and get percent change by year
+for player in df_stats['Player'].unique():
+    #storing ages
+    cnt = df_stats[df_stats.Player ==player].Player.count()
+    ages = numpy.asarray(df_stats[df_stats.Player ==player]['Age'].tolist())
+    ages = numpy.asarray(ages).reshape(cnt,1)
+    #storing percent change for key stats (14 total)
+    pcnt_change = df_stats.loc[df_stats.Player ==player][['MP','FGA','FG%','3PA','3P%','eFG%','FTA','FT%','TRB','AST','STL','BLK','TOV','PTS']].replace('','0',regex=True).astype(float).pct_change()
+    pcnt_change_array = numpy.asarray(pcnt_change)
+    #concatenate ages and pcnt change, then add to aggregate list
+    pcnt_change_array = numpy.concatenate([ages,pcnt_change_array], axis=1)
+    pcnt_change_agg = numpy.concatenate((pcnt_change_array,pcnt_change_agg), axis=0)
+#add column headers to matrix
+columns = ['Age','MP','FGA','FG%','3PA','3P%','eFG%','FTA','FT%','TRB','AST','STL','BLK','TOV','PTS']
+columns_array = numpy.asarray(columns).reshape(1,15)
+pcnt_change_agg = numpy.concatenate([columns_array,pcnt_change_agg], axis=0)
+{% endhighlight %}
+
+{% highlight ruby %}
+###convert to dataframe
+df_pc_matrix = pd.DataFrame(pcnt_change_agg)
+df_pc_matrix.columns = df_pc_matrix.iloc[0]
+df_pc_matrix = df_pc_matrix[1:]
+df_pc_matrix = df_pc_matrix.astype(float)
+#Remove values where pcnt change could not be calculated (e.g a player's rookie year)
+df_pc_matrix= df_pc_matrix.replace([numpy.inf, -numpy.inf], numpy.nan)
+df_pc_matrix = df_pc_matrix.dropna()
+{% endhighlight %}
+{% highlight ruby %}
+###Create Matrix
+df_matrix = pd.DataFrame()
+#loop through stat columns and get avgerage pcnt change for each age
+for i in columns[1:15]:
+    df_matrix[i] = df_pc_matrix.groupby('Age')[i].mean()
+{% endhighlight %}
+
