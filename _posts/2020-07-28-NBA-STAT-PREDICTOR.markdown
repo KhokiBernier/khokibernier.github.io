@@ -13,8 +13,8 @@ Built a model to predict NBA Player Season Stats that outperformed ESPN's 2019-2
 
 The following libraries were primarily used:
 
-- Pandas
-- Numpy
+- pandas
+- numpy
 - BeautifulSoup
 - urllib
 - sklearn
@@ -24,7 +24,7 @@ The following steps were taken, and will be elaborated on with code snippets fur
 
 1. Webscrapped and wrangled 15+ years of NBA team and player data from basketball-reference.com and espn.com.
 2. Built multivariate regression and random forest regresor models for key basketball statistics (points, rebounds, assists, etc) using data pulled in previous setp.
-3. Built a prediction matrix for each basketball statistic and age that calculates league avg percent change (e.g. if the average player's points per game increases by 8% from when they start the season at age 24 versus age 25, the points prediction for a player turning 25 is 8% more than prior year).
+3. Built a prediction matrix for each basketball statistic and age that calculates league avg percent change.
 4. Conditionally applied prior year weighted averages based on age.
 5. For rookies - data was pulled from sports-reference.com and only multivariate regression on college stats was used.
 6. Determined which of the 4 methods (regression, random forest, avg % change, and prior year weighted avgs) is most accurate by looking at RMSE and use it for the specific statistic in question for 2020 player predictions. While regression was usually the most accurate individual method, in most cases averaging the predicition values of all 4 methods returned the lowest RMSE.
@@ -149,3 +149,4 @@ print("RMSE: {:.4}".format(rmse(y_test_ppg, y_predict_ppg)))
 Random Forest Regressor Model:
 <img src="/assets/img/RF.png">
 
+Step 3: Built a prediction matrix for each basketball statistic and age that calculates league avg percent change (e.g. if the average player's points per game increases by 8% from when they start the season at age 24 versus age 25, the points prediction for a player turning 25 is 8% more than prior year)
