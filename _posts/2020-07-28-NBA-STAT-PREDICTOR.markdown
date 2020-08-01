@@ -333,5 +333,7 @@ In our examples above when looking at points per game, we obtained the following
   2. Random Forest   : 2.50
   3. % Change Matrix : 2.92
   4. Weighted Avg.   : 4.95
+
+I then wanted to check how these methods performed when combined, so I averaged the prediction values for the various methods and determined an RMSE for all 16 possible combinations.
   
   
