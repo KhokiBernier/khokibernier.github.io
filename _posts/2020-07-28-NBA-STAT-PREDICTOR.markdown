@@ -145,7 +145,7 @@ print("RMSE: {:.4}".format(rmse(y_test_ppg, y_predict_ppg)))
 
 <img src="/assets/img/R2.png">
 <img src="/assets/img/Residual-Graph.png">
-- the deviation of the residuals at the top right of the graph indicates heteroscedasticity
+- note: the deviation of the residuals at the top right of the graph indicates heteroscedasticity
 
 Random Forest Regressor Model:
 <img src="/assets/img/RF.png">
