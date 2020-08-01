@@ -219,3 +219,46 @@ Weighted averages were only applied to players with at least 3 years prior exper
 - 30% * 2 years prior +
 - 25% * 3 years prior
 
+These percentages were established through light trial and error, but applying some sort of optimizer to find the best combination would be a good idea.
+
+{% highlight ruby %}
+###Weighted Averages START
+#Function that inputs the weighted average percentages you wish to test
+def weighted_avg(y1,y2,y3):
+    players_wa = []
+    prediction_wa = []
+    actual = []
+    for player, PTS in df_stats[['Player','PTS']].itertuples(index=False):
+        pts1 = df_stats[df_stats.Player == player]['PTS_y'].replace('','0').astype(float).reset_index(drop=True) * y1 
+        pts2 = df_stats[df_stats.Player == player]['PTS'].replace('','0').astype(float).reset_index(drop=True) * y2
+        pts3 = df_stats[df_stats.Player == player]['PTS3'].replace('','0').astype(float).reset_index(drop=True) * y3
+        prediction = pts1[0] + pts2[0] + pts3[0]
+        players_wa.append(player)
+        prediction_wa.append(prediction)
+        actual.append(PTS)
+    df_wa = pd.DataFrame()
+    df_wa['Player'] = players_wa
+    df_wa['prediction_wa'] = prediction_wa
+    df_wa['PTS'] = actual
+    return(RMSE(df_wa.prediction_wa, df_wa.PTS))
+#Testing a few different weighted average percentage combinations
+print(weighted_avg(.45,.3,.25))
+print(weighted_avg(.6,.3,.1))
+print(weighted_avg(.5,.3,.2))
+{% endhighlight %}
+
+RMSE = 4.95
+- Much higher than the other 3 methods but we can still check to see if this helps our predictions
+
+**Step 5: For rookies - data was pulled from sports-reference.com and only multivariate regression on college stats was used.**
+
+Using the 15 years of NBA player data that we have, I created a dataframe with the minimum year for each player and then rejoined to the original table to get a dataframe with just the rookie year stats of each player. I then removed all rows where the minimum year was 2004, as this was most likely not their rookie year but just the last year we pulled data for.
+
+{% highlight ruby %}
+df_min_year = df_stats.groupby('Player')['Year'].min()
+df_min_year = pd.merge(df_min_year, df_stats, how = 'inner', left_on = ['Player','Year'], right_on = ['Player','Year'])
+df_min_year = df_min_year.drop(df_min_year[df_min_year.Year == '2004'].index)
+{% endhighlight %}
+
+I then searched through sports-reference.com for each player and their college stats.
+
