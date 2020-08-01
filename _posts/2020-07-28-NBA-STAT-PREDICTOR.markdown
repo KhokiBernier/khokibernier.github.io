@@ -146,3 +146,17 @@ print("RMSE: {:.4}".format(rmse(y_test_ppg, y_predict_ppg)))
 <img src="/assets/img/R2.png">
 <img src="/assets/img/Residual-Graph.png">
 
+Random Forest Regressor:
+{% highlight ruby %}
+from sklearn.ensemble import RandomForestRegressor
+#PTS Random Forest Regressor
+data = df_w_py[df_w_py.Years_Pro_Now >= 3]
+data = data[['Age','PTS_x','MP_y','MP','MP3','PTS_y','PTS','PTS3','PG','SG','SF','PF','Center','Traded','Starter']].replace('','0').astype(float)
+x_train, x_test, y_train, y_test = train_test_split(data.drop('PTS_x', axis=1), data['PTS_x'],test_size = .2)
+PTS_3model = RandomForestRegressor()
+PTS_3model.fit(x_train, y_train)
+print(PTS_3model.score(x_test,y_test))
+y_predicted = PTS_3model.predict(x_test)
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
+print("RMSE = ",math.sqrt(mean_squared_error(y_test, y_predicted)))
+{% endhighlight %}
