@@ -195,4 +195,4 @@ for i in columns[1:15]:
 
 Percent Change by Age Matrix:
 - An intersting note is that statistically speaking players on average peak around 27
-<img src="/assets/img/Matrix.jpg">
+<img src="/assets/img/Matrix.png">
