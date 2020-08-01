@@ -193,3 +193,6 @@ for i in columns[1:15]:
     df_matrix[i] = df_pc_matrix.groupby('Age')[i].mean()
 {% endhighlight %}
 
+Percent Change by Age Matrix:
+- An intersting note is that statistically speaking players on average peak around 27
+<img src="/assets/img/Matrix.jpg">
