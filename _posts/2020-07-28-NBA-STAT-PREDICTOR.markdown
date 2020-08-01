@@ -194,5 +194,28 @@ for i in columns[1:15]:
 {% endhighlight %}
 
 Percent Change by Age Matrix:
+
 - An intersting note is that statistically speaking players on average peak around 27
 <img src="/assets/img/Matrix.png">
+
+I then applied the matrix and determined the RMSE:
+
+{% highlight ruby %}
+##Avg Percent Change Matrix Predictions
+df_matrix_predict = df_stats[['Player', 'PTS','PTS_1yp', 'Age']].copy()
+df_matrix_predict['Age+1'] = df_matrix_predict['Age'].astype(float)+1
+df_matrix_predict = pd.merge(df_matrix_predict, df_matrix['PTS_C'], how='inner', left_on=['Age+1'], right_on = ['Age'])
+df_matrix_predict['Predict_Bracket'] = (df_matrix_predict['PTS_y'].replace('','0').astype(float) * df_matrix_predict['PTS_C'].replace('','0').astype(float)) + df_matrix_predict['PTS_y'].replace('','0').astype(float)
+RMSE(df_matrix_predict.PTS_x, df_matrix_predict.Predict_Bracket)
+{% endhighlight %}
+
+RMSE = 2.92
+- Higher than regression and random forest, but still performed pretty well
+
+**4. Conditionally applied prior year weighted averages based on age.**
+
+Weighted averages were only applied to players with at least 3 years prior experience as follows:
+- 45% * prior year +
+- 30% * 2 years prior +
+- 25% * 3 years prior
+
