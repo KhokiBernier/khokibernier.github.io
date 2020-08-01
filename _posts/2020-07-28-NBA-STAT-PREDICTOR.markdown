@@ -229,9 +229,9 @@ def weighted_avg(y1,y2,y3):
     prediction_wa = []
     actual = []
     for player, PTS in df_stats[['Player','PTS']].itertuples(index=False):
-        pts1 = df_stats[df_stats.Player == player]['PTS_y'].replace('','0').astype(float).reset_index(drop=True) * y1 
-        pts2 = df_stats[df_stats.Player == player]['PTS'].replace('','0').astype(float).reset_index(drop=True) * y2
-        pts3 = df_stats[df_stats.Player == player]['PTS3'].replace('','0').astype(float).reset_index(drop=True) * y3
+        pts1 = df_stats[df_stats.Player == player]['PTS_1yp'].replace('','0').astype(float).reset_index(drop=True) * y1 
+        pts2 = df_stats[df_stats.Player == player]['PTS_2yp'].replace('','0').astype(float).reset_index(drop=True) * y2
+        pts3 = df_stats[df_stats.Player == player]['PTS_3yp'].replace('','0').astype(float).reset_index(drop=True) * y3
         prediction = pts1[0] + pts2[0] + pts3[0]
         players_wa.append(player)
         prediction_wa.append(prediction)
@@ -262,3 +262,69 @@ df_min_year = df_min_year.drop(df_min_year[df_min_year.Year == '2004'].index)
 
 I then searched through sports-reference.com for each player and their college stats.
 
+{% highlight ruby %}
+###Rookies Data Pull
+rookies_agg = numpy.zeros((0,29), dtype=numpy.dtype('U100'))
+rookies_agg = numpy.asarray(rookies_agg).reshape(0,29)
+#looping through rookie years and formatting player names for url search
+for player in df_min_year.Player.replace(' ','-',regex=True):
+    player_search = player.replace('.','')
+    url = 'https://www.sports-reference.com/cbb/players/'+player.lower()+'-1.html'
+    headers= {'User-Agent': 'Mozilla/5.0'}
+    response = requests.get(url, headers = headers)
+    #condition to check if url exists (200 = does exist)
+    if response.status_code == 200:
+        soup = BeautifulSoup(response.content, 'html.parser')
+        stat_table = soup.find_all('table', class_ = 'stats_table')
+        stat_table = stat_table[0]
+        stats = []
+        for row in stat_table.find_all('tr'):
+            for cell in row.find_all('td'):
+                stats.append(cell.text)
+        #Taking the last 28 columns, these are the stats for last year of college only
+        stats = stats[-28:]
+        stats.insert(0,player)
+        stats = numpy.asarray(stats[0:29])
+        stats = numpy.asarray(stats).reshape(1,29)
+        rookies_agg = numpy.concatenate((rookies_agg,stats),0)
+        headers_list = [th.getText() for th in soup.findAll('tr',limit=2)[0].findAll('th')]
+        headers_list.insert(1,'Player')
+headers_list = headers_list[1:30]
+headers_list = numpy.asarray(headers_list).reshape(1,29)
+player_stats = numpy.concatenate((headers_list, rookies_agg),0)
+#convert to dataframe
+df_rookies = pd.DataFrame(player_stats)
+df_rookies.columns = df_rookies.loc[0]
+df_rookies = df_rookies.loc[1:]
+#undo url formatting of names
+df_rookies.Player = df_rookies.Player.replace('-',' ',regex=True)
+#join to minimum year so that dataframe contains both last year of college and nba rookie year stats
+rookies = pd.merge(df_min_year, df_rookies, how = 'inner',left_on=['Player'], right_on=['Player'])
+{% endhighlight %}
+
+After adding a player position variable, the data was now ready to be put into multivariate regeression model.
+
+{% highlight ruby %}
+###Rookies Points Per Game
+X_ppg = rookies[['PTS_college','MP_college','G_college','GS_college','FGA_college','3P%_college','SOS','PG','SG','SF','PFoward','Center']].astype(float)
+Y_ppg = rookies[['PTS']].astype(float)
+x_train_ppg, x_test_ppg, y_train_ppg, y_test_ppg = train_test_split(X_ppg,Y_ppg, test_size = .20, random_state = 1)
+rm_ppg_rookies = LinearRegression()
+rm_ppg_rookies.fit(x_train_ppg,y_train_ppg)
+y_predict_ppg = rm_ppg_rookies.predict(x_test_ppg)
+#create OLS model
+X2 = sm.add_constant(X_ppg)
+model_ppg = sm.OLS(Y_ppg,X2)
+est_ppg = model_ppg.fit()
+print(est_ppg.summary())
+sm.qqplot(est_ppg.resid,line='s')
+pylab.show()
+mean_residuals = sum(est_ppg.resid) / len(est_ppg.resid)
+print("RMSE: {:.4}".format(rmse(y_test_ppg, y_predict_ppg)))
+{% endhighlight %}
+
+RMSE: 3.42
+
+**6. Determined which of the 4 methods (regression, random forest, avg % change, and prior year weighted avgs) is most accurate by looking at RMSE and use it for the specific statistic in question for 2020 player predictions.**
+
+In our examples above when looking at points per game, we obtained the following RMSEs for our 4 individual methods:
