@@ -148,3 +148,4 @@ print("RMSE: {:.4}".format(rmse(y_test_ppg, y_predict_ppg)))
 
 Random Forest Regressor Model:
 <img src="/assets/img/RF.png">
+
