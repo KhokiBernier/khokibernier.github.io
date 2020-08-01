@@ -150,3 +150,4 @@ Random Forest Regressor Model:
 <img src="/assets/img/RF.png">
 
 **Step 3: Built a prediction matrix for each basketball statistic and age that calculates league avg percent change** (e.g. if the average player's points per game increases by 8% from when they start the season at age 24 versus age 25, the points prediction for a player turning 25 is 8% more than prior year)
+
