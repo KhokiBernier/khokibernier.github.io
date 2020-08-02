@@ -379,6 +379,7 @@ I wanted to compare my model's performance vs other projections so I searched th
 
 Initial DataFrame:
 <img src="/assets/img/dfbefore.png">
+
 Formatted DataFrame:
 <img src="/assets/img/dfafter.png">
 Steps to format DataFrame:
