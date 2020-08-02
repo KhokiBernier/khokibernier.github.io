@@ -94,10 +94,10 @@ df_stats['Starter'] = (df_stats.GS.astype(int) > 40).astype('int')
 
 **Step 2: Built multivariate regression and random forest regresor models for key basketball statistics (points, rebounds, assists, etc) using data pulled in previous setp.**
 
-- **Note: 3 groups of regression and random forest models were built out:**
- - 1. Players with at least 3 years prior NBA experience
- - 2. Players with only 1 or 2 years prior NBA experience
- - 3. Rookies
+**Note: 3 groups of regression and random forest models were built out:**
+ 1. Players with at least 3 years prior NBA experience
+ 2. Players with only 1 or 2 years prior NBA experience
+ 3. Rookies
 
 The example below is for group 1 - players with at least 3 years prior NBA experience
 
