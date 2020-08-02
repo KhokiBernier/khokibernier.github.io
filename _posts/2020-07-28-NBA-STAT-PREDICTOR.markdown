@@ -33,7 +33,7 @@ The following steps were taken, and will be elaborated on with code snippets fur
 
 My Model vs ESPN's Projections below: 
 
-<img src="/assets/img/KBVESPN.jpg">
+<img src="/assets/img/KBVESPN.png">
 
 ! [image tooltip here](/assets/img/KBVESPN.jpg)
 
