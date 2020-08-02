@@ -378,10 +378,13 @@ I wanted to compare my model's performance vs other projections so I searched th
 - I copy pasted the projections from the 10 pages into an excel -> imported into Jupyter Notebook -> formatted the data
 
 Initial DataFrame:
+
 <img src="/assets/img/dfbefore.png">
 
 Formatted DataFrame:
+
 <img src="/assets/img/dfafter.png">
+
 Steps to format DataFrame:
 {% highlight ruby %}
 ###ESPN Projections
