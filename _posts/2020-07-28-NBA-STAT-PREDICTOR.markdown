@@ -408,7 +408,6 @@ i=0
 for col in data.columns:
     data.rename(columns={col:df_columns[0][i]},inplace=True)
     i+=1
-data
 espn_proj = data[(data["Year"]=='2020 PROJECTIONS') & (data['MP ESPN'] != '--')]
 #Then remove first 2 characters
 #then remove everthing starting at \
@@ -417,3 +416,6 @@ espn_proj.Player = espn_proj.Player.str.split('\n').str[0]
 {% endhighlight %}
 
 Frome here, I just merged the this dataframe with my dataframe containing my projections and the actual values.
+
+**Step 8: Loaded data into Tableau and calculated % Accuracy as well as RMSE, and performed visual analysis**
+
