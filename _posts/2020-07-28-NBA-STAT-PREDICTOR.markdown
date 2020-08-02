@@ -377,9 +377,9 @@ df_RMSE = df_RMSE.reset_index(drop=True)
 I wanted to compare my model's performance vs other projections so I searched the internet for 2019-2020 pre-season stat projections. As these would've been made in September and we're currently in July, the only free website I could find with pre-season projections still available was ESPN. The projections were split up into 10 pages on the website, but the url didn't change when switching pages so I couldn't figure out a way to webscrape the website. 
 - I copy pasted the projections from the 10 pages into an excel -> imported into Jupyter Notebook -> formatted the data:
 Initial DataFrame:
-
+<img src="/assets/img/dfbefore.png">
 Formatted DataFrame:
-
+<img src="/assets/img/dfafter.png">
 Steps to format DataFrame:
 {% highlight ruby %}
 #### ESPN Projections
