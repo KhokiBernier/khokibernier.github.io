@@ -382,7 +382,7 @@ Formatted DataFrame:
 <img src="/assets/img/dfafter.png">
 Steps to format DataFrame:
 {% highlight ruby %}
-#### ESPN Projections
+###ESPN Projections
 data = pd.read_csv('espn bball 2020 projections.csv')
 
 #if string contains \n, then the value in index 4 rows down (+4), 2 columns back (-2) = that same value
