@@ -328,12 +328,15 @@ RMSE: 3.42
 **6. Determined which of the 4 methods (regression, random forest, avg % change, and prior year weighted avgs) is most accurate by looking at RMSE and use it for the specific statistic in question for 2020 player predictions.**
 
 In our examples above when looking at points per game, we obtained the following RMSEs for our 4 individual methods:
--Method: RMSE
+
   1. Regression      : 2.41
   2. Random Forest   : 2.50
   3. % Change Matrix : 2.92
   4. Weighted Avg    : 4.95
 
-I then wanted to check how these methods performed when combined, so I averaged the prediction values for the various methods and determined an RMSE for all 16 possible combinations.
-  
+I then wanted to check how these methods performed when combined, so I averaged the prediction values for the various methods and determined an RMSE for all 15 combinations.
+- Note: the RMSEs are different from the ones listed above because they were run on a different dataset so that none of the models had the advantage of being tested on training data
+Results Ranked:
+
+
   
