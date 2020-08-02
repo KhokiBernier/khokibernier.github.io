@@ -340,3 +340,66 @@ I then wanted to check how these methods performed when combined, so I averaged 
 Results Ranked:
 <img src="/assets/img/RMSEs.png">
   
+For points, the Matrix + Regression + Forest performed best but only by a slim margin. In general, most methods performed well without significant differences in RMSE. 
+
+After creating the new dataset I merged all prediction values from the 4 methods into 1 dataframe:
+{% highlight ruby %}
+df_all = pd.DataFrame()
+df_all = pd.merge(df_RM[['Player','Year','RM_Predict']],df_RF[['Player','RF_Predict','Year']],how='inner',left_on=['Player','Year'],right_on=['Player','Year'])
+df_all = pd.merge(df_all,df_631[['Player','Predict_631','Year']],how='inner',left_on=['Player','Year'],right_on=['Player','Year'])
+df_all = pd.merge(df_all,df_bracket[['Player','Predict_Bracket','Year','PTS_x']],how='inner',left_on=['Player','Year'],right_on=['Player','Year'])
+df_all.rename(columns={'RM_Predict': 'REGRESSION', 'RF_Predict':'FOREST','Predict_631':'WEIGHT_AVG','Predict_Bracket':'MATRIX','PTS_x': 'ACTUAL'},inplace=True)
+{% endhighlight %}
+
+I then looped through to create the 15 combinations and tested each method vs the actual:
+
+{% highlight ruby %}
+#list columns so it's easy to copy paste them into a list
+df_all.columns
+cols = ['REGRESSION', 'FOREST', 'WEIGHT_AVG', 'MATRIX', 'REGRESSION + FOREST', 'REGRESSION + WEIGHT_AVG',
+       'REGRESSION + MATRIX', 'FOREST + WEIGHT_AVG', 'FOREST + MATRIX','WEIGHT_AVG + MATRIX', 
+       'REGRESSION + FOREST + WEIGHT_AVG', 'FOREST + WEIGHT_AVG + MATRIX', 'WEIGHT_AVG + MATRIX + REGRESSION', 
+       'MATRIX + REGRESSION + FOREST', 'All 4']
+methods = []
+RMSEs = []
+for col in cols:
+    methods.append(col)
+    RMSEs.append(RMSE(df_all[col], df_all.ACTUAL))
+df_RMSE = pd.DataFrame()
+df_RMSE['Method'] = methods
+df_RMSE['RMSE'] = RMSEs
+df_RMSE = df_RMSE.sort_values(by=['RMSE'])
+df_RMSE = df_RMSE.reset_index(drop=True)
+{% endhighlight %}
+
+**Step 7: Pulled ESPN's 2020 season projections from web and merged into a dataframe with my predictions and actual values.**
+
+I wanted to compare my model's performance vs other projections so I searched the internet for 2019-2020 pre-season stat projections. As these would've been made in September and we're currently in July, the only free website I could find with pre-season projections still available was ESPN. The projections were split up into 10 pages on the website, but the url didn't change when switching pages so I couldn't figure out a way to webscrape the website. 
+- I copy pasted the projections from the 10 pages into an excel -> imported into Jupyter Notebook -> formatted the data:
+Initial DataFrame:
+
+Formatted DataFrame:
+
+Steps to format DataFrame:
+{% highlight ruby %}
+#### ESPN Projections
+data = pd.read_csv('espn bball 2020 projections.csv')
+
+#if string contains \n, then the value in index 4 rows down (+4), 2 columns back (-2) = that same value
+for index, i in data[["Unnamed: 2"]].itertuples(index=True):
+    if '\n' in str(i):
+        data.loc[int(index+4),"Unnamed: 0"] = i
+#name columns
+columns = ['Player','Year','GP ESPN','MP ESPN','FG% ESPN','FT% ESPN','3PM ESPN','REB ESPN','AST ESPN','A/TO ESPN','STL ESPN','BLK ESPN','TO ESPN','PTS ESPN']
+df_columns = pd.DataFrame(columns)
+i=0
+for col in data.columns:
+    data.rename(columns={col:df_columns[0][i]},inplace=True)
+    i+=1
+data
+espn_proj = data[(data["Year"]=='2020 PROJECTIONS') & (data['MP ESPN'] != '--')]
+#Then remove first 2 characters
+#then remove everthing starting at \
+espn_proj.Player = espn_proj.Player.str[1:]
+espn_proj.Player = espn_proj.Player.str.split('\n').str[0]
+{% endhighlight %}
