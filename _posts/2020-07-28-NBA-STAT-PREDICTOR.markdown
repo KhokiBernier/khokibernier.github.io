@@ -336,7 +336,7 @@ In our examples above when looking at points per game, we obtained the following
 
 I then wanted to check how these methods performed when combined, so I averaged the prediction values for the various methods and determined an RMSE for all 15 combinations.
 - Note: the RMSEs are different from the ones listed above because they were run on a different dataset so that none of the models had the advantage of being tested on training data
+
 Results Ranked:
-
-
+<img src="/assets/img/RMSEs.png">
   
