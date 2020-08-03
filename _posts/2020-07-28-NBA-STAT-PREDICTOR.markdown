@@ -430,4 +430,6 @@ scrolling="no" src="https://public.tableau.com/views/ProjectedvActualVisual/Dash
 
 Projections vs Actual Player Detail:
 
-! [image tooltip here] (https://public.tableau.com/views/NBAPlayerPredictorDetail/Dashboard14?:language=en&:display_count=y&publish=yes&:origin=viz_share_link)
+<img src="/assets/img/playerdetail.png">
+
+You can interact with the dashboard here: https://public.tableau.com/views/NBAPlayerPredictorDetail/Dashboard14?:language=en&:display_count=y&publish=yes&:origin=viz_share_link
