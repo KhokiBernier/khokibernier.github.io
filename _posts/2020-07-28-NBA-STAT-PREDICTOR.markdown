@@ -419,5 +419,7 @@ Frome here, I just merged the this dataframe with my dataframe containing my pro
 
 **Step 8: Loaded data into Tableau and calculated % Accuracy as well as RMSE, and performed visual analysis**
 
+Projected vs Actual graph, filterable by player and adjustable by specified stat:
+
 <!---<iframe src="https://public.tableau.com/views/ProjectedvActualVisual/Dashboard5?:language=en&:display_count=y&publish=yes&:origin=viz_share_link:showVizHome=no&:embed=true"
 ></iframe>
