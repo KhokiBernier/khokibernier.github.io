@@ -19,7 +19,7 @@ Built a model that predicts win % based on these key statistics with adjustable 
 <img src="/assets/img/NBATeamPredict.png">
 <iframe 
 frameborder="0" 
-height="750" 
-width="870" 
+height="730" 
+width="920" 
 scrolling="no" src="https://public.tableau.com/views/BBallWinPredictor/Dashboard32?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes">
 </iframe>
