@@ -424,3 +424,10 @@ Projected vs Actual graph, filterable by player and adjustable by specified stat
 <iframe seamless frameborder="0" src="https://public.tableau.com/views/ProjectedvActualVisual/Dashboard5?:language=en&:display_count=y&publish=yes&:origin=viz_share_link:showVizHome=no&:embed=true" width ='600' height='450' param name="filter" value=":original_view=yes"></iframe>
 
 https://public.tableau.com/views/ProjectedvActualVisual/Dashboard5?:language=en&:display_count=y&publish=yes&:origin=viz_share_link
+
+<iframe 
+frameborder="0" 
+height="400" 
+width="575" 
+scrolling="no" src="https://public.tableau.com/views/ProjectedvActualVisual/Dashboard5?:language=en&:display_count=y&publish=yes&:origin=viz_share_link:embed=yes">
+</iframe>
