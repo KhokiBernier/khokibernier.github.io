@@ -14,3 +14,5 @@ USA Covid death detail dashboard built in Tableau Public showing total deaths, d
 <img src="/assets/img/covid.jpg">
 
 ! [image tooltip here](/assets/img/covid.jpg)
+
+https://public.tableau.com/views/USCOVIDDeaths-B/USCovidDeaths-B3?:language=en&:display_count=y&:origin=viz_share_link
