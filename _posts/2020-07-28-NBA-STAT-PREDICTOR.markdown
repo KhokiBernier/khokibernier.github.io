@@ -429,5 +429,5 @@ https://public.tableau.com/views/ProjectedvActualVisual/Dashboard5?:language=en&
 frameborder="0" 
 height="400" 
 width="575" 
-scrolling="no" src="https://public.tableau.com/views/ProjectedvActualVisual/Dashboard5?:language=en&:display_count=y&publish=yes&:origin=viz_share_link:embed=yes">
+scrolling="no" src="https://public.tableau.com/views/ProjectedvActualVisual/Dashboard5?:language=en&:display_count=y&publish=yes&:origin=viz_share_link:showVizHome=no&:embed=yes">
 </iframe>
