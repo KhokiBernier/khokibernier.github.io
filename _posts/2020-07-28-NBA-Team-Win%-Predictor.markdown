@@ -12,13 +12,14 @@ Built NBA Team dashboards with 15 years of trends around key statistics that imp
 
 <img src="/assets/img/NBATeam.png">
 
-<iframe 
-frameborder="0" 
-height="600" 
-width="770" 
-scrolling="no" src="https://public.tableau.com/views/BBallAnalysis/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes">
-</iframe>
+Dashboard can be accessed here (fullscreen recommended): https://public.tableau.com/views/BBallAnalysis/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link
 
 Built a model that predicts win % based on these key statistics with adjustable sliders:
 
 <img src="/assets/img/NBATeamPredict.png">
+<iframe 
+frameborder="0" 
+height="600" 
+width="770" 
+scrolling="no" src="https://public.tableau.com/views/BBallWinPredictor/Dashboard32?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes">
+</iframe>
