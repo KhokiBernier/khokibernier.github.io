@@ -7,8 +7,8 @@ categories: jekyll update
 Built NBA Team dashboards with 15 years of trends around key statistics that impact win % filterable by team and year. 
 - The big green or red numbers next to each metric indicate the team value 
 - The smaller number to it's bottom right is the difference from the league average
- - If the number is red, the team is below league average
- - If the number is green, the team is above league average
+-- If the number is red, the team is below league average
+-- If the number is green, the team is above league average
 
 <img src="/assets/img/NBATeam.png">
 
