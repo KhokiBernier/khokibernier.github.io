@@ -96,14 +96,14 @@ print('-'*100)
 display(round(series_after, 2))
 {% endhighlight %}
 
-Taking the metrics from above into consideration, I decided to use the 9 variables below to build out the model. I wanted to only include the minimum number of key statistics as that a general manager can realistically impact with personnel decisions. (e.g Including additional small variables, such as opponents blocks per game, may help improve our model's accuracy, but from a GM's perspective will not provide actionable value)
+Taking the metrics from above into consideration, I decided to use the 9 variables below to build out the model. I wanted to only include the minimum number of key statistics that a general manager can realistically impact with personnel decisions. (e.g Including additional small variables, such as opponents blocks per game, may help improve our model's accuracy, but from a GM's perspective will not provide actionable value)
 
 9 Key variables:
- 1/2. FG%/Opponent FG% 
- 3/4. 3P%/Opponent 3P%
- 5/6. 3P Made/Opponent 3P Made
- 7/8. Assists/Opponent Assists
- 9. Rebound Differential
+  - 1/2. FG%/Opponent FG% 
+  - 3/4. 3P%/Opponent 3P%
+  - 5/6. 3P Made/Opponent 3P Made
+  - 7/8. Assists/Opponent Assists
+  - 9. Rebound Differential
  
 {% highlight ruby %}
 #Build the model: Define input variable and our output variable (x,y)
