@@ -11,7 +11,7 @@ categories: jekyll update
 
 Team Win % Predictor containing 9 key statistics with adjustable sliders:
 
-<img src="/assets/img/NBATeamPredict.png">
+---><img src="/assets/img/NBATeamPredict.png">
 <iframe 
 frameborder="0" 
 height="730" 
