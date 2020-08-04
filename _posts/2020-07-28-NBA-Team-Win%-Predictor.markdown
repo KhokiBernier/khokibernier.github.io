@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "NBA Team Win% Predictor"
-date:   2020-07-28 00:16:44 -0400
+date:   2020-07-28 00:16:40 -0400
 categories: jekyll update
 ---
 Built NBA Team dashboards with 15 years of trends around key statistics that impact win % filterable by team and year. 
