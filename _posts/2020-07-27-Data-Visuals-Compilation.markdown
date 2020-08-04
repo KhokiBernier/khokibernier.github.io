@@ -8,7 +8,7 @@ Compilation of data visuals used in projects:
 
 <img src="/assets/img/covid.jpg">
 
-https://public.tableau.com/views/USCOVIDDeaths-B/USCovidDeaths-B3?:language=en&:display_count=y&:origin=viz_share_link
+[Covid Dashboard Link](https://public.tableau.com/views/USCOVIDDeaths-B/USCovidDeaths-B3?:language=en&:display_count=y&:origin=viz_share_link)
 
 <img src="/assets/img/KBVESPN.png">
 
