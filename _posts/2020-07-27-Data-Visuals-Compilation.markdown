@@ -7,7 +7,6 @@ categories: jekyll update
 Compilation of data visuals used in projects:
 
 <img src="/assets/img/covid.jpg">
-
 [Covid Dashboard Link](https://public.tableau.com/views/USCOVIDDeaths-B/USCovidDeaths-B3?:language=en&:display_count=y&:origin=viz_share_link)
 
 <img src="/assets/img/KBVESPN.png">
@@ -20,8 +19,7 @@ scrolling="no" src="https://public.tableau.com/views/ProjectedvActualVisual/Dash
 </iframe>
 
 <img src="/assets/img/playerdetail.png">
-
-https://public.tableau.com/views/NBAPlayerPredictorDetail/Dashboard14?:language=en&:display_count=y&publish=yes&:origin=viz_share_link
+[Player Detail Dashboard Link](https://public.tableau.com/views/NBAPlayerPredictorDetail/Dashboard14?:language=en&:display_count=y&publish=yes&:origin=viz_share_link)
 
 <iframe 
 frameborder="0" 
@@ -31,8 +29,7 @@ scrolling="no" src="https://public.tableau.com/views/BBallWinPredictor/Dashboard
 </iframe>
 
 <img src="/assets/img/NBATeam.png">
-
-https://public.tableau.com/views/BBallAnalysis/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link
+[Basketball Teams Link](https://public.tableau.com/views/BBallAnalysis/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link)
 
 <img src="/assets/img/HF.jpg">
 
