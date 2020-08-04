@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "NBA Stat Predictor"
-date:   2020-07-28 00:16:41 -0400
+date:   2020-07-28 00:16:44 -0400
 categories: jekyll update
 ---
 Built a model to predict NBA Player Season Stats that outperformed ESPN's 2019-2020 season projections (to date, the season is still going on). The model was built in Python3 and projections were made using the following:
