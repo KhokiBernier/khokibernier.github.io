@@ -11,8 +11,6 @@ categories: jekyll update
 
 Team Win % Predictor containing 9 key statistics with adjustable sliders:
 
-<!---<img src="/assets/img/NBATeamPredict.png">
-
 <iframe 
 frameborder="0" 
 height="730" 
@@ -25,6 +23,7 @@ Team Data Dashboard with 15 years of trends around key statistics that impact wi
 - The smaller number to it's bottom right is the difference from the league average
   - If the number is red, the team is below league average
   - If the number is green, the team is above league average
+
 <img src="/assets/img/NBATeam.png">
 
 Dashboard can be accessed here (fullscreen recommended): https://public.tableau.com/views/BBallAnalysis/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link
