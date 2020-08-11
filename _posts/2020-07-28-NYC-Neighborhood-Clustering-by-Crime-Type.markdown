@@ -5,4 +5,6 @@ date:   2020-07-28 00:16:42 -0400
 categories: jekyll update
 ---
 
-<img src="/assets/img/NYC-Neighborhood-Dashboard.jpg">
+More documentation to come
+
+<img src="/assets/img/NYC-Neighborhood-Dashboard.png">
