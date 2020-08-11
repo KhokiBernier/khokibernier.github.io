@@ -5,6 +5,7 @@ date:   2020-07-28 00:16:44 -0400
 categories: jekyll update
 ---
 **Project Overview**
+
 Built a model to predict NBA Player Season Stats that outperformed ESPN's 2019-2020 season projections (to date, the season is still going on). The model was built in Python3 and projections were made using the following:
 
 - Multivariate Regression
