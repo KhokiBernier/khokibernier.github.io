@@ -25,7 +25,7 @@ Clustered New York City nieghborhoods by crime type per 1,000 residents and neig
 - sklearn
 - plotly
 
-**Links
+**Links**
 
 - NYC Arrest dataset: https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc
 - Code to get Neighborhood and venues: https://codekarim.com/node/57 **(Note: I do not take credit for this code)**
@@ -41,9 +41,9 @@ Clustered New York City nieghborhoods by crime type per 1,000 residents and neig
 4. Mapped neighborhood population to nieghborhood using 'NYC Neighborhood by population file' dataset
 -- Built several functions to map neighborhoods, as dataset nieghborhood syntax was not the same
 5. Grouped, pivoted and normalized data and used K-Means Clustering algorithm to determine clusters based on the following variables:
--- Violent Crime / 1,000 residents
--- Theft / 1,000 residents
--- Drug Related Crime / 1,000 residents
--- Traffic Crime / 1,000 residents
--- General Non-Violent Crime / 1,000 residents (loittering, gambling, health code violations, etc)
+  -- Violent Crime / 1,000 residents
+  -- Theft / 1,000 residents
+  -- Drug Related Crime / 1,000 residents
+  -- Traffic Crime / 1,000 residents
+  -- General Non-Violent Crime / 1,000 residents (loittering, gambling, health code violations, etc)
 6. Visualize data in Tableau
