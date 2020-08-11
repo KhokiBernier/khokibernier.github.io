@@ -21,8 +21,7 @@ scrolling="no" src="https://public.tableau.com/views/ProjectedvActualVisual/Dash
 
 <img src="/assets/img/NYC-Neighborhood-Dashboard.png">
 
-[NYC Neighborhood Dashboard link]
-(https://public.tableau.com/views/NYCNeighborhoodCrimeTypeClustersv2/Dashboard15?:language=en&:display_count=y&:origin=viz_share_link)
+[NYC Neighborhood Dashboard link](https://public.tableau.com/views/NYCNeighborhoodCrimeTypeClustersv2/Dashboard15?:language=en&:display_count=y&:origin=viz_share_link)
 
 <iframe 
 frameborder="0" 
