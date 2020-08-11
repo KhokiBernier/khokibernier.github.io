@@ -98,17 +98,17 @@ crime_group_list = []
 
 for i in df_crime['OFNS_DESC']:
     if (i in violent) == True:
-        crime_group2.append('Violent')
+        crime_group_list.append('Violent')
     elif (i in non_violent) == True:
-        crime_group2.append('Non Violent')
+        crime_group_list.append('Non Violent')
     elif (i in traffic) == True:
-        crime_group2.append('Traffic')
+        crime_group_list.append('Traffic')
     elif (i in theft) == True:
-        crime_group2.append('Theft')
+        crime_group_list.append('Theft')
     elif (i in drugs) == True:
-        crime_group2.append('Drug')
+        crime_group_list.append('Drug')
     else:
-        crime_group2.append('Other')
+        crime_group_list.append('Other')
         
 df_crime['Crime Group'] = crime_group_list
 {% endhighlight %}
