@@ -40,12 +40,12 @@ Clustered New York City nieghborhoods by crime type per 1,000 residents and neig
 3. Mapped crime location to neighborhood by finding minimum Euclidean distance between crime location and all venues
 4. Mapped neighborhood population to nieghborhood using 'NYC Neighborhood by population file' dataset
   - Built several functions to map neighborhoods, as dataset nieghborhood syntax was not the same
-5. Grouped, pivoted and normalized data and used K-Means Clustering algorithm to determine clusters based on the following variables:
-- Violent Crime / 1,000 residents
-- Theft / 1,000 residents
-- Drug Related Crime / 1,000 residents
-- Traffic Crime / 1,000 residents
-- General Non-Violent Crime / 1,000 residents (loittering, gambling, health code violations, etc)
+5. Grouped, pivoted and normalized data and used K-Means Clustering algorithm to determine clusters based on the following variables (per 1,000 residents):
+- Violent Crime
+- Theft
+- Drug Related Crime
+- Traffic Crime
+- General Non-Violent Crime (loittering, gambling, health code violations, etc)
 6. Visualize data in Tableau
 
 **Step 1: Downloaded and cleaned file that contained 5 million+ rows of NYC crime occurances, descriptions, and coordinates**
