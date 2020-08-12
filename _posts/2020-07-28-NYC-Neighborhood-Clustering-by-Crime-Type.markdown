@@ -51,7 +51,7 @@ Clustered New York City nieghborhoods by crime type per 1,000 residents and neig
 **Step 1: Downloaded and cleaned file that contained 5 million+ rows of NYC crime occurances, descriptions, and coordinates**
 
 - Dataset taken from this link: https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc
-- Cleaned data
+- Clean and organize data
 
 {% highlight ruby %}
 import pandas as pd
@@ -112,3 +112,15 @@ for i in df_crime['OFNS_DESC']:
         
 df_crime['Crime Group'] = crime_group_list
 {% endhighlight %}
+
+**Step 2: Pulled NYC neighborhood coordinates as well as coordinates from all venues in each neighborhood by following steps in this link https://codekarim.com/node/57**
+
+- I copied the steps listed in the link and adjusted a few things in order to get all neighborhood and venue coordinates for all 5 boroughs
+- The code was created by 2 guys named Alex Aklson and Polong Lin, and involves working with JSON files
+
+**Step 3: Mapped crime location to neighborhood by finding minimum Euclidean distance between crime location and all venues**
+
+- Now that we have crime coordinates and neighborhood venue coordinates, we can map each crime to a neighborhood
+- Euclidean distance represents the distance between two points, and can be used for n dimensions (our example has 2)
+- Formula: 
+
