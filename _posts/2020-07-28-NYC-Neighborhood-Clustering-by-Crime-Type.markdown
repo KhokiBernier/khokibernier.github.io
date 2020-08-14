@@ -122,5 +122,51 @@ df_crime['Crime Group'] = crime_group_list
 
 - Now that we have crime coordinates and neighborhood venue coordinates, we can map each crime to a neighborhood
 - Euclidean distance represents the distance between two points, and can be used for n dimensions (our example has 2)
-- Formula: 
+- Formula: d(x,y) = sqrt((x1-x2)^2 + (y1-y2)^2)
 
+First we put our venue latitudes and longitudes into a list of coordinates
+{% highlight ruby %}
+coordinates = []
+for lat, long in df_ny[['Venue Latitude','Venue Longitude']].itertuples(index=False):
+    coordinates.append((lat,long))
+{% endhighlight %}
+Next, we define 2 functions. 1 to calculate Euclidean distance and 1 to find the closest pair of coordinates out of a list of coordinates.
+
+{% highlight ruby %}
+from math import sqrt
+
+def euqli_dist(p, q):
+    return sqrt(((p[0] - q[0]) ** 2) + ((p[1] - q[1]) ** 2))
+
+def closest(cur_pos, positions):
+    low_dist = float('inf')
+    closest_pos = None
+    for pos in positions:
+        dist = euqli_dist(cur_pos,pos)
+        if dist < low_dist:
+            low_dist = dist
+            closest_pos = pos
+    return closest_pos
+{% endhighlight %}
+
+We can now loop through
+
+
+{% highlight ruby %}
+from datetime import datetime
+
+neighborhood_list = []
+tracker = 0
+
+for lat,long in df_crime[['Latitude','Longitude']].itertuples(index=False):
+    point = (lat,long)
+    closest_point = closest(point, coordinates)
+    #setting variable equal to nearest venue based on closest point coordinates
+    ind = df_ny[(df_ny['Venue Latitude'] == closest_point[0]) & (df_ny['Venue Longitude'] == closest_point[1])].Neighborhood.values[0]
+    neighborhood_list.append(ind)
+    tracker+=1
+    #This helps us track our script, it takes about 10 minutes for every 100,000 rows
+    if tracker % 100000 == 0:
+        print(tracker)
+        print(datetime.now(tz=None))
+{% endhighlight %}
