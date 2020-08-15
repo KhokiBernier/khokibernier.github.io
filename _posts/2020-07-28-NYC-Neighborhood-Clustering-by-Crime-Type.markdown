@@ -276,12 +276,41 @@ We now have our neighborhoods in a standardized format between our population an
 Transposing the data:
 
 {% highlight ruby %}
-not_transposed = df_crime_np[['Crime Group2','Neighborhood','Latitude']]
-not_transposed.groupby('Crime Group2')['Neighborhood'].count()
+#taking relevant columns to be transposed
+df_not_transposed = df_crime_np[['Crime Group2','Neighborhood','Latitude']]
+#pivoting data
+df_not_transposed = df_not_transposed.pivot_table(index='Neighborhood', columns='Crime Group2', values= 'Latitude', aggfunc='count')
+#resetting index
+df_not_transposed['Neighborhood'] = df_not_transposed.index
+df_not_transposed.index = df_not_transposed.index.rename('index')
+{% endhighlight %}
 
-nt = not_transposed.pivot_table(index='Neighborhood', columns='Crime Group2', values= 'Latitude', aggfunc='count')
-nt['Neighborhood'] = nt.index
-nt.index = nt.index.rename('index')
+-image
 
-nt.Neighborhood.nunique()
+#get population sum for each neighborhood
+{% highlight ruby %}
+df_population = pd.DataFrame(df_nyc_pop.groupby('Neighborhood')['Population'].sum())
+df_population['Neighborhood'] = df_population.index
+df_population.index = df_population.index.rename('index')
+{% endhighlight %}
+
+#merge dataframes and add qoutient in order to get crimes per 1,000 population
+{% highlight ruby %}
+df_crime_per_1000 = pd.merge(df_not_transposed,df_population,how='left',left_on=['Neighborhood'],right_on=['Neighborhood'])
+df_crime_per_1000['qoutient'] = df_crime_per_1000['Population'] / 1000
+{% endhighlight %}
+
+Get crimes per 1,000
+{% highlight ruby %}
+cols = ['Non Violent','Theft','Violent','Drug','Traffic'] 
+df_crime_per_1000 = df_crime_per_1000.fillna(0)
+for col in cols:
+    df_crime_per_1000[col] = df_crime_per_1000[col] / df_crime_per_1000.qoutient
+{% endhighlight %}
+
+{% highlight ruby %}
+df_crime_per_1000 = df_crime_per_1000.replace([np.inf, -np.inf], np.nan)
+df_crime_per_1000 = df_crime_per_1000.dropna()
+
+df_crime_per_1000 = pd.merge(df_crime_per_1000, df_population[['Neighborhood','Borough']].drop_duplicates(),how = 'left',left_on=['Neighborhood'],right_on=['Neighborhood'])
 {% endhighlight %}
