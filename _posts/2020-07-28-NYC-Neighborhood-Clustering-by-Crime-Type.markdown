@@ -210,7 +210,7 @@ print('not in both = ',ctr_n)
 We only have about a quarter of the neighborhoods mapped, not very good.
 To investigate, I ran the same loop above but switched the dataframes in order to see the neighborhoods in the NYC Population dataset that did not get mapped to a df_crime dataset.
 
-<img src="/assets/img/hyphonated-neighborhoods.png">
+<img src="/assets/img/hyponated-neighborhoods.png">
 
 Looking at this output, we immediately notice the hyphons. Non of our df_crime neighborhoods have hyphons, but instead each hyphonated item is listed as its own neighborhood. For example:
 
