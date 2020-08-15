@@ -46,7 +46,8 @@ Clustered New York City nieghborhoods by crime type per 1,000 residents and neig
 - Drug Related Crime
 - Traffic Crime
 - General Non-Violent Crime (loittering, gambling, health code violations, etc)
-6. Visualize data in Tableau
+6. Perform K-Means Clustering
+7. Visualize data in Tableau
 
 **Step 1: Downloaded and cleaned file that contained 5 million+ rows of NYC crime occurances, descriptions, and coordinates**
 
@@ -314,3 +315,5 @@ df_crime_per_1000 = df_crime_per_1000.dropna()
 
 df_crime_per_1000 = pd.merge(df_crime_per_1000, df_population[['Neighborhood','Borough']].drop_duplicates(),how = 'left',left_on=['Neighborhood'],right_on=['Neighborhood'])
 {% endhighlight %}
+
+**Step 6: Perform K-Means Clustering**
