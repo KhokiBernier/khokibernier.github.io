@@ -30,7 +30,7 @@ Clustered New York City nieghborhoods by crime type per 1,000 residents and neig
 - NYC Arrest dataset: https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc
 - Code to get Neighborhood and venues: https://codekarim.com/node/57 **(Note: I do not take credit for this code)**
 - NYC Neighborhood by population file: https://data.cityofnewyork.us/City-Government/New-York-City-Population-By-Neighborhood-Tabulatio/swpk-hqdp
-- Missing Neighborhood Populations: https://popfactfinder.planning.nyc.gov/#11.37/40.7583/-74.0043 
+- Missing Neighborhood Populations: https://popfactfinder.planning.nyc.gov/
 - NYC Map to verify Midtown South: https://maps.nyc.gov/crime/
 
 **Steps Taken**
@@ -210,6 +210,8 @@ not in both = 215
 We only have about a quarter of the neighborhoods mapped, not very good.
 To investigate, I ran the same loop above but switched the dataframes in order to see the neighborhoods in the NYC Population dataset that did not get mapped to a df_crime dataset.
 
+<img src="/assets/img/hyphonated neighborhoods.png">
+
 Looking at this output, we immediately notice the hyphons. Non of our df_crime neighborhoods have hyphons, but instead each hyphonated item is listed as its own neighborhood. For example:
 
 Crime dataframe:
@@ -255,3 +257,31 @@ The total number of neighborhoods decreased because of our hyphonations, so we w
 
 - Before: 215 missing
 - After: 80 missing
+
+After rechecking the neighborhoods in the population file that did not get mapped, I noticed many of our population neighborhoods specify 'East', 'West', 'North', 'South', and our crime data does not. For example:
+
+Population file:
+- Sunset Park West
+- Sunset Park East
+
+Crime file:
+- Sunset Park
+
+In this case, because we can't specify which Sunset Park (East or West) the crime occured, I grouped Sunset Park East and Sunset Park West in the population file to be Sunset Park, and combined the population numbers. This eliminated another 10 neighborhoods. For the remaining 70, they seemed to not be in the file, so I mapped them manually using this website https://popfactfinder.planning.nyc.gov/. This was definetly the most boring part of the project, but it only took about an hour and it requires very little critical thinking so you can listen to music while doing it.
+
+We now have our neighborhoods in a standardized format between our population and crime dataframes.
+
+**Step 5. Grouped, pivoted and normalized data and used K-Means Clustering algorithm to determine clusters based on the following variables (per 1,000 residents):
+
+Transposing the data:
+
+{% highlight ruby %}
+not_transposed = df_crime_np[['Crime Group2','Neighborhood','Latitude']]
+not_transposed.groupby('Crime Group2')['Neighborhood'].count()
+
+nt = not_transposed.pivot_table(index='Neighborhood', columns='Crime Group2', values= 'Latitude', aggfunc='count')
+nt['Neighborhood'] = nt.index
+nt.index = nt.index.rename('index')
+
+nt.Neighborhood.nunique()
+{% endhighlight %}
