@@ -322,3 +322,4 @@ df_crime_per_1000 = pd.merge(df_crime_per_1000, df_population[['Neighborhood','B
 <img src="/assets/img/transposed-df-final.png">
 
 **Step 6: Perform K-Means Clustering**
+
