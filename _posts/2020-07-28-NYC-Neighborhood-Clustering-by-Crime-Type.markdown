@@ -211,7 +211,7 @@ not in both = 215
 We only have about a quarter of the neighborhoods mapped, not very good.
 To investigate, I ran the same loop above but switched the dataframes in order to see the neighborhoods in the NYC Population dataset that did not get mapped to a df_crime dataset.
 
-<img src="/assets/img/hyphonated neighborhoods.png">
+<img src="/assets/img/hyphonated-neighborhoods.png">
 
 Looking at this output, we immediately notice the hyphons. Non of our df_crime neighborhoods have hyphons, but instead each hyphonated item is listed as its own neighborhood. For example:
 
@@ -301,6 +301,8 @@ df_crime_per_1000 = pd.merge(df_not_transposed,df_population,how='left',left_on=
 df_crime_per_1000['qoutient'] = df_crime_per_1000['Population'] / 1000
 {% endhighlight %}
 
+<img src="/assets/img/with-qoutient.png">
+
 Get crimes per 1,000
 {% highlight ruby %}
 cols = ['Non Violent','Theft','Violent','Drug','Traffic'] 
@@ -315,5 +317,7 @@ df_crime_per_1000 = df_crime_per_1000.dropna()
 
 df_crime_per_1000 = pd.merge(df_crime_per_1000, df_population[['Neighborhood','Borough']].drop_duplicates(),how = 'left',left_on=['Neighborhood'],right_on=['Neighborhood'])
 {% endhighlight %}
+
+<img src="/assets/img/transposed-df-final.png">
 
 **Step 6: Perform K-Means Clustering**
