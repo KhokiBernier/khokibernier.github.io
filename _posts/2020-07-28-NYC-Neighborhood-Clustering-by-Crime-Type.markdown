@@ -14,7 +14,7 @@ Clustered New York City nieghborhoods by crime type per 1,000 residents and neig
 
 <img src="/assets/img/NYC-Neighborhood-Dashboard.png">
 
-<img src="/assets/img/NYC-Dashboard-v2.png">
+<img src="/assets/img/nyc-dashboard-v2.png">
 (input link to define clustering)
 
 **Libraries used:**
