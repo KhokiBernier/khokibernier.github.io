@@ -116,3 +116,6 @@ regression_model = LinearRegression()
 regression_model.fit(x_train,y_train)
 y_predict = regression_model.predict(x_test)
 {% endhighlight %}
+
+
+**Conculsions**
