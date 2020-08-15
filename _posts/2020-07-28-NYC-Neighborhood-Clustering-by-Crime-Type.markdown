@@ -271,7 +271,7 @@ In this case, because we can't specify which Sunset Park (East or West) the crim
 
 We now have our neighborhoods in a standardized format between our population and crime dataframes.
 
-**Step 5. Grouped, pivoted and normalized data and used K-Means Clustering algorithm to determine clusters based on the following variables (per 1,000 residents):
+**Step 5. Grouped, pivoted and normalized data and used K-Means Clustering algorithm to determine clusters based on the following variables (per 1,000 residents):**
 
 Transposing the data:
 
