@@ -135,14 +135,14 @@ Next, we define 2 functions. 1 to calculate Euclidean distance and 1 to find the
 {% highlight ruby %}
 from math import sqrt
 
-def euqli_dist(p, q):
+def Euclidean_Distance(p, q):
     return sqrt(((p[0] - q[0]) ** 2) + ((p[1] - q[1]) ** 2))
 
 def closest(cur_pos, positions):
     low_dist = float('inf')
     closest_pos = None
     for pos in positions:
-        dist = euqli_dist(cur_pos,pos)
+        dist = Euclidean_Distance(cur_pos,pos)
         if dist < low_dist:
             low_dist = dist
             closest_pos = pos
@@ -169,4 +169,89 @@ for lat,long in df_crime[['Latitude','Longitude']].itertuples(index=False):
     if tracker % 100000 == 0:
         print(tracker)
         print(datetime.now(tz=None))
+df_crime['Neighborhood'] = neighborhood_list
 {% endhighlight %}
+
+
+**Step 4. Mapped neighborhood population to nieghborhood using 'NYC Neighborhood by population file' dataset
+
+- First, import the dataset into a data frame (link to dataset: https://data.cityofnewyork.us/City-Government/New-York-City-Population-By-Neighborhood-Tabulatio/swpk-hqdp)
+
+{% highlight ruby %}
+nyc_pop_data = pd.read_csv('NYC Population Data.csv')
+#The dataset has population data for 2000 and 2010, we'll look at 2010 since it's the most recent and NYC population hasn't changed too much since then
+nyc_pop_data = nyc_pop_data[nyc_pop_data.Year == 2010]
+{% endhighlight %}
+
+- I noticed that the counts of neighborhoods between this dataset and our crime mapped dataframe were different, so I performed the following to investigate the discrepency
+
+{% highlight ruby %}
+df_crime.Neighborhood.nunique() # this returned 301, so we have 301 neighborhoods that we need population counts for
+
+ctr_y = 0
+ctr_n = 0
+
+not_in_neighborhoods = []
+
+for i in df_crime['Neighborhood'].unique():
+    if (i in nyc_pop_data['NTA Name'].values) == True:
+        ctr_y+=1
+    else:
+        ctr_n+=1
+        not_in_neighborhoods.append(i)
+        
+print('In both = ',ctr_y)
+print('not in both',ctr_n)
+{% endhighlight %}
+
+In both = 86
+not in both = 215
+
+We only have about a quarter of the neighborhoods mapped, not very good.
+To investigate, I ran the same loop above but switched the dataframes in order to see the neighborhoods in the NYC Population dataset that did not get mapped to a df_crime dataset.
+
+Looking at this output, we immediately notice the hyphons. Non of our df_crime neighborhoods have hyphons, but instead each hyphonated item is listed as its own neighborhood. For example:
+
+Crime dataframe:
+- Claremont
+- Bathgate
+
+Population dataframe:
+- Claremont-Bathgate
+
+Because our population counts are dependent on the Population dataset, our crime dataset will have to abide by the population dataset 'Rules' in terms of heirarchy. So my solution was to create a dictionary with the keys as the non-hyphonated neighborhoods and place the hyphonated neighborhoods as the value, resulting in the below:
+
+{'Claremont' : 'Claremont-Bathgate',
+ 'Bathgate'. : 'Claremont-Bathgate',}
+
+This was achieved using the loop below:
+
+{% highlight ruby %}
+key_list = []
+value_list = []
+ctr = 0
+for i in not_in_neighborhoods:
+    if '-' in i:
+        #split function creates a list, we're using '-' as a seperator
+        key2 = i.split('-')
+        for n, val in enumerate(key2):
+            #appending each element of our list into our keys
+            key_list.append(val.replace("'", ""))
+            #appending the original hyphonated value into our list of values
+            value_list.append(i.replace("'", ""))
+#create our dictionary
+neighborhood_dictionary = dict(zip(key_list, value_list))
+#replace our crime neighborhoods using dictionary
+for i in key_list:
+    neighborhoods_test[neighborhoods_test.Neighborhood == i].replace({'Neighborhood': neighborhood_dictionary})
+{% endhighlight %}
+
+Re-running our loop from above to determine how many neighborhoods we have mapped resulted in:
+
+In both =  152
+not in both =  80
+
+The total number of neighborhoods decreased because of our hyphonations, so we went from:
+
+- Before: 215 missing
+- After: 80 missing
