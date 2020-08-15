@@ -26,7 +26,7 @@ Clustered New York City nieghborhoods by crime type per 1,000 residents and neig
 **Links**
 
 - NYC Arrest dataset: https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc
-- Code to get Neighborhood and venues: https://codekarim.com/node/57 **(Note: I do not take credit for this code)**
+- Code to get Neighborhoods and venues: https://codekarim.com/node/57 (Note: I do not take credit for this code)
 - NYC Neighborhood by population file: https://data.cityofnewyork.us/City-Government/New-York-City-Population-By-Neighborhood-Tabulatio/swpk-hqdp
 - Missing Neighborhood Populations: https://popfactfinder.planning.nyc.gov/
 - NYC Map to verify Midtown South: https://maps.nyc.gov/crime/
@@ -44,8 +44,9 @@ Clustered New York City nieghborhoods by crime type per 1,000 residents and neig
 - Drug Related Crime
 - Traffic Crime
 - General Non-Violent Crime (loittering, gambling, health code violations, etc)
-6. Perform K-Means Clustering
-7. Visualize data in Tableau
+- Neighborhood Population
+6. Performed K-Means Clustering
+7. Visualized data in Tableau
 
 **Step 1: Downloaded and cleaned file that contained 5 million+ rows of NYC crime occurances, descriptions, and coordinates**
 
@@ -172,7 +173,7 @@ df_crime['Neighborhood'] = neighborhood_list
 {% endhighlight %}
 
 
-**Step 4. Mapped neighborhood population to nieghborhood using 'NYC Neighborhood by population file' dataset
+**Step 4. Mapped neighborhood population to nieghborhood using 'NYC Neighborhood by population file' dataset**
 
 - First, import the dataset into a data frame (link to dataset: https://data.cityofnewyork.us/City-Government/New-York-City-Population-By-Neighborhood-Tabulatio/swpk-hqdp)
 
@@ -200,11 +201,11 @@ for i in df_crime['Neighborhood'].unique():
         not_in_neighborhoods.append(i)
         
 print('In both = ',ctr_y)
-print('not in both',ctr_n)
+print('not in both = ',ctr_n)
 {% endhighlight %}
 
-In both = 86
-not in both = 215
+- In both = 86
+- not in both = 215
 
 We only have about a quarter of the neighborhoods mapped, not very good.
 To investigate, I ran the same loop above but switched the dataframes in order to see the neighborhoods in the NYC Population dataset that did not get mapped to a df_crime dataset.
@@ -222,8 +223,8 @@ Population dataframe:
 
 Because our population counts are dependent on the Population dataset, our crime dataset will have to abide by the population dataset 'Rules' in terms of heirarchy. So my solution was to create a dictionary with the keys as the non-hyphonated neighborhoods and place the hyphonated neighborhoods as the value, resulting in the below:
 
-{'Claremont' : 'Claremont-Bathgate',
- 'Bathgate'. : 'Claremont-Bathgate',}
+- {'Claremont' : 'Claremont-Bathgate',
+- 'Bathgate'. : 'Claremont-Bathgate',}
 
 This was achieved using the loop below:
 
@@ -243,14 +244,13 @@ for i in not_in_neighborhoods:
 #create our dictionary
 neighborhood_dictionary = dict(zip(key_list, value_list))
 #replace our crime neighborhoods using dictionary
-for i in key_list:
-    neighborhoods_test[neighborhoods_test.Neighborhood == i].replace({'Neighborhood': neighborhood_dictionary})
+df_crime['Neighborhood'] = df_crime['Neighborhood'].replace(neighborhood_dictionary)
 {% endhighlight %}
 
 Re-running our loop from above to determine how many neighborhoods we have mapped resulted in:
 
-In both =  152
-not in both =  80
+- In both =  152
+- not in both =  80
 
 The total number of neighborhoods decreased because of our hyphonations, so we went from:
 
@@ -266,7 +266,9 @@ Population file:
 Crime file:
 - Sunset Park
 
-In this case, because we can't specify which Sunset Park (East or West) the crime occured, I grouped Sunset Park East and Sunset Park West in the population file to be Sunset Park, and combined the population numbers. This eliminated another 10 neighborhoods. For the remaining 70, they seemed to not be in the file, so I mapped them manually using this website https://popfactfinder.planning.nyc.gov/. This was definetly the most boring part of the project, but it only took about an hour and it requires very little critical thinking so you can listen to music while doing it.
+In this case, because we can't specify which Sunset Park (East or West) the crime occured, I grouped Sunset Park East and Sunset Park West in the population file to be Sunset Park, and combined the population numbers. This eliminated another 10 neighborhoods. 
+
+For the remaining 70, they seemed to not be in the file, so I mapped them manually using this website https://popfactfinder.planning.nyc.gov/. This was definetly the most boring part of the project, but it only took about an hour and it requires very little critical thinking so you can listen to music while doing it.
 
 We now have our neighborhoods in a standardized format between our population and crime dataframes.
 
@@ -286,14 +288,14 @@ df_not_transposed.index = df_not_transposed.index.rename('index')
 
 -image
 
-#get population sum for each neighborhood
+get population sum for each neighborhood
 {% highlight ruby %}
 df_population = pd.DataFrame(df_nyc_pop.groupby('Neighborhood')['Population'].sum())
 df_population['Neighborhood'] = df_population.index
 df_population.index = df_population.index.rename('index')
 {% endhighlight %}
 
-#merge dataframes and add qoutient in order to get crimes per 1,000 population
+merge dataframes and add qoutient in order to get crimes per 1,000 population
 {% highlight ruby %}
 df_crime_per_1000 = pd.merge(df_not_transposed,df_population,how='left',left_on=['Neighborhood'],right_on=['Neighborhood'])
 df_crime_per_1000['qoutient'] = df_crime_per_1000['Population'] / 1000
