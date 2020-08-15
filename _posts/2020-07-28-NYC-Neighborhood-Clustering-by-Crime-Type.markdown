@@ -320,3 +320,7 @@ df_crime_per_1000 = pd.merge(df_crime_per_1000, df_population[['Neighborhood','B
 
 **Step 6: Perform K-Means Clustering**
 
+Clustering is a form of unsupervised exploratory analysis that aims to segment the data based on similar traits.
+
+
+**Conculsions**
