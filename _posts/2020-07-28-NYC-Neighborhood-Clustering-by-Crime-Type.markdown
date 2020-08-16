@@ -370,14 +370,14 @@ plt.show()
 Looking at the graph, I selected 6 clusters
 
 {% highlight ruby %}
-# Fitting K-Means to the dataset
+#Fitting K-Means to the dataset
 kmeans = KMeans(n_clusters = 6, init = 'k-means++')
 y_kmeans = kmeans.fit_predict(features_standardized)
 #beginning of  the cluster numbering with 1 instead of 0
 y_kmeans1=y_kmeans+1
-# New list called cluster
+#New list called cluster
 cluster = list(y_kmeans1)
-# Adding cluster to our data set
+#Adding cluster to our data set
 df_crime_per_1000['cluster'] = cluster
 #Mean of clusters 1 to 4
 kmeans_mean_cluster = pd.DataFrame(round(df_crime_per_1000.groupby('cluster').mean(),1))
