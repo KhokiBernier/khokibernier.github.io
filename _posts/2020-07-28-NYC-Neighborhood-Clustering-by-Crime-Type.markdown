@@ -388,6 +388,25 @@ kmeans_mean_cluster
 
 Looking at the cluster averages and cluster counts, it's clear we have outliers. Because the K-Means algorithm uses the mean of clusters, it's sensitive to outliers and does not perform well with them. Additionally, I'd like to have more meaningful clusters, and our outlier data seems to be of more or less the same variety - very high crime neighborhoods. I decided to group these outliers into 1 'High Crime' cluster, then create a dataset that excludes these neighborhoods and re-run the K-Means algorithm. 
 
+Note: 'Non Violent' represents 'General Non-Violent' crime
 <img src="/assets/img/new-clusters.png">
+
+The cluster distribution looks a little better here, and we can identify characteristics of the clusters that go beyond just different degrees of similar features. The clusters are described as follows:
+
+- Low Crime: Medium Population (73 neighborhoods)
+- Low Crime: High Population (46 neighborhoods)
+- Low-Med Crime: Low-Med Population (49 neighborhoods)
+- Medium Crime: Medium Population (17 neighborhoods)
+- High Violent/Theft/General: Mid Drugs/Traffic (10 neighborhoods)
+- Extremely High Theft (3 neighborhoods)
+- High Crime: Low Population (14 neighborhoods)
+
+Here we have some clusters around degrees of crime and population, and some insight into neighborhoods with high violence and theft with mid level drug and traffic crime, or areas with very high theft. However, it does appear that generally when 1 type of crime is high in a neighborhood all types of crime are high as well. While that in itself is a bit of a relevation, particuralry with types of crime such as traffic, if the data set variables were less linear K-Means clustering could output more interesting clusters.
+
+-graphed photo-
+
+**Step 7. Visualized data in Tableau**
+
+
 
 **Conculsions**
