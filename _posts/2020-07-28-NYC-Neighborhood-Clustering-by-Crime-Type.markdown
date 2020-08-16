@@ -322,7 +322,69 @@ df_crime_per_1000 = pd.merge(df_crime_per_1000, df_population[['Neighborhood','B
 
 **Step 6: Perform K-Means Clustering**
 
-Clustering is a form of unsupervised exploratory analysis that aims to segment the data based on similar traits.
+Clustering is a form of unsupervised exploratory analysis that aims to segment data based on similar traits. In our case, we a used k-means clustering algorithm, where the number of clusters (K) is specified prior to clustering. In K-Means clustering, k (the selected number of clusters) centroids are chosen as random data points. Our data points are then taken and assigned to the nearest centroid based on Euclidean distance. Once all data points are assigned to a centroid, the mean of each cluster is calculated and determined to be the new centroids. All data points are then reassigned to the nearest new centroid value. This process continues until the data points stop changing clusters, and once this occurs the total variation amongst points in the clusters is then calculated. This entire process is repeated x amount of times and the sequence with the lowest variation is used to cluster the data.
+
+- import libraries
+{% highlight ruby %}
+import seaborn as sns 
+import plotly as py
+import plotly.graph_objs as go
+from sklearn.cluster import KMeans
+from sklearn import preprocessing
+import warnings
+import os
+from sklearn import preprocessing
+warnings.filterwarnings("ignore")
+py.offline.init_notebook_mode(connected = True)
+#Declare dataset with our features for clustering
+features = pd.DataFrame(df_crime_per_1000[['Non Violent','Theft','Violent','Drug','Traffic','Population']])
+{% endhighlight %}
+
+As K-Means uses Euclidean distance between data points, it's important that we standardize data so that our variables are on the same scale.
+
+{% highlight ruby %}
+#Normalize data
+from sklearn import preprocessing
+features_standardized = preprocessing.scale(features)
+features_standardized = pd.DataFrame(features_standardized)
+{% endhighlight %}
+
+Next, we determine the optimal number of clusters to input into our algorithm. To do this, We'll graph out number of clusters on the x-axis and within-cluster-sum-of-squares (variation) on the y-axis.
+
+{% highlight ruby %}
+plt.figure(figsize=(10, 8))
+wcss = []
+for i in range(1, 15):
+    kmeans = KMeans(n_clusters = i, init = 'k-means++')
+    kmeans.fit(features_standardized)
+    wcss.append(kmeans.inertia_) #criterion based on which K-means clustering works
+plt.plot(range(1, 15), wcss)
+plt.title('The Elbow Method')
+plt.xlabel('Number of clusters')
+plt.ylabel('WCSS')
+plt.show()
+{% endhighlight %}
+
+<img src="/assets/img/elbow-method.png">
+
+Looking at the graph, I selected 6 clusters
+
+{% highlight ruby %}
+# Fitting K-Means to the dataset
+kmeans = KMeans(n_clusters = 6, init = 'k-means++')
+y_kmeans = kmeans.fit_predict(features_standardized)
+#beginning of  the cluster numbering with 1 instead of 0
+y_kmeans1=y_kmeans+1
+# New list called cluster
+cluster = list(y_kmeans1)
+# Adding cluster to our data set
+df_crime_per_1000['cluster'] = cluster
+#Mean of clusters 1 to 4
+kmeans_mean_cluster = pd.DataFrame(round(df_crime_per_1000.groupby('cluster').mean(),1))
+kmeans_mean_cluster
+{% endhighlight %}
+
+<img src="/assets/img/cluster-counts.png">
 
 
 **Conculsions**
