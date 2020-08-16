@@ -388,6 +388,6 @@ kmeans_mean_cluster
 
 Looking at the cluster averages and cluster counts, it's clear we have outliers. Because the K-Means algorithm uses the mean of clusters, it's sensitive to outliers and does not perform well with them. Additionally, I'd like to have more meaningful clusters, and our outlier data seems to be of more or less the same variety - very high crime neighborhoods. I decided to group these outliers into 1 'High Crime' cluster, then create a dataset that excludes these neighborhoods and re-run the K-Means algorithm. 
 
-
+<img src="/assets/img/new-clusters.png">
 
 **Conculsions**
