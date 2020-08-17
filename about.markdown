@@ -9,4 +9,7 @@ I enjoy working with data, learning, teaching, sports, foriegn languages, and lo
 
 Resume: [Khoki Bernier Resume PDF](/assets/Khoki-Bernier-Resume.pdf)
 
-[bg](red)
+.markdown-block {
+    background: black;
+}
+
