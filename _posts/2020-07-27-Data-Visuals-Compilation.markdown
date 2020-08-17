@@ -12,6 +12,8 @@ categories: jekyll update
 
 <img src="/assets/img/KBVESPN.png">
 
+<iframe frameborder="0" height="600" width="770" scrolling="no" src=https://public.tableau.com/views/KBModelvsESPN/Dashboard14?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
+
 <iframe 
 frameborder="0" 
 height="600" 
