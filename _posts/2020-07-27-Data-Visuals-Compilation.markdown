@@ -17,7 +17,7 @@ categories: jekyll update
 <iframe 
 frameborder="0" 
 height="600" 
-width="800" 
+width="920" 
 scrolling="no" src="https://public.tableau.com/views/ProjectedvActualVisual/Dashboard5?:language=en&:display_count=y&publish=yes&:origin=viz_share_link:showVizHome=no&:embed=yes">
 </iframe>
 
