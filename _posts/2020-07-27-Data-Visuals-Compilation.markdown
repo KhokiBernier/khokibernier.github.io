@@ -47,4 +47,3 @@ scrolling="no" src="https://public.tableau.com/views/BBallWinPredictor/Dashboard
 
 # World Freedom Index
 <img src="/assets/img/HF.jpg">
- 
