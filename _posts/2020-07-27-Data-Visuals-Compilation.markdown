@@ -41,4 +41,3 @@ scrolling="no" src="https://public.tableau.com/views/BBallWinPredictor/Dashboard
 [Player Detail Dashboard Link](https://public.tableau.com/views/NBAPlayerPredictorDetail/Dashboard14?:language=en&:display_count=y&publish=yes&:origin=viz_share_link)
 
 <img src="/assets/img/HF.jpg">
- 
