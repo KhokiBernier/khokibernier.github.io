@@ -48,6 +48,9 @@ Clustered New York City nieghborhoods by crime type per 1,000 residents and neig
 6. Performed K-Means Clustering
 7. Visualized data in Tableau
 
+**Note**
+- Crime rates are relative to other NYC neighborhoods, not to US national averages
+
 **Step 1: Downloaded and cleaned file that contained 5 million+ rows of NYC crime occurances, descriptions, and coordinates**
 
 - Dataset taken from this link: https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc
