@@ -8,8 +8,3 @@ permalink: /about/
 I enjoy working with data, learning, teaching, sports, foriegn languages, and long walks on the beach.
 
 Resume: [Khoki Bernier Resume PDF](/assets/Khoki-Bernier-Resume.pdf)
-
-.markdown-block {
-    background: black;
-}
-
