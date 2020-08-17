@@ -10,14 +10,12 @@ categories: jekyll update
 
 [Covid Dashboard Link](https://public.tableau.com/views/USCOVIDDeathDetail/USCovidDeaths-B3?:language=en&:display_count=y&:origin=viz_share_link)
 
-<img src="/assets/img/KBVESPN.png">
-
-<iframe frameborder="0" height="600" width="770" scrolling="no" src="https://public.tableau.com/views/KBModelvsESPN/Dashboard14?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
+<iframe frameborder="0" height="600" width="920" scrolling="no" src="https://public.tableau.com/views/KBModelvsESPN/Dashboard14?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
 
 <iframe 
 frameborder="0" 
 height="600" 
-width="920" 
+width="770" 
 scrolling="no" src="https://public.tableau.com/views/ProjectedvActualVisual/Dashboard5?:language=en&:display_count=y&publish=yes&:origin=viz_share_link:showVizHome=no&:embed=yes">
 </iframe>
 
