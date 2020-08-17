@@ -12,4 +12,4 @@ Both Personal Freedom and Economic Freedom are comprised of many factors, some o
 
 <img src="/assets/img/HF.jpg">
 
-! [image tooltip here](/assets/img/HF.jpg)
+[Human Freedom Index Link](https://public.tableau.com/views/WorldHumanFreedomIndex/HumanFreedom2?:language=en&:display_count=y&:origin=viz_share_link)
