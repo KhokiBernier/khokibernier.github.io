@@ -8,7 +8,7 @@ categories: jekyll update
 
 <img src="/assets/img/covid.jpg">
 
-[Covid Dashboard Link](https://public.tableau.com/views/USCOVIDDeaths-B/USCovidDeaths-B3?:language=en&:display_count=y&:origin=viz_share_link)
+[Covid Dashboard Link](https://public.tableau.com/views/USCOVIDDeathDetail/USCovidDeaths-B3?:language=en&:display_count=y&:origin=viz_share_link)
 
 <img src="/assets/img/KBVESPN.png">
 
