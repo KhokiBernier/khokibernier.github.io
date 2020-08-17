@@ -6,12 +6,12 @@ categories: jekyll update
 ---
 **Compilation of data visuals used in projects (dashboards were intended for 15-inch full screen views):**
 
-#Covid
+# Covid
 <img src="/assets/img/covid.jpg">
 
 [Covid Dashboard Link](https://public.tableau.com/views/USCOVIDDeathDetail/USCovidDeaths-B3?:language=en&:display_count=y&:origin=viz_share_link)
 
-#KB Model vs ESPN
+# KB Model vs ESPN
 <iframe frameborder="0" height="600" width="920" scrolling="no" src="https://public.tableau.com/views/KBModelvsESPN/Dashboard14?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
 
 <iframe 
