@@ -35,7 +35,7 @@ Built a model to predict NBA Player Season Stats that outperformed ESPN's 2019-2
 
 My Model vs ESPN's Projections below: 
 
-<img src="/assets/img/KBVESPN.png">
+<iframe frameborder="0" height="600" width="920" scrolling="no" src="https://public.tableau.com/views/KBModelvsESPN/Dashboard14?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
 
 ! [image tooltip here](/assets/img/KBVESPN.jpg)
 
