@@ -403,7 +403,23 @@ The cluster distribution looks a little better here, and we can identify charact
 
 Here we have some clusters around degrees of crime and population, and some insight into neighborhoods with high violence and theft with mid level drug and traffic crime, or areas with very high theft. However, it does appear that generally when 1 type of crime is high in a neighborhood all types of crime are high as well. While that in itself is a bit of a relevation, particuralry with types of crime such as traffic, if the data set variables were less linear K-Means clustering could output more interesting clusters.
 
--graphed photo-
+A cool way to visualize the data in python:
+
+{% highlight ruby %}
+from mnist.loader import MNIST
+import tools
+from pandas.plotting import parallel_coordinates
+import plotly.express as px
+
+fig = px.parallel_coordinates(df_clusters[['Drug', 'General Crime', 'Theft', 'Traffic', 'Violent','Population','clusters 2']], color="clusters 2", labels={"clusters 2": "cluster",
+                "Drug": "Drug", "General Crime": "General Crime","Theft": "Theft", "Traffic": "Traffic",
+                 "Violent": "Violent", "Population":"Population",},
+                             color_continuous_scale=px.colors.diverging.Tealrose,
+                             color_continuous_midpoint=2)
+fig.show()
+{% endhighlight %}
+
+<img src="/assets/img/newplot.png">
 
 **Step 7. Visualized data in Tableau**
 
