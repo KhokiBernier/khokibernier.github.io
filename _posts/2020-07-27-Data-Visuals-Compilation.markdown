@@ -46,7 +46,8 @@ scrolling="no" src="https://public.tableau.com/views/BBallWinPredictor/Dashboard
 [Player Detail Dashboard Link](https://public.tableau.com/views/NBAPlayerPredictorDetail/Dashboard14?:language=en&:display_count=y&publish=yes&:origin=viz_share_link)
 
 # World Freedom Index
-<img src="/assets/img/HF.jpg">
+Color Scheme 1:
+<img src="/assets/img/World-Freedom-Index-v1.png">
 
-<img src="/assets/World-Freedom-Index-v1.png">
-
+Color Scheme 2:
+<img src="/assets/img/World-Freedom-Index-v2.png">
