@@ -2,7 +2,7 @@
 layout: post
 title:  "USA COVID Death Detail Tracker"
 image: US-Covid-Detail-Data.png
-date:   2020-07-28 00:16:44 -0400
+date:   2020-07-28 00:16:43 -0400
 categories: jekyll update
 ---
 USA Covid death detail dashboard built in Tableau Public showing total deaths, daily / overall trends, and breakdowns by:
