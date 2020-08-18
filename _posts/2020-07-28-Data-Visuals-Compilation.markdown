@@ -47,6 +47,8 @@ scrolling="no" src="https://public.tableau.com/views/BBallWinPredictor/Dashboard
 
 [Basketball Teams Link](https://public.tableau.com/views/BBallAnalysis/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link)
 
+<img src="/assets/img/newplot.png">
+
 # NBA Player Stat Predictions Detail
 <img src="/assets/img/playerdetail.png">
 
