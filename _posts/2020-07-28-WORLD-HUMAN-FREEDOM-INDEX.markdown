@@ -11,9 +11,11 @@ Human Freedom =  (Personal Freedom + Economic Freedom) / 2
 Both Personal Freedom and Economic Freedom are comprised of many factors, some of which are listed in the visualization.
 
 Color Scheme 1
+
 <img src="/assets/World-Freedom-Index-v1.png">
 
 Color Scheme 2
+
 <img src="/assets/World-Freedom-Index-v2.png">
 
 [Human Freedom Index Link](https://public.tableau.com/views/WorldHumanFreedomIndex/HumanFreedom2?:language=en&:display_count=y&:origin=viz_share_link)
