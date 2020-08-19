@@ -430,4 +430,10 @@ fig.show()
 
 [NYC Neighborhood Dashboard Link](https://public.tableau.com/views/NYCNeighborhoodCrimeTypeClustersv2/Dashboard15?:language=en&:display_count=y&:origin=viz_share_link)
 
+Here's another dashboard I created with just the crime data.
+
+<img src="/assets/img/NYC-Crime-Data.png">
+
+[NYC Crime Dashboard Link](https://public.tableau.com/profile/kb8769#!/vizhome/NYCCrimeCoordinates/Dashboard1)
+
 **Conculsions**
