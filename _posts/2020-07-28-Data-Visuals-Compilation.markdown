@@ -30,12 +30,7 @@ scrolling="no" src="https://public.tableau.com/views/ProjectedvActualVisual/Dash
 </iframe>
 
 # NYC Crimes
-<iframe 
-frameborder="0" 
-height="600" 
-width="1050" 
-scrolling="no" src="https://public.tableau.com/shared/9NDC2STRZ?:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes">
-</iframe>
+<img src="/assets/img/NYC-Crime-Data.png">
 
 # NYC Neighborhood Clustering
 <img src="/assets/img/NYC-Neighborhood-Dashboard.png">
