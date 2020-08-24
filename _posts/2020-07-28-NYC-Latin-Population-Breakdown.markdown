@@ -17,4 +17,4 @@ Documentation in progress
 <img src="/assets/img/NYC-Latin-Black.png">
 
 # NYC Neighborhoods Cool Visual
-<iframe frameborder="0" height="800" width="1050" scrolling="no" src="https://public.tableau.com/views/NYCNeighborhoods/Dashboard2?:language=en&:display_count=y&publish=yes&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
+<iframe frameborder="0" height="750" width="1050" scrolling="no" src="https://public.tableau.com/views/NYCNeighborhoods/Dashboard2?:language=en&:display_count=y&publish=yes&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
