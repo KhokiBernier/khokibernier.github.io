@@ -7,13 +7,17 @@ categories: jekyll update
 
 Documentation in progress
 
-**Project Overview**
+# Project Overview
 Visualize and detail NYC Latin/Hispanic Neighborhood population by nationality.
 
-**Motivation**
+# Motivation
 - A lof of latin/hispanics immigrate to New York City and not all are able to speak English. Living in a neighborhood with people from your country can help with the transition and assimilation into a new country while also making you feel at home. 
 - I've always considered moving to New York City and would like to live in a Spanish speaking area
 - Cultures between Spanish speaking countries can differ vastly, so breaking down latin/hispanic into nationality is more helpful
+
+# Libraries Used:
+
+# Steps taken:
 
 # NYC Neighborhoods Latin Population Breakdown
 <img src="/assets/img/NYC-Latin-White.png">
