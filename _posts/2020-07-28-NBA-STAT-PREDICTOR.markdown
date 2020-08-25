@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "NBA Stat Predictor"
-date:   2020-07-28 00:16:45 -0400
+date:   2020-07-28 00:16:46 -0400
 categories: jekyll update
 ---
 **Project Overview**
