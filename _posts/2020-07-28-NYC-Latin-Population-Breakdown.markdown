@@ -16,8 +16,14 @@ Visualize and detail NYC Latin/Hispanic Neighborhood population by nationality.
 - Cultures between Spanish speaking countries can differ vastly, so breaking down latin/hispanic into nationality is more helpful
 
 # Libraries Used:
+- pandas
+- statistics
+
+# Links to Dataset:
 
 # Steps taken:
+
+
 
 # NYC Neighborhoods Latin Population Breakdown
 <img src="/assets/img/NYC-Latin-White.png">
