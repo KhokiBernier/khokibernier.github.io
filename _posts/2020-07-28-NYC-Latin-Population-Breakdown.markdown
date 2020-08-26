@@ -177,6 +177,16 @@ for a in df_coordinates.the_geom:
     lat_list.append(lat)
     long_list.append(long)
  
+df_coordinates['Latitude'] = lat_list
+df_coordinates['Longitude'] = long_list
+
+for ind, lat in df_la[['Latitude']].itertuples(index=True):
+    val = df_coordinates[df_coordinates.NTACode == df_la.iloc[ind].GeoID]['Latitude'].values[0]
+    df_la.loc[ind, 'Latitude'] = val
+    
+for ind, long in df_la[['Longitude']].itertuples(index=True):
+    val = df_coordinates[df_coordinates.NTACode == df_la.iloc[ind].GeoID]['Longitude'].values[0]
+    df_la.loc[ind, 'Longitude'] = val
 {% endhighlight %}
 
 **Step 3. Merge datasets**
