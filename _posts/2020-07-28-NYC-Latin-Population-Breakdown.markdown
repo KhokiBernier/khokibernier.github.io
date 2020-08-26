@@ -37,10 +37,7 @@ The original dataset has 484 columns with confusing headers, so the first step w
 
 {% highlight ruby %}
 df.rename(columns = {
-{% endhighlight %}
-
-{% highlight ruby %}
-'GeogName': 'Neighborhood',
+    'GeogName': 'Neighborhood',
     'Pop_1E': 'Total Population',
     'Hsp1E': 'Total Hispanic/Latino',
     'HspMeE': 'Mexican',
