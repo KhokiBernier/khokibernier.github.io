@@ -28,8 +28,7 @@ Visualize and detail NYC Latin/Hispanic Neighborhood population by nationality.
 # Steps taken:
 1. Pivot Latin/Hispanic breakdown dataset so that it can better analyzed in Tableau
 2. Clean MULTIPOLYGON column and obtain avg latitiude and longitude for each neighborhood from coordinates dataset
-3. Merge datasets
-4. Visualize in Tableau
+3. Visualize in Tableau
 
 **Step 1. Pivot Latin/Hispanic breakdown dataset so that it can better analyzed in Tableau**
 
@@ -170,7 +169,7 @@ for a in df_coordinates.the_geom:
     latitude_float = []
     for i in latitude:
         latitude_float.append(float(i))
-    #Get the mean longitude and latitude of the coordinate pairs
+    #Get the mean longitude and latitude of the coordinate pairs (Explanation on why we want the averages below)
     lat = statistics.mean(latitude_float)
     long = statistics.mean(longitude_float)
     #append final values to our final lists
@@ -189,10 +188,9 @@ for ind, long in df_la[['Longitude']].itertuples(index=True):
     df_la.loc[ind, 'Longitude'] = val
 {% endhighlight %}
 
-**Step 3. Merge datasets**
+The reason we want the averages of the coordinates is because the coordinates are all boarder coordinates. Since boarders touch, our neighborhood coordinates would all be overlapping other neighborhood coordinates and it would be difficult to read. Getting the average of the boarder coordinates will plot the neighborhood point in roughly the middle of the neighborhood, making it easier to distinguish between neighborhoods. This is illustrated by the screenshots below:
 
-
-**Step 4. Visualize in Tableau**
+**Step 3. Visualize in Tableau**
 
 
 
