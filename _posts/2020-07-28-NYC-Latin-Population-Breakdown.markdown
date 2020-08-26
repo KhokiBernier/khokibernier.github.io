@@ -4,40 +4,6 @@ title:  "NYC Latin/Hispanic Population Breakdown"
 date:   2020-07-28 00:16:44 -0400
 categories: jekyll update
 ---
-
-{% highlight ruby %}
-import requests
-from urllib.request import urlopen
-from bs4 import BeautifulSoup
-import numpy
-import pandas as pd
-
-year_to_loop = ['2004','2005','2006','2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019']
-years = []
-players_stats_list_agg = []
-
-#Loop through 15 years
-for year in year_to_loop:
-    url = 'https://www.basketball-reference.com/leagues/NBA_'+year+'_per_game.html'
-    headers= {'User-Agent': 'Mozilla/5.0'}
-    response = requests.get(url, headers = headers)
-    soup = BeautifulSoup(response.content, 'html.parser')
-    stat_table = soup.find_all('table', class_ = 'stats_table')
-    stat_table = stat_table[0]
-    
-    #append players and stats into players_stats_list
-    players_stats_list = []
-    for row in stat_table.find_all('tr'):
-        for cell in row.find_all('td'):
-            players_stats_list_agg.append(cell.text)
-            players_stats_list.append(cell.text)    
-    
-    #append column headers into headers_list
-    headers_list = [th.getText() for th in soup.findAll('tr',limit=2)[0].findAll('th')]
-    for i in range(int((int(len(players_stats_list)))/(int(len(headers_list)-1)))):
-        years.append(year)
-{% endhighlight %}
-
 Documentation in progress
 
 # Project Overview
