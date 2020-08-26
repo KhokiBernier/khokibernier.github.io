@@ -79,13 +79,18 @@ Our new dataframe has 31 columns with much more intuitive headers. This'll make 
 The next step is to transpose/pivot the data. Right now we have each Nationality (28 total) as it's own column, and our 195 neighborhoods as all our rows. After we transpose/pivot the data we'll remove each specific nationality column (Dominican, Guatemalan, etc), and replace it with 1 'Nationality' column. We'll keep our 195 neighborhood rows, and have 195 neighborhood times 28 nationalitys per neighborhood = 5460 rows. The purpose of doing this is that it'll allow us to perform more advanced analysis and aggregations/filtering in Tableau. 
 
 {% highlight ruby %}
-#Dropping GeoID and Borough (we'll re-add later) and switching Nationalities to rows and Neighborhoods to columns
-df_la_t = df_la.drop(['GeoID','Borough'],axis=1).T
-df_la_t.index = df_la_t.index.rename('Nationality')
-#Replacing numeric column indexes with Neighborhood indexes
-df_la_t.columns = df_la_t.iloc[0]
-df_la_t = df_la_t[1:]
-df_la_t
+#Declaring a dataframe that we will aggregate our results into
+df_la_pivoted = pd.DataFrame()
+
+for col in df_la_t.columns:
+    #Creating a placeholder dataframe and setting Nationality column equal to Nationality indexes
+    df_col_neighborhood['Nationality'] = df_la_t[col].index
+    #Creating and setting Neighborhood equal to Neighborhood being looped through
+    df_col_neighborhood['Neighborhood'] = col
+    #Creating and setting Population equal to values
+    df_col_neighborhood['Population'] = df_la_t[col].values
+    #concatenating an aggregate dataframe with each neighborhood as they get looped through
+    df_la_pivoted = pd.concat([df_la_pivoted,df_col_neighborhood],axis=0)
 {% endhighlight %}
 
 Results in the following:
