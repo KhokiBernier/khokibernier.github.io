@@ -125,7 +125,59 @@ While our dataset is complete enough to analyze in Tableau, I wanted to be able 
 
 We'll need to write a script to extract the coordinate values because I don't believe Tableau will be able to read this format.
 
-When doing this, I first try to identify patterns in the data that can be taken advantage of.
+When doing this, I first try to identify patterns in the data that can be taken advantage of. We see that each pair of coordinates starts with a negative sign, is seperated by a space, and ends with a comma. Based on geography we are sure that each coordinate pair will start with a negative sign, so we can use this to form our script. We can also remove the text 'MULTIPOLYGON ' as well as the parantheses.
+
+{% highlight ruby %}
+import statistics
+#Lists where our latitude and longitude final values will be appended
+lat_list = []
+long_list = []
+#Loop through each row in column
+for a in df_coordinates.the_geom:
+    coordinates = []
+    v=''
+     #looping through each character in the string and removing unecessary text
+    for i in a.replace(', -',',-').replace('MULTIPOLYGON ','').replace('(','').replace(')',''):
+        #add the characters to the coordinate variable
+        v = v+i
+        #a space seperates the values in coordinates, so once we hit a space we know we completed the value
+        if i == ' ':
+            #setting value 1 = v
+            v1=v
+            #resetting v
+            v = ''
+        #a comma seperates the pairs of coordinates, so if we hit a comma we know our coordinate pair is complete
+        if i == ',':
+            #setting value 2 = v and remove the comma
+            v2=v.replace(',','')
+            #reset v
+            v=''
+            #Append the coordinates as a coordinate pair into our 'coordinates' list
+            coordinates.append((v1,v2))
+    #Creating latitude and longitude lists to append our coordinates into
+    latitude = []
+    longitude = []
+    ctr = 0
+    #loop through coordinates and append latitude and longitude
+    for i in coordinates:
+        latitude.append(i[1])
+        longitude.append(i[0])    
+    #convert longitude values to floats
+    longitude_float = []
+    for i in longitude:
+        longitude_float.append(float(i))
+    #convert latitude values to floats
+    latitude_float = []
+    for i in latitude:
+        latitude_float.append(float(i))
+    #Get the mean longitude and latitude of the coordinate pairs
+    lat = statistics.mean(latitude_float)
+    long = statistics.mean(longitude_float)
+    #append final values to our final lists
+    lat_list.append(lat)
+    long_list.append(long)
+ 
+{% endhighlight %}
 
 **Step 3. Merge datasets**
 
