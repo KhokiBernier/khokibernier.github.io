@@ -36,8 +36,8 @@ Visualize and detail NYC Latin/Hispanic Neighborhood population by nationality.
 The original dataset has 484 columns with confusing headers, so the first step was to identify the columns we need and then rename them.
 
 {% highlight ruby %}
-df.rename(columns = {
-    
+
+df.rename(columns = {    
     'GeogName': 'Neighborhood',
     'Pop_1E': 'Total Population',
     'Hsp1E': 'Total Hispanic/Latino',
