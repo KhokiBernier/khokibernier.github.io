@@ -36,10 +36,7 @@ Visualize and detail NYC Latin/Hispanic Neighborhood population by nationality.
 The original dataset has 484 columns with confusing headers, so the first step was to identify the columns we need and then rename them.
 
 {% highlight ruby %}
-df_lap = df[['Neighborhood','Borough','GeoID','Total Population','Total Hispanic/Latino','Mexican','Puerto Rican','Cuban','Dominican',
-'Central American','Costa Rican','Guatemalan','Honduran','Nicaraguan','Panamanian','Salvadoran','South American',
-'Argentinean','Bolivian','Chilean','Colombian','Ecuadorian','Paraguayan','Peruvian','Uruguayan','Venezuelan',
-'Total Other Hispanic/Latino','Spaniard','Spanish','Spanish American','Other Hispanic/Latino']]
+df_lap = df[['Neighborhood']]
 {% endhighlight %}
 
 Our new dataframe has 31 columns with much more intuitive headers. This'll make performing analysis much easier. 
