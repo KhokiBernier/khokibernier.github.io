@@ -37,35 +37,6 @@ The original dataset has 484 columns with confusing headers, so the first step w
 
 {% highlight ruby %}
 df.rename(columns = {
-    'GeogName': 'Neighborhood',
-    'Pop_1E': 'Total Population',
-    'Hsp1E': 'Total Hispanic/Latino',
-    'HspMeE': 'Mexican',
-    'HspPRE': 'Puerto Rican',
-    'HspCubE': 'Cuban',
-    'HspDomE':'Dominican',
-    'HspCAmE': 'Central American',
-    'HspCRE': 'Costa Rican',
-    'HspGuatmE':'Guatemalan',
-    'HspHndM': 'Honduran',
-    'HspNicE':'Nicaraguan',
-    'HspPanE':'Panamanian',
-    'HspSalvE':'Salvadoran',
-    'HspSAmE':'South American',
-    'HspArgE': 'Argentinean',
-    'HspBolE': 'Bolivian',
-    'HspChlE': 'Chilean',
-    'HspColE': 'Colombian',
-    'HspEcE': 'Ecuadorian',
-    'HspPrgE': 'Paraguayan',
-    'HspPeruE': 'Peruvian',
-    'HspUrgE': 'Uruguayan',
-    'HspVnzE': 'Venezuelan',
-    'HspOthE': 'Total Other Hispanic/Latino',
-    'HspSpnrdE': 'Spaniard',
-    'HspSpnshE': 'Spanish',
-    'HspSpAmE': 'Spanish American',
-    'HspAllOthE': 'Other Hispanic/Latino'        
 }, inplace=True)
 
 df_lap = df[['Neighborhood','Borough','GeoID','Total Population','Total Hispanic/Latino','Mexican','Puerto Rican','Cuban','Dominican',
