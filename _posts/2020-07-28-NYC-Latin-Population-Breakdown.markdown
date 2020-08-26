@@ -114,7 +114,13 @@ df_la_pivoted = pd.merge(df_la_pivoted, df_la[['Neighborhood','GeoID','Borough']
 
 **Step 2. Clean MULTIPOLYGON column and obtain avg latitiude and longitude for each neighborhood from coordinates dataset**
 
-While our dataset is complete enough to analyze in Tableau, I wanted to be able to plot out the neighborhoods on a map and in order to do so we need the coordinates of each Neighborhood.
+While our dataset is complete enough to analyze in Tableau, I wanted to be able to plot out the neighborhoods on a map and in order to do so we need the coordinates of each Neighborhood. The NYC Neighborhood Coordinates dataset has the exact same Neighborhood format and number as our Latin Population Breakdown (this is rare and very lucky), so we can easily just merge the dataframes on the Neighborhood column. However, the coordinates for each neighborhood are just 1 row containing a long string value (column name = the_geom):
+
+- img coordinates original
+
+We'll need to write a script to extract the coordinate values because I don't believe Tableau will be able to read this format.
+
+When doing this, I first try to identify patterns in the data that can be taken advantage of.
 
 **Step 3. Merge datasets**
 
