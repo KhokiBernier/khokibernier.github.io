@@ -32,6 +32,7 @@ Visualize and detail NYC Latin/Hispanic Neighborhood population by nationality.
 4. Visualize in Tableau
 
 **Step 1. Pivot Latin/Hispanic breakdown dataset so that it can better analyzed in Tableau**
+
 The original dataset has 484 columns with confusing headers, so the first step was to identify the columns we need and then rename them.
 
 {% highlight ruby %}
