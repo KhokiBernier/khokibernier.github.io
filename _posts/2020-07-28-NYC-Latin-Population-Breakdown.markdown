@@ -34,6 +34,8 @@ Visualize and detail NYC Latin/Hispanic Neighborhood population by nationality.
 
 The original dataset has 484 columns with confusing headers, so the first step was to identify the columns we need and then rename them.
 
+<img src="/assets/img/initial-df.png">
+
 {% highlight ruby %}
 df.rename(columns = {    
     'GeogName': 'Neighborhood',
@@ -73,6 +75,8 @@ df_lap = df[['Neighborhood','Borough','GeoID','Total Population','Total Hispanic
 'Total Other Hispanic/Latino','Spaniard','Spanish','Spanish American','Other Hispanic/Latino']]
 {% endhighlight %}
 
+<img src="/assets/img/new-df.png">
+
 Our new dataframe has 31 columns with much more intuitive headers. This'll make performing analysis much easier. 
 
 The next step is to transpose/pivot the data. Right now we have each Nationality (28 total) as it's own column, and our 195 neighborhoods as all our rows. After we transpose/pivot the data we'll remove each specific nationality column (Dominican, Guatemalan, etc), and replace it with 1 'Nationality' column. We'll keep our 195 neighborhood rows, and have 195 neighborhood times 28 nationalitys per neighborhood = 5460 rows. The purpose of doing this is that it'll allow us to perform more advanced analysis and aggregations/filtering in Tableau. 
@@ -88,7 +92,8 @@ df_la_t
 {% endhighlight %}
 
 Results in the following:
--transposed df photo
+
+<img src="/assets/img/transposed-df.png">
 
 Next, I looped through the dataframe columns (Neighborhoods) and nested a loop through each nationality (index) and value (values)
 
@@ -107,7 +112,7 @@ for col in df_la_t.columns:
     df_la_pivoted = pd.concat([df_la_pivoted,df_col_neighborhood],axis=0)
 {% endhighlight %}
 
--photo df-pivoted
+<img src="/assets/img/pivoted-df.png">
 
 We see 5,460 rows, which matches what we were expecting.
 We can now merge it to our original dataframe to bring back the 'Borough' and 'GeoID' columns
@@ -120,7 +125,7 @@ df_la_pivoted = pd.merge(df_la_pivoted, df_la[['Neighborhood','GeoID','Borough']
 
 While our dataset is complete enough to analyze in Tableau, I wanted to be able to plot out the neighborhoods on a map and in order to do so we need the coordinates of each Neighborhood. The NYC Neighborhood Coordinates dataset has the exact same Neighborhood format and number as our Latin Population Breakdown (this is rare and very lucky), so we can easily just merge the dataframes on the Neighborhood column. However, the coordinates for each neighborhood are just 1 row containing a long string value (column name = the_geom):
 
-- img coordinates original
+<img src="/assets/img/coordinates-original.png">
 
 We'll need to write a script to extract the coordinate values because I don't believe Tableau will be able to read this format.
 
@@ -189,6 +194,15 @@ for ind, long in df_la[['Longitude']].itertuples(index=True):
 {% endhighlight %}
 
 The reason we want the averages of the coordinates is because the coordinates are all boarder coordinates. Since boarders touch, our neighborhood coordinates would all be overlapping other neighborhood coordinates and it would be difficult to read. Getting the average of the boarder coordinates will plot the neighborhood point in roughly the middle of the neighborhood, making it easier to distinguish between neighborhoods. This is illustrated by the screenshots below:
+
+Tableau with Neighborhood Boarders only:
+<img src="/assets/img/boarder-coordinates.png">
+
+Tableau with Neighborhood Avg only:
+<img src="/assets/img/avg-coordinates.png">
+
+Tableau with Neighborhood Boarders and Avg (Avg is in red):
+<img src="/assets/img/both-coordinates.png">
 
 **Step 3. Visualize in Tableau**
 
