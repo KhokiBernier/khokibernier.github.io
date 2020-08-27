@@ -193,7 +193,7 @@ for ind, long in df_la[['Longitude']].itertuples(index=True):
     df_la.loc[ind, 'Longitude'] = val
 {% endhighlight %}
 
-The reason we want the averages of the coordinates is because there are arpimd 15,000 coordinate pairs for each neighborhood, and the coordinates are all boarder coordinates. Since boarders touch, our neighborhood coordinates would all be overlapping other neighborhood coordinates and it would be difficult to read. Additionally, the file could become very large and affect performance. Getting the average of the boarder coordinates will plot the neighborhood point in roughly the middle of the neighborhood, making it easier to distinguish between neighborhoods. This is illustrated by the screenshots below:
+The reason we want the averages of the coordinates is because there are too many coordinate pairs for each neighborhood (3 million+ rows total) and the file is too large for tableau to handle, even when saved as a CSV. Getting the average of the boarder coordinates will plot the neighborhood point in roughly the middle of the neighborhood, making it easy to distinguish between neighborhoods. This is illustrated by the screenshots below:
 
 Tableau with Neighborhood Boarders only:
 <img src="/assets/img/boarder-coordinates.png">
@@ -203,6 +203,11 @@ Tableau with Neighborhood Avg only:
 
 Tableau with Neighborhood Boarders and Avg (Avg is in red):
 <img src="/assets/img/both-coordinates.png">
+
+Tableau when I tried to load all boarders in (only about 2.4 million out of 3.15 million rows made it into Tableau, so part of Queens and all of Staten Island is missing)
+<img src="/assets/img/some-coordinates.png">
+
+- What I could do is take the number of rows Tableau can handle from our csv (2.4 million) and subtract that from the total amount that we have 3.15 million (3.15M - 2.4M = .715M). So we need to get rid of about 25% of our coordinates. You could write a script to remove 1 out of every 4 coordinates. This difference in the visualization would probably not be noticeable.
 
 **Step 3. Visualize in Tableau**
 
