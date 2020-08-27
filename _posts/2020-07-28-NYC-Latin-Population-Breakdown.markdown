@@ -193,7 +193,7 @@ for ind, long in df_la[['Longitude']].itertuples(index=True):
     df_la.loc[ind, 'Longitude'] = val
 {% endhighlight %}
 
-The reason we want the averages of the coordinates is because the coordinates are all boarder coordinates. Since boarders touch, our neighborhood coordinates would all be overlapping other neighborhood coordinates and it would be difficult to read. Getting the average of the boarder coordinates will plot the neighborhood point in roughly the middle of the neighborhood, making it easier to distinguish between neighborhoods. This is illustrated by the screenshots below:
+The reason we want the averages of the coordinates is because there are arpimd 15,000 coordinate pairs for each neighborhood, and the coordinates are all boarder coordinates. Since boarders touch, our neighborhood coordinates would all be overlapping other neighborhood coordinates and it would be difficult to read. Additionally, the file could become very large and affect performance. Getting the average of the boarder coordinates will plot the neighborhood point in roughly the middle of the neighborhood, making it easier to distinguish between neighborhoods. This is illustrated by the screenshots below:
 
 Tableau with Neighborhood Boarders only:
 <img src="/assets/img/boarder-coordinates.png">
