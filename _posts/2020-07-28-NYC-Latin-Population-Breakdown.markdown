@@ -10,7 +10,12 @@ Documentation in progress
 Visualize and detail NYC Latin/Hispanic Neighborhood population by nationality.
 
 # NYC Neighborhoods Latin Population Breakdown
+White
 <img src="/assets/img/NYC-Latin-White.png">
+
+Dark
+<img src="/assets/img/NYC-Latin-Black.png">
+
 
 # Motivation
 - A lof of latin/hispanics immigrate to New York City and not all are able to speak English. Living in a neighborhood with people from your country can help with the transition and assimilation into a new country while also making you feel at home. 
@@ -33,13 +38,7 @@ Visualize and detail NYC Latin/Hispanic Neighborhood population by nationality.
 **Step 1. Pivot Latin/Hispanic breakdown dataset so that it can better analyzed in Tableau**
 
 The original dataset has 484 columns with confusing headers, so the first step was to identify the columns we need and then rename them.
-
-White
 <img src="/assets/img/initial-df.png">
-
-Dark
-<img src="/assets/img/NYC-Latin-Black.png">
-
 
 {% highlight ruby %}
 df.rename(columns = {    
