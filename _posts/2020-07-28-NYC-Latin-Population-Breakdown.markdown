@@ -34,7 +34,12 @@ Visualize and detail NYC Latin/Hispanic Neighborhood population by nationality.
 
 The original dataset has 484 columns with confusing headers, so the first step was to identify the columns we need and then rename them.
 
+White
 <img src="/assets/img/initial-df.png">
+
+Dark
+<img src="/assets/img/NYC-Latin-Black.png">
+
 
 {% highlight ruby %}
 df.rename(columns = {    
@@ -227,11 +232,6 @@ Tableau with 25% of coordinates removed
 
 **Step 3. Visualize in Tableau**
 
-
-
-# NYC Neighborhoods Latin Population Breakdown - Latin Inspired Theme
-<img src="/assets/img/NYC-Latin-Black.png">
-<img src="/assets/img/NYC-Latin-Yellow.png">
 
 # NYC Neighborhoods Cool Visual
 <iframe frameborder="0" height="700" width="1050" scrolling="no" src="https://public.tableau.com/views/NYCNeighborhoods/Dashboard2?:language=en&:display_count=y&publish=yes&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
