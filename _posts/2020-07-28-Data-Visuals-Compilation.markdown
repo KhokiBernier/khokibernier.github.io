@@ -45,7 +45,7 @@ scrolling="no" src="https://public.tableau.com/views/ProjectedvActualVisual/Dash
 
 <img src="/assets/img/NYC-Latin-White.png">
 
-Latin Inspired Theme
+Dark Theme
 <img src="/assets/img/NYC-Latin-Black.png">
 
 
