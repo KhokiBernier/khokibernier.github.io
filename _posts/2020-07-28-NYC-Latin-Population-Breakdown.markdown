@@ -33,7 +33,7 @@ Dark
 # Steps taken:
 1. Pivot Latin/Hispanic breakdown dataset so that it can better analyzed in Tableau
 2. Clean MULTIPOLYGON column and obtain avg latitiude and longitude for each neighborhood from coordinates dataset
-3. Visualize in Tableau
+3. Reformat Data in Order to Visualize in Tableau
 
 **Step 1. Pivot Latin/Hispanic breakdown dataset so that it can better analyzed in Tableau**
 
@@ -211,7 +211,7 @@ Tableau with Neighborhood Boarders and Avg (Avg is in red):
 Tableau when I tried to load all boarders in. Color seperated by borough and white dot in neighborhood avg lat/long (only about 2.4 million out of 3.15 million rows made it into Tableau, so part of Queens and all of Staten Island is missing)
 <img src="/assets/img/some-coordinates.png">
 
-What I could do is take the number of rows Tableau can handle from our csv (2.4 million) and subtract that from the total amount that we have 3.15 million (3.15M - 2.4M = .715M). So we need to get rid of about 25% of our coordinates. You could write a script to remove 1 out of every 4 coordinates. This difference in the visualization would probably not be noticeable.
+What I could do is take the number of rows Tableau can handle from our csv (2.4 million) and subtract that from the total amount that we have 3.15 million (3.15M - 2.4M = .715M). So we need to get rid of about 25% of our coordinates. You could write a script to remove 1 out of every 4 coordinates. This difference in the visualization is not noticeable.
 
 Adjusting the script, and using modules to exclude every 4th coordinate:
 {% highlight ruby %}
@@ -229,7 +229,7 @@ longitude_float = []
 Tableau with 25% of coordinates removed
 <img src="/assets/img/all-coordinates.png">
 
-**Step 3. Visualize in Tableau**
+**Step 3. Reformat Data in Order to Visualize in Tableau**
 
 
 # NYC Neighborhoods Cool Visual
