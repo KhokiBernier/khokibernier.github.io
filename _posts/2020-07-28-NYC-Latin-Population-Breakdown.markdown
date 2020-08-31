@@ -236,7 +236,8 @@ Now we have all the data that we need, but in order to maximize the quality and 
 1. add a 'Total Population' column with the total population for our "middle" coordinate pair rows
 2. Set population counts for our boarder coordinate rows to be 0
 3. equally distribute the nationalities across all 2.4 million of our boarder coordinate rows
-
+4. concatenate both dataframes
+3
 {% highlight ruby %}
 Nationalities = ['Mexican','Puerto Rican','Cuban','Dominican','Costa Rican','Guatemalan','Honduran','Nicaraguan',
                  'Panamanian','Salvadoran','Argentinean','Bolivian','Chilean','Colombian','Ecuadorian','Paraguayan',
@@ -251,8 +252,7 @@ len(nationalities_list)
 nationalities_list=nationalities_list[0:2366196]
 df_all_coordinates['Nationality'] = nationalities_list
 {% endhighlight %}
-
-4. concatenate both dataframes
+4
 {% highlight ruby %}
 df_nyc_concat = pd.concat([df_la_pivoted2,df_all_coordinates])
 {% endhighlight %}
