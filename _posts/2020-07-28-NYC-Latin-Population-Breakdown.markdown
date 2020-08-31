@@ -197,7 +197,7 @@ for ind, long in df_la[['Longitude']].itertuples(index=True):
     df_la.loc[ind, 'Longitude'] = val
 {% endhighlight %}
 
-The reason we want the averages of the coordinates is because there are too many coordinate pairs for each neighborhood (3 million+ rows total) and the file is too large for tableau to handle, even when saved as a CSV. Getting the average of the boarder coordinates will plot the neighborhood point in roughly the middle of the neighborhood, making it easy to distinguish between neighborhoods. This is illustrated by the screenshots below:
+The reason we want the averages of the coordinates is because the coordinate pairs for each neighborhood are the coordinates of the boarders. Getting the average of the boarder coordinates will plot the neighborhood point in roughly the middle of the neighborhood, making it easy to distinguish between neighborhoods. Another issue for us is that there are too many coordinate pairs (3 million+ rows total) and the file is too large for tableau to handle, even when saved as a CSV.  This is illustrated by the screenshots below:
 
 Tableau with Neighborhood Boarders only:
 <img src="/assets/img/boarder-coordinates.png">
@@ -211,7 +211,7 @@ Tableau with Neighborhood Boarders and Avg (Avg is in red):
 Tableau when I tried to load all boarders in. Color seperated by borough and white dot in neighborhood avg lat/long (only about 2.4 million out of 3.15 million rows made it into Tableau, so part of Queens and all of Staten Island is missing)
 <img src="/assets/img/some-coordinates.png">
 
-What I could do is take the number of rows Tableau can handle from our csv (2.4 million) and subtract that from the total amount that we have 3.15 million (3.15M - 2.4M = .715M). So we need to get rid of about 25% of our coordinates. You could write a script to remove 1 out of every 4 coordinates. This difference in the visualization is not noticeable.
+What I did was take the number of rows Tableau can handle from our csv (2.4 million) and subtract that from the total amount that we have 3.15 million (3.15M - 2.4M = .715M). So we need to get rid of about 25% of our coordinates. I then wrote a script to remove 1 out of every 4 coordinates. This difference in the visualization is not noticeable.
 
 Adjusting the script, and using modules to exclude every 4th coordinate:
 {% highlight ruby %}
@@ -230,6 +230,51 @@ Tableau with 25% of coordinates removed
 <img src="/assets/img/all-coordinates.png">
 
 **Step 3. Reformat Data in Order to Visualize in Tableau**
+
+Now we have all the data that we need, but in order to maximize the quality and capabilities of our visualization in Tableau there were a few more steps I had to take to properly format our data. The steps were as follows:
+
+1. add the population counts and nationalities to our "middle" coordinate pair rows
+{% highlight ruby %}
+df_la_pivoted = pd.DataFrame()
+
+for col in df_la_t.columns:
+    
+    neighborhoods = []
+
+    df_col_neighborhood = pd.DataFrame(df_la_t[col])
+
+    for i in df_la_t.index:
+        neighborhoods.append(col)
+
+    df_col_neighborhood['Nationality'] = df_col_neighborhood.index
+    df_col_neighborhood['Neighborhood'] = col
+    df_col_neighborhood=df_col_neighborhood.rename(columns = {col:'Population'})
+    df_col_neighborhood.reset_index(drop=True, inplace=True)
+    df_la_pivoted = pd.concat([df_la_pivoted,df_col_neighborhood],axis=0)
+{% endhighlight %}
+2. add a 'Total Population' column with the total population for our "middle" coordinate pair rows
+3. add 0 to population counts for our boarder coordinate rows
+4. equally distribute the nationalities across all 2.4 million of our boarder coordinate rows
+
+{% highlight ruby %}
+Nationalities = ['Mexican','Puerto Rican','Cuban','Dominican','Costa Rican','Guatemalan','Honduran','Nicaraguan',
+                 'Panamanian','Salvadoran','Argentinean','Bolivian','Chilean','Colombian','Ecuadorian','Paraguayan',
+                 'Peruvian','Uruguayan','Venezuelan','Spaniard','Spanish','Spanish American','Other Hispanic/Latino']
+nationalities_list = []
+
+#2,366,196 divided 23 nationalities = ~102879
+for a in range(102879):
+    for b in Nationalities:
+        nationalities_list.append(b)
+len(nationalities_list)
+nationalities_list=nationalities_list[0:2366196]
+df_all_coordinates['Nationality'] = nationalities_list
+{% endhighlight %}
+
+5. concatenate both dataframes
+
+df_nyc_concat = pd.concat([df_la_pivoted2,df_all_coordinates])
+
 
 
 # NYC Neighborhoods Cool Visual
