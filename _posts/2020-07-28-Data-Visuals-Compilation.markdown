@@ -10,8 +10,12 @@ categories: jekyll update
 Color Scheme 1:
 <img src="/assets/img/World-Freedom-Index-v1.png">
 
+[Link](https://public.tableau.com/views/WorldHumanFreedomIndexv2/HumanFreedom3?:language=en&:display_count=y&:origin=viz_share_link)
+
 Color Scheme 2:
 <img src="/assets/img/World-Freedom-Index-v2.png">
+
+[Link](https://public.tableau.com/views/WorldHumanFreedomIndexv1/HumanFreedom2?:language=en&:display_count=y&:origin=viz_share_link)
 
 # Covid US Detail
 <img src="/assets/img/covid.jpg">
@@ -45,8 +49,12 @@ scrolling="no" src="https://public.tableau.com/views/ProjectedvActualVisual/Dash
 
 <img src="/assets/img/NYC-Latin-White.png">
 
+[Dashboard Link](https://public.tableau.com/views/NYCLatinHispanicPopulationBreakdown/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link)
+
 Dark Theme
 <img src="/assets/img/NYC-Latin-Black.png">
+
+[Dashboard Link](https://public.tableau.com/views/NYCLatinHispanicPopulationBreakdown-Dark/Dashboard13?:language=en&:display_count=y&:origin=viz_share_link)
 
 
 # NBA Team Win % Prediction Model
