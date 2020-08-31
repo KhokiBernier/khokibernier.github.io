@@ -48,15 +48,15 @@ df.rename(columns = {
     'HspMeE': 'Mexican',
     'HspPRE': 'Puerto Rican',
     'HspCubE': 'Cuban',
-    'HspDomE':'Dominican',
+    'HspDomE': 'Dominican',
     'HspCAmE': 'Central American',
     'HspCRE': 'Costa Rican',
-    'HspGuatmE':'Guatemalan',
+    'HspGuatmE': 'Guatemalan',
     'HspHndM': 'Honduran',
-    'HspNicE':'Nicaraguan',
-    'HspPanE':'Panamanian',
-    'HspSalvE':'Salvadoran',
-    'HspSAmE':'South American',
+    'HspNicE': 'Nicaraguan',
+    'HspPanE': 'Panamanian',
+    'HspSalvE': 'Salvadoran',
+    'HspSAmE': 'South American',
     'HspArgE': 'Argentinean',
     'HspBolE': 'Bolivian',
     'HspChlE': 'Chilean',
@@ -237,7 +237,7 @@ Now we have all the data that we need, but in order to maximize the quality and 
 2. Set population counts for our boarder coordinate rows to be 0
 3. equally distribute the nationalities across all 2.4 million of our boarder coordinate rows
 4. concatenate both dataframes
-3
+3.
 {% highlight ruby %}
 Nationalities = ['Mexican','Puerto Rican','Cuban','Dominican','Costa Rican','Guatemalan','Honduran','Nicaraguan',
                  'Panamanian','Salvadoran','Argentinean','Bolivian','Chilean','Colombian','Ecuadorian','Paraguayan',
@@ -252,7 +252,7 @@ len(nationalities_list)
 nationalities_list=nationalities_list[0:2366196]
 df_all_coordinates['Nationality'] = nationalities_list
 {% endhighlight %}
-4
+4.
 {% highlight ruby %}
 df_nyc_concat = pd.concat([df_la_pivoted2,df_all_coordinates])
 {% endhighlight %}
