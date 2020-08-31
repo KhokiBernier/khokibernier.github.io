@@ -233,28 +233,9 @@ Tableau with 25% of coordinates removed
 
 Now we have all the data that we need, but in order to maximize the quality and capabilities of our visualization in Tableau there were a few more steps I had to take to properly format our data. The steps were as follows:
 
-1. add the population counts and nationalities to our "middle" coordinate pair rows
-{% highlight ruby %}
-df_la_pivoted = pd.DataFrame()
-
-for col in df_la_t.columns:
-    
-    neighborhoods = []
-
-    df_col_neighborhood = pd.DataFrame(df_la_t[col])
-
-    for i in df_la_t.index:
-        neighborhoods.append(col)
-
-    df_col_neighborhood['Nationality'] = df_col_neighborhood.index
-    df_col_neighborhood['Neighborhood'] = col
-    df_col_neighborhood=df_col_neighborhood.rename(columns = {col:'Population'})
-    df_col_neighborhood.reset_index(drop=True, inplace=True)
-    df_la_pivoted = pd.concat([df_la_pivoted,df_col_neighborhood],axis=0)
-{% endhighlight %}
-2. add a 'Total Population' column with the total population for our "middle" coordinate pair rows
-3. add 0 to population counts for our boarder coordinate rows
-4. equally distribute the nationalities across all 2.4 million of our boarder coordinate rows
+1. add a 'Total Population' column with the total population for our "middle" coordinate pair rows
+2. Set population counts for our boarder coordinate rows to be 0
+3. equally distribute the nationalities across all 2.4 million of our boarder coordinate rows
 
 {% highlight ruby %}
 Nationalities = ['Mexican','Puerto Rican','Cuban','Dominican','Costa Rican','Guatemalan','Honduran','Nicaraguan',
@@ -271,11 +252,15 @@ nationalities_list=nationalities_list[0:2366196]
 df_all_coordinates['Nationality'] = nationalities_list
 {% endhighlight %}
 
-5. concatenate both dataframes
-
+4. concatenate both dataframes
+{% highlight ruby %}
 df_nyc_concat = pd.concat([df_la_pivoted2,df_all_coordinates])
+{% endhighlight %}
 
-
+- The purpose of step 1 is to maintain our total neighborhood population when we filter by Nationality in our visualization. This allows us to keep percentage of Total population and other valuable metrics when we filter our data by Nationality
+- The purpose of Step 2 is to keep our Boarder points on the visualization without having them affect the counts in our data. When performing a union (concatenating), we need the columns of both dataframes to match so here we just put a 0 so it doesn't impact our numbers
+- The purpose of step 3 is so that we keep our boarder points on the visualization when filtering by nationality. Each nationality now has around 100K+ boarder points each, and that's enough that in Tableau that you won't notice the difference (between 2.4 million and 100K coordinate pairs)
+- Step 4 is to reduce the need for data blending in Tableau. The way Tableau mapping is set up, I was not able to plot the boarder points and "Middle" points while keeping the 'Middle' points dataframe as my Primary data source in the Map worksheet. As a result, the filters in the primary data source would not sync down to my secondary data source data.
 
 # NYC Neighborhoods Cool Visual
 <iframe frameborder="0" height="700" width="1050" scrolling="no" src="https://public.tableau.com/views/NYCNeighborhoods/Dashboard2?:language=en&:display_count=y&publish=yes&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
