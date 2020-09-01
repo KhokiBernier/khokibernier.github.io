@@ -265,5 +265,10 @@ df_nyc_concat = pd.concat([df_la_pivoted2,df_all_coordinates])
 - The purpose of step 3 is so that we keep our boarder points on the visualization when filtering by nationality. Each nationality now has around 100K+ boarder points each, and that's enough that in Tableau that you won't notice the difference (between 2.4 million and 100K coordinate pairs)
 - Step 4 is to reduce the need for data blending in Tableau. The way Tableau mapping is set up, I was not able to plot the boarder points and "Middle" points while keeping the 'Middle' points dataframe as my Primary data source in the Map worksheet. As a result, the filters in the primary data source would not sync down to my secondary data source data.
 
+# Latin/Hispanic Group to NYC borough Sankey Chart
+- I realize this isn't the optimal situation for a Sankey chart, I just really wanted to make one..
+- click on the group and borough boxes to highlight the flow
+<iframe frameborder="0" height="700" width="1050" scrolling="no" src="https://public.tableau.com/views/SankeyChartLatinHispanicRegiontoNYCBoroughs/Dashboard1?:language=en&:display_count=y&publish=yes&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
+
 # NYC Neighborhoods Cool Visual
 <iframe frameborder="0" height="700" width="1050" scrolling="no" src="https://public.tableau.com/views/NYCNeighborhoods/Dashboard2?:language=en&:display_count=y&publish=yes&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
