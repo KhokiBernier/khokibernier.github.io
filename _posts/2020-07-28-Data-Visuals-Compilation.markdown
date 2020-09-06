@@ -75,6 +75,10 @@ scrolling="no" src="https://public.tableau.com/views/BBallWinPredictor/Dashboard
 
 <img src="/assets/img/newplot.png">
 
+# FANG Data Science Glassdoor Data
+<iframe frameborder="0" height="600" width="1050" scrolling="no" src="https://public.tableau.com/views/FANGInterviewData/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
+
+
 # NBA Player Stat Predictions Detail
 <img src="/assets/img/playerdetail.png">
 
