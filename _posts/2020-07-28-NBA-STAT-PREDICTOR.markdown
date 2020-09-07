@@ -230,7 +230,7 @@ Weighted averages were only applied to players with at least 3 years prior exper
 
 These percentages were established through light trial and error, but applying some sort of optimizer to find the best combination would be a good idea.
 
-{% highlight ruby %}
+```python
 ###Weighted Averages START
 #Function that inputs the weighted average percentages you wish to test
 def weighted_avg(y1,y2,y3):
@@ -254,7 +254,7 @@ def weighted_avg(y1,y2,y3):
 print(weighted_avg(.45,.3,.25))
 print(weighted_avg(.6,.3,.1))
 print(weighted_avg(.5,.3,.2))
-{% endhighlight %}
+```
 
 RMSE = 4.95
 - Much higher than the other 3 methods but we can still check to see if this helps our predictions
@@ -263,15 +263,15 @@ RMSE = 4.95
 
 Using the 15 years of NBA player data that we have, I created a dataframe with the minimum year for each player and then rejoined to the original table to get a dataframe with just the rookie year stats of each player. I then removed all rows where the minimum year was 2004, as this was most likely not their rookie year but just the last year we pulled data for.
 
-{% highlight ruby %}
+```python
 df_min_year = df_stats.groupby('Player')['Year'].min()
 df_min_year = pd.merge(df_min_year, df_stats, how = 'inner', left_on = ['Player','Year'], right_on = ['Player','Year'])
 df_min_year = df_min_year.drop(df_min_year[df_min_year.Year == '2004'].index)
-{% endhighlight %}
+```
 
 I then searched through sports-reference.com for each player and their college stats.
 
-{% highlight ruby %}
+```python
 ###Rookies Data Pull
 rookies_agg = numpy.zeros((0,29), dtype=numpy.dtype('U100'))
 rookies_agg = numpy.asarray(rookies_agg).reshape(0,29)
@@ -309,11 +309,11 @@ df_rookies = df_rookies.loc[1:]
 df_rookies.Player = df_rookies.Player.replace('-',' ',regex=True)
 #join to minimum year so that dataframe contains both last year of college and nba rookie year stats
 rookies = pd.merge(df_min_year, df_rookies, how = 'inner',left_on=['Player'], right_on=['Player'])
-{% endhighlight %}
+```
 
 After adding a player position variable, the data was now ready to be put into multivariate regeression model.
 
-{% highlight ruby %}
+```python
 ###Rookies Points Per Game
 X_ppg = rookies[['PTS_college','MP_college','G_college','GS_college','FGA_college','3P%_college','SOS','PG','SG','SF','PFoward','Center']].astype(float)
 Y_ppg = rookies[['PTS']].astype(float)
@@ -330,7 +330,7 @@ sm.qqplot(est_ppg.resid,line='s')
 pylab.show()
 mean_residuals = sum(est_ppg.resid) / len(est_ppg.resid)
 print("RMSE: {:.4}".format(rmse(y_test_ppg, y_predict_ppg)))
-{% endhighlight %}
+```
 
 RMSE: 3.42
 
@@ -352,17 +352,17 @@ Results Ranked:
 For points, the Matrix + Regression + Forest performed best but only by a slim margin. In general, most methods performed well without significant differences in RMSE. 
 
 After creating the new dataset I merged all prediction values from the 4 methods into 1 dataframe:
-{% highlight ruby %}
+```python
 df_all = pd.DataFrame()
 df_all = pd.merge(df_RM[['Player','Year','RM_Predict']],df_RF[['Player','RF_Predict','Year']],how='inner',left_on=['Player','Year'],right_on=['Player','Year'])
 df_all = pd.merge(df_all,df_631[['Player','Predict_631','Year']],how='inner',left_on=['Player','Year'],right_on=['Player','Year'])
 df_all = pd.merge(df_all,df_bracket[['Player','Predict_Bracket','Year','PTS_x']],how='inner',left_on=['Player','Year'],right_on=['Player','Year'])
 df_all.rename(columns={'RM_Predict': 'REGRESSION', 'RF_Predict':'FOREST','Predict_631':'WEIGHT_AVG','Predict_Bracket':'MATRIX','PTS_x': 'ACTUAL'},inplace=True)
-{% endhighlight %}
+```
 
 I then looped through to create the 15 combinations and tested each method vs the actual:
 
-{% highlight ruby %}
+```python
 #list columns so it's easy to copy paste them into a list
 df_all.columns
 cols = ['REGRESSION', 'FOREST', 'WEIGHT_AVG', 'MATRIX', 'REGRESSION + FOREST', 'REGRESSION + WEIGHT_AVG',
@@ -379,7 +379,7 @@ df_RMSE['Method'] = methods
 df_RMSE['RMSE'] = RMSEs
 df_RMSE = df_RMSE.sort_values(by=['RMSE'])
 df_RMSE = df_RMSE.reset_index(drop=True)
-{% endhighlight %}
+```
 
 **Step 7: Pulled ESPN's 2020 season projections from web and merged into a dataframe with my predictions and actual values.**
 
@@ -395,7 +395,7 @@ Formatted DataFrame:
 <img src="/assets/img/dfafter.png">
 
 Steps to format DataFrame:
-{% highlight ruby %}
+```python
 ###ESPN Projections
 data = pd.read_csv('espn bball 2020 projections.csv')
 
@@ -415,7 +415,7 @@ espn_proj = data[(data["Year"]=='2020 PROJECTIONS') & (data['MP ESPN'] != '--')]
 #then remove everthing starting at \
 espn_proj.Player = espn_proj.Player.str[1:]
 espn_proj.Player = espn_proj.Player.str.split('\n').str[0]
-{% endhighlight %}
+```
 
 Frome here, I just merged the this dataframe with my dataframe containing my projections and the actual values.
 
