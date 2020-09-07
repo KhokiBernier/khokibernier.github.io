@@ -91,9 +91,9 @@ for year in year_to_loop:
 - I then converted lists -> arrays -> reshaped and concatenated arrays -> convert to dataframe
 
 The following snippet shows how I added additional variables with an example of starter/benchplayer:
-{% highlight ruby %}
+```python
 df_stats['Starter'] = (df_stats.GS.astype(int) > 40).astype('int')
-{% endhighlight %}
+```
 
 **Step 2: Built multivariate regression and random forest regresor models for key basketball statistics (points, rebounds, assists, etc) using data pulled in previous setp.**
 
@@ -107,7 +107,7 @@ The example below is for group 1 - players with at least 3 years prior NBA exper
 Regression Model:
 
 Import libraries and create RMSE Function
-{% highlight ruby %}
+```python
 import matplotlib.pyplot as plt
 import math
 import pylab
@@ -119,7 +119,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
 
-%matplotlib inline
+```
 
 #function to calculate rmse (root mean squared error)
 def rmse(actual, prediction):
@@ -129,7 +129,7 @@ def rmse(actual, prediction):
 {% endhighlight %}
 
 Build Model and evaluate RMSE:
-{% highlight ruby %}
+```python
 data_ppg = df_stats[['Age','PTS','PTS_1yp','PTS_2yp','PTS_3yp','MP_1yp','MP_2yp','MP_3yp','PG','SG','SF','PF','Center','Traded','Starter','Years_Pro_Now']]
 #Build the model: Define input variable and our output variable (x,y)
 X_ppg = data_ppg.drop('PTS', axis=1)
@@ -151,7 +151,7 @@ print(est_ppg.summary())
 sm.qqplot(est_ppg.resid,line='s')
 pylab.show()
 print("RMSE: {:.4}".format(rmse(y_test_ppg, y_predict_ppg)))
-{% endhighlight %}
+```
 
 <img src="/assets/img/R2.png">
 <img src="/assets/img/Residual-Graph.png">
