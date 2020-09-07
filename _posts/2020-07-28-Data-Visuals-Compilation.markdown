@@ -35,10 +35,11 @@ scrolling="no" src="https://public.tableau.com/views/ProjectedvActualVisual/Dash
 </iframe>
 
 # NYC Crimes
+<!---
 <img src="/assets/img/NYC-Crime-Data.png">
 
 [NYC Crime Dashboard Link](https://public.tableau.com/profile/kb8769#!/vizhome/NYCCrimeCoordinates/Dashboard1)
-
+-->
 <iframe frameborder="0" height="800" width="1400" scrolling="no" src="https://public.tableau.com/shared/SX6ZWFYMF?:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
 
 # NYC Neighborhood Clustering
