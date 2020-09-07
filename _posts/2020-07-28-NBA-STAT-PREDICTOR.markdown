@@ -118,14 +118,14 @@ import statsmodels.api as sm
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
-```
+
 
 #function to calculate rmse (root mean squared error)
 def rmse(actual, prediction):
     mse = mean_squared_error(actual,prediction)
     rmse = math.sqrt(mse)
     return(rmse)
-{% endhighlight %}
+```
 
 Build Model and evaluate RMSE:
 ```python
@@ -162,7 +162,7 @@ Random Forest Regressor Model:
 **Step 3: Built a prediction matrix for each basketball statistic and age that calculates league avg percent change** (e.g. if the average player's points per game increases by 8% from when they start the season at age 24 versus age 25, the points prediction for a player turning 25 is 8% more than prior year)
 
 - Building Prediction Matrix:
-{% highlight ruby %}
+```python
 ###Build Matrix:
 #Variable to store all player percent change values for each stat
 pcnt_change_agg = numpy.arange(15).reshape(1,15)
@@ -182,9 +182,9 @@ for player in df_stats['Player'].unique():
 columns = ['Age','MP','FGA','FG%','3PA','3P%','eFG%','FTA','FT%','TRB','AST','STL','BLK','TOV','PTS']
 columns_array = numpy.asarray(columns).reshape(1,15)
 pcnt_change_agg = numpy.concatenate([columns_array,pcnt_change_agg], axis=0)
-{% endhighlight %}
+```
 
-{% highlight ruby %}
+```python
 ###convert to dataframe
 df_pc_matrix = pd.DataFrame(pcnt_change_agg)
 df_pc_matrix.columns = df_pc_matrix.iloc[0]
@@ -200,7 +200,7 @@ df_matrix = pd.DataFrame()
 #loop through stat columns and get avgerage pcnt change for each age
 for i in columns[1:15]:
     df_matrix[i] = df_pc_matrix.groupby('Age')[i].mean()
-{% endhighlight %}
+```
 
 Percent Change by Age Matrix:
 
@@ -209,14 +209,14 @@ Percent Change by Age Matrix:
 
 I then applied the matrix and determined the RMSE:
 
-{% highlight ruby %}
+```python
 ##Avg Percent Change Matrix Predictions
 df_matrix_predict = df_stats[['Player', 'PTS','PTS_1yp', 'Age']].copy()
 df_matrix_predict['Age+1'] = df_matrix_predict['Age'].astype(float)+1
 df_matrix_predict = pd.merge(df_matrix_predict, df_matrix['PTS_C'], how='inner', left_on=['Age+1'], right_on = ['Age'])
 df_matrix_predict['Predict_Bracket'] = (df_matrix_predict['PTS_y'].replace('','0').astype(float) * df_matrix_predict['PTS_C'].replace('','0').astype(float)) + df_matrix_predict['PTS_y'].replace('','0').astype(float)
 RMSE(df_matrix_predict.PTS_x, df_matrix_predict.Predict_Bracket)
-{% endhighlight %}
+```
 
 RMSE = 2.92
 - Higher than regression and random forest, but still performed pretty well
