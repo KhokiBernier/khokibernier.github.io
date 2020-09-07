@@ -11,14 +11,12 @@ Visualize and detail NYC Latin/Hispanic Neighborhood population by nationality.
 
 # NYC Neighborhoods Latin Population Breakdown
 White
-<img src="/assets/img/NYC-Latin-White.png">
 
-[Dashboard Link](https://public.tableau.com/views/NYCLatinHispanicPopulationBreakdown/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link)
+<iframe frameborder="0" height="800" width="1400" scrolling="no" src="https://public.tableau.com/views/NYCLatinHispanicPopulationBreakdown/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
 
 Dark
-<img src="/assets/img/NYC-Latin-Black.png">
+<iframe frameborder="0" height="800" width="1400" scrolling="no" src="https://public.tableau.com/views/NYCLatinHispanicPopulationBreakdown-Dark/Dashboard13?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
 
-[Dashboard Link](https://public.tableau.com/views/NYCLatinHispanicPopulationBreakdown-Dark/Dashboard13?:language=en&:display_count=y&:origin=viz_share_link)
 
 # Motivation
 - A lof of latin/hispanics immigrate to New York City and not all are able to speak English. Living in a neighborhood with people from your country can help with the transition and assimilation into a new country while also making you feel at home. 
