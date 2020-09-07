@@ -9,7 +9,6 @@ categories: jekyll update
   .container {
     margin: 10px auto;
     max-width: 1400px;
-    text-align: center;
   }
   h1 {
     margin: 30px 0;
