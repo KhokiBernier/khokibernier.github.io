@@ -31,9 +31,13 @@ Color Scheme 2:
 
 
 # Covid US Detail
+<!---
 <img src="/assets/img/covid.jpg">
 
 [Covid Dashboard Link](https://public.tableau.com/views/USCOVIDDeathDetail/USCovidDeaths-B3?:language=en&:display_count=y&:origin=viz_share_link)
+-->
+
+<iframe frameborder="0" height="800" width="1400" scrolling="no" src="https://public.tableau.com/views/USCOVIDDeathDetail/USCovidDeaths-B3?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
 
 # KB Model vs ESPN
 <iframe frameborder="0" height="600" width="1050" scrolling="no" src="https://public.tableau.com/views/KBModelvsESPN/Dashboard14?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
