@@ -9,9 +9,16 @@ categories: jekyll update
 
 # World Freedom Index
 Color Scheme 1:
+<!---
 <img src="/assets/img/World-Freedom-Index-v1.png">
 
 [Link](https://public.tableau.com/views/WorldHumanFreedomIndexv2/HumanFreedom3?:language=en&:display_count=y&:origin=viz_share_link)
+-->
+
+<iframe frameborder="0" height="800" width="1400" scrolling="no" src="https://public.tableau.com/views/WorldHumanFreedomIndexv2/HumanFreedom3?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
+
+
+
 
 Color Scheme 2:
 <img src="/assets/img/World-Freedom-Index-v2.png">
