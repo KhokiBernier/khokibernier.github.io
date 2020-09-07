@@ -6,9 +6,6 @@ classes: wide
 categories: jekyll update
 ---
 **Compilation of data visuals used in projects (dashboards were intended for 15-inch full screen views):**
-```python
-import pandas as pd
-```
 
 # World Freedom Index
 Color Scheme 1:
