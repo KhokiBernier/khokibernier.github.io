@@ -197,8 +197,8 @@ df_pc_matrix = df_pc_matrix.astype(float)
 #Remove values where pcnt change could not be calculated (e.g a player's rookie year)
 df_pc_matrix= df_pc_matrix.replace([numpy.inf, -numpy.inf], numpy.nan)
 df_pc_matrix = df_pc_matrix.dropna()
-{% endhighlight %}
-{% highlight ruby %}
+```
+```python
 ###Create Matrix
 df_matrix = pd.DataFrame()
 #loop through stat columns and get avgerage pcnt change for each age
