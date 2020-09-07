@@ -107,6 +107,7 @@ The example below is for group 1 - players with at least 3 years prior NBA exper
 Regression Model:
 
 Import libraries and create RMSE Function
+
 ```python
 import matplotlib.pyplot as plt
 import math
@@ -128,6 +129,7 @@ def rmse(actual, prediction):
 ```
 
 Build Model and evaluate RMSE:
+
 ```python
 data_ppg = df_stats[['Age','PTS','PTS_1yp','PTS_2yp','PTS_3yp','MP_1yp','MP_2yp','MP_3yp','PG','SG','SF','PF','Center','Traded','Starter','Years_Pro_Now']]
 #Build the model: Define input variable and our output variable (x,y)
@@ -162,6 +164,7 @@ Random Forest Regressor Model:
 **Step 3: Built a prediction matrix for each basketball statistic and age that calculates league avg percent change** (e.g. if the average player's points per game increases by 8% from when they start the season at age 24 versus age 25, the points prediction for a player turning 25 is 8% more than prior year)
 
 - Building Prediction Matrix:
+
 ```python
 ###Build Matrix:
 #Variable to store all player percent change values for each stat
@@ -183,6 +186,7 @@ columns = ['Age','MP','FGA','FG%','3PA','3P%','eFG%','FTA','FT%','TRB','AST','ST
 columns_array = numpy.asarray(columns).reshape(1,15)
 pcnt_change_agg = numpy.concatenate([columns_array,pcnt_change_agg], axis=0)
 ```
+Then:
 
 ```python
 ###convert to dataframe
@@ -352,6 +356,7 @@ Results Ranked:
 For points, the Matrix + Regression + Forest performed best but only by a slim margin. In general, most methods performed well without significant differences in RMSE. 
 
 After creating the new dataset I merged all prediction values from the 4 methods into 1 dataframe:
+
 ```python
 df_all = pd.DataFrame()
 df_all = pd.merge(df_RM[['Player','Year','RM_Predict']],df_RF[['Player','RF_Predict','Year']],how='inner',left_on=['Player','Year'],right_on=['Player','Year'])
@@ -395,6 +400,7 @@ Formatted DataFrame:
 <img src="/assets/img/dfafter.png">
 
 Steps to format DataFrame:
+
 ```python
 ###ESPN Projections
 data = pd.read_csv('espn bball 2020 projections.csv')
