@@ -21,6 +21,7 @@ Color Scheme 1:
 
 
 Color Scheme 2:
+
 <!---
 <img src="/assets/img/World-Freedom-Index-v2.png">
 
@@ -65,7 +66,7 @@ scrolling="no" src="https://public.tableau.com/views/ProjectedvActualVisual/Dash
 [NYC Neighborhood Dashboard link](https://public.tableau.com/views/NYCNeighborhoodCrimeTypeClustersv2/Dashboard15?:language=en&:display_count=y&:origin=viz_share_link)
 -->
 
-<iframe frameborder="0" height="600" width="1050" scrolling="no" src="https://public.tableau.com/shared/TTRM34SMJ?:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
+<iframe frameborder="0" height="800" width="1400" scrolling="no" src="https://public.tableau.com/shared/TTRM34SMJ?:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
 
 # NYC Neighborhoods Latin Population Breakdown
 Sankey Diagram
@@ -73,20 +74,11 @@ Sankey Diagram
 I thought this looked cool
 <iframe frameborder="0" height="800" width="1400" scrolling="no" src="https://public.tableau.com/views/NYCNeighborhoods/Dashboard2?:language=en&:display_count=y&publish=yes&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
 
-<!---
-<img src="/assets/img/NYC-Latin-White.png">
-
-[Dashboard Link](https://public.tableau.com/views/NYCLatinHispanicPopulationBreakdown/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link)
--->
+White Theme
 
 <iframe frameborder="0" height="800" width="1400" scrolling="no" src="https://public.tableau.com/views/NYCLatinHispanicPopulationBreakdown/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
 
 Dark Theme
-<!---
-<img src="/assets/img/NYC-Latin-Black.png">
-
-[Dashboard Link](https://public.tableau.com/views/NYCLatinHispanicPopulationBreakdown-Dark/Dashboard13?:language=en&:display_count=y&:origin=viz_share_link)
--->
 
 <iframe frameborder="0" height="800" width="1400" scrolling="no" src="https://public.tableau.com/views/NYCLatinHispanicPopulationBreakdown-Dark/Dashboard13?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
 
