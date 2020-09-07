@@ -4,7 +4,6 @@ title:  "NYC Latin/Hispanic Population Breakdown"
 date:   2020-07-28 00:16:44 -0400
 categories: jekyll update
 ---
-Documentation in progress
 
 # Project Overview
 Visualize and detail NYC Latin/Hispanic Neighborhood population by nationality.
