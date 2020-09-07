@@ -54,6 +54,7 @@ My Model vs ESPN's Projections below:
   - For college players - Strength of Schedule
 
 Webscraper code:
+
 ```python
 import requests
 from urllib.request import urlopen
@@ -85,7 +86,7 @@ for year in year_to_loop:
     headers_list = [th.getText() for th in soup.findAll('tr',limit=2)[0].findAll('th')]
     for i in range(int((int(len(players_stats_list)))/(int(len(headers_list)-1)))):
         years.append(year)
-'''
+```
 
 - I then converted lists -> arrays -> reshaped and concatenated arrays -> convert to dataframe
 
