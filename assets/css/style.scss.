@@ -1,0 +1,5 @@
+---
+---
+
+@import "";
+max-width: calc(1450px - (30px * 2));
