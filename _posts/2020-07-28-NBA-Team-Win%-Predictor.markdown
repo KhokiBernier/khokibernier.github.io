@@ -24,10 +24,7 @@ Team Data Dashboard with 15 years of trends around key statistics that impact wi
   - If the number is red, the team is below league average
   - If the number is green, the team is above league average
 
-<img src="/assets/img/NBATeam.png">
-
-Dashboard can be accessed here (fullscreen recommended): https://public.tableau.com/views/BBallAnalysis/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link
-
+<iframe frameborder="0" height="800" width="1400" scrolling="no" src="https://public.tableau.com/views/BBallAnalysis/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
 
 Part 1: Developed a model to predict team win % based on 9 key variables.
 
