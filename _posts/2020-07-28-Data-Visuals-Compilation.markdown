@@ -39,6 +39,7 @@ scrolling="no" src="https://public.tableau.com/views/ProjectedvActualVisual/Dash
 
 [NYC Crime Dashboard Link](https://public.tableau.com/profile/kb8769#!/vizhome/NYCCrimeCoordinates/Dashboard1)
 
+<iframe frameborder="0" height="800" width="1400" scrolling="no" src="https://public.tableau.com/shared/SX6ZWFYMF?:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
 
 # NYC Neighborhood Clustering
 <img src="/assets/img/NYC-Neighborhood-Dashboard.png">
@@ -47,9 +48,9 @@ scrolling="no" src="https://public.tableau.com/views/ProjectedvActualVisual/Dash
 
 # NYC Neighborhoods Latin Population Breakdown
 Sankey Diagram
-<iframe frameborder="0" height="800" width="1500" scrolling="no" src="https://public.tableau.com/views/SankeyChartLatinHispanicRegiontoNYCBoroughs/Dashboard1?:language=en&:display_count=y&publish=yes&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
+<iframe frameborder="0" height="800" width="1400" scrolling="no" src="https://public.tableau.com/views/SankeyChartLatinHispanicRegiontoNYCBoroughs/Dashboard1?:language=en&:display_count=y&publish=yes&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
 I thought this looked cool
-<iframe frameborder="0" height="700" width="1050" scrolling="no" src="https://public.tableau.com/views/NYCNeighborhoods/Dashboard2?:language=en&:display_count=y&publish=yes&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
+<iframe frameborder="0" height="800" width="1400" scrolling="no" src="https://public.tableau.com/views/NYCNeighborhoods/Dashboard2?:language=en&:display_count=y&publish=yes&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
 
 <img src="/assets/img/NYC-Latin-White.png">
 
