@@ -12,10 +12,10 @@ Both Personal Freedom and Economic Freedom are comprised of many factors, some o
 
 Color Scheme 1
 
-<img src="/assets/img/World-Freedom-Index-v1.png">
+<iframe frameborder="0" height="800" width="1400" scrolling="no" src="https://public.tableau.com/views/WorldHumanFreedomIndexv2/HumanFreedom3?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
 
 Color Scheme 2
 
-<img src="/assets/img/World-Freedom-Index-v2.png">
+<iframe frameborder="0" height="800" width="1400" scrolling="no" src="https://public.tableau.com/views/WorldHumanFreedomIndexv1/HumanFreedom2?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
 
 [Human Freedom Index Link](https://public.tableau.com/views/WorldHumanFreedomIndex/HumanFreedom2?:language=en&:display_count=y&:origin=viz_share_link)
