@@ -79,6 +79,8 @@ scrolling="no" src="https://public.tableau.com/views/BBallWinPredictor/Dashboard
 </iframe>
 
 # NBA Teams Dashboard
+<iframe frameborder="0" height="800" width="1400" scrolling="no" src="https://public.tableau.com/views/BBallAnalysis/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
+
 <img src="/assets/img/NBATeam.png">
 
 [Basketball Teams Link](https://public.tableau.com/views/BBallAnalysis/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link)
