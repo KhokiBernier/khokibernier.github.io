@@ -5,7 +5,7 @@ date:   2020-07-28 00:16:47 -0400
 classes: wide
 categories: jekyll update
 ---
-**Compilation of data visuals used in projects (dashboards were intended for 15-inch full screen views):**
+**Compilation of data visuals used in projects (refresh page if having issues loading):**
 
 # World Freedom Index
 Color Scheme 1:
