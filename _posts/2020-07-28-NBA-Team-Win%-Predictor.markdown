@@ -13,8 +13,8 @@ Team Win % Predictor containing 9 key statistics with adjustable sliders:
 
 <iframe 
 frameborder="0" 
-height="730" 
-width="1050" 
+height="800" 
+width="1400" 
 scrolling="no" src="https://public.tableau.com/views/BBallWinPredictor/Dashboard32?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes">
 </iframe>
 
