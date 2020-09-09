@@ -56,7 +56,7 @@ Clustered New York City nieghborhoods by crime type per 1,000 residents and neig
 - Dataset taken from this link: https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc
 - Clean and organize data
 
-{% highlight ruby %}
+```python
 import pandas as pd
 import numpy as np
 
@@ -74,16 +74,16 @@ df_crime.Latitude.isna().sum()
 #drop nan values (there was only 1)
 df_crime.Latitude = df_crime.Latitude.dropna()
 df_crime.Longitude = df_crime.Longitude.dropna()
-{% endhighlight %}
+```
 
 Look at the distinct offense description values and determine groupings:
 
-{% highlight ruby %}
+```python
 #listing them out this way makes them easy to copy paste
 df_crime.OFNS_DESC.unique()
-{% endhighlight %}
+```
 
-{% highlight ruby %}
+```python
 violent = ['MURDER & NON-NEGL. MANSLAUGHTER','HOMICIDE-NEGLIGENT-VEHICLE', 'MURDER & NON-NEGL. MANSLAUGHTE',
            'HOMICIDE-NEGLIGENT,UNCLASSIFIED','HOMICIDE-NEGLIGENT-VEHICLE','HOMICIDE-NEGLIGENT,UNCLASSIFIE','RAPE',
            'FELONY ASSAULT', 'ASSAULT 3 & RELATED OFFENSES','JOSTLING''SEX CRIMES','FORCIBLE TOUCHING',
@@ -114,7 +114,7 @@ for i in df_crime['OFNS_DESC']:
         crime_group_list.append('Other')
         
 df_crime['Crime Group'] = crime_group_list
-{% endhighlight %}
+```
 
 **Step 2: Pulled NYC neighborhood coordinates as well as coordinates from all venues in each neighborhood by following steps in this link https://codekarim.com/node/57**
 
@@ -128,14 +128,14 @@ df_crime['Crime Group'] = crime_group_list
 - Formula: d(x,y) = sqrt((x1-x2)^2 + (y1-y2)^2)
 
 First we put our venue latitudes and longitudes into a list of coordinates
-{% highlight ruby %}
+```python
 coordinates = []
 for lat, long in df_ny[['Venue Latitude','Venue Longitude']].itertuples(index=False):
     coordinates.append((lat,long))
-{% endhighlight %}
+```
 Next, we define 2 functions. 1 to calculate Euclidean distance and 1 to find the closest pair of coordinates out of a list of coordinates.
 
-{% highlight ruby %}
+```python
 from math import sqrt
 
 def Euclidean_Distance(p, q):
@@ -150,12 +150,12 @@ def closest(cur_pos, positions):
             low_dist = dist
             closest_pos = pos
     return closest_pos
-{% endhighlight %}
+```
 
 We can now loop through
 
 
-{% highlight ruby %}
+```python
 from datetime import datetime
 
 neighborhood_list = []
@@ -173,22 +173,22 @@ for lat,long in df_crime[['Latitude','Longitude']].itertuples(index=False):
         print(tracker)
         print(datetime.now(tz=None))
 df_crime['Neighborhood'] = neighborhood_list
-{% endhighlight %}
+```
 
 
 **Step 4. Mapped neighborhood population to nieghborhood using 'NYC Neighborhood by population file' dataset**
 
 - First, import the dataset into a data frame (link to dataset: https://data.cityofnewyork.us/City-Government/New-York-City-Population-By-Neighborhood-Tabulatio/swpk-hqdp)
 
-{% highlight ruby %}
+```python
 nyc_pop_data = pd.read_csv('NYC Population Data.csv')
 #The dataset has population data for 2000 and 2010, we'll look at 2010 since it's the most recent and NYC population hasn't changed too much since then
 nyc_pop_data = nyc_pop_data[nyc_pop_data.Year == 2010]
-{% endhighlight %}
+```
 
 - I noticed that the counts of neighborhoods between this dataset and our crime mapped dataframe were different, so I performed the following to investigate the discrepency
 
-{% highlight ruby %}
+```python
 df_crime.Neighborhood.nunique() # this returned 301, so we have 301 neighborhoods that we need population counts for
 
 ctr_y = 0
@@ -205,7 +205,7 @@ for i in df_crime['Neighborhood'].unique():
         
 print('In both = ',ctr_y)
 print('not in both = ',ctr_n)
-{% endhighlight %}
+```
 
 - In both = 86
 - not in both = 215
@@ -231,7 +231,7 @@ Because our population counts are dependent on the Population dataset, our crime
 
 This was achieved using the loop below:
 
-{% highlight ruby %}
+```python
 key_list = []
 value_list = []
 ctr = 0
@@ -248,7 +248,7 @@ for i in not_in_neighborhoods:
 neighborhood_dictionary = dict(zip(key_list, value_list))
 #replace our crime neighborhoods using dictionary
 df_crime['Neighborhood'] = df_crime['Neighborhood'].replace(neighborhood_dictionary)
-{% endhighlight %}
+```
 
 Re-running our loop from above to determine how many neighborhoods we have mapped resulted in:
 
@@ -279,7 +279,7 @@ We now have our neighborhoods in a standardized format between our population an
 
 Transposing the data:
 
-{% highlight ruby %}
+```python
 #taking relevant columns to be transposed
 df_not_transposed = df_crime_np[['Crime Group2','Neighborhood','Latitude']]
 #pivoting data
@@ -287,39 +287,39 @@ df_not_transposed = df_not_transposed.pivot_table(index='Neighborhood', columns=
 #resetting index
 df_not_transposed['Neighborhood'] = df_not_transposed.index
 df_not_transposed.index = df_not_transposed.index.rename('index')
-{% endhighlight %}
+```
 
 -image
 
 get population sum for each neighborhood
-{% highlight ruby %}
+```python
 df_population = pd.DataFrame(df_nyc_pop.groupby('Neighborhood')['Population'].sum())
 df_population['Neighborhood'] = df_population.index
 df_population.index = df_population.index.rename('index')
-{% endhighlight %}
+```
 
 merge dataframes and add qoutient in order to get crimes per 1,000 population
-{% highlight ruby %}
+```python
 df_crime_per_1000 = pd.merge(df_not_transposed,df_population,how='left',left_on=['Neighborhood'],right_on=['Neighborhood'])
 df_crime_per_1000['qoutient'] = df_crime_per_1000['Population'] / 1000
-{% endhighlight %}
+```
 
 <img src="/assets/img/with-qoutient.png">
 
 Get crimes per 1,000
-{% highlight ruby %}
+```python
 cols = ['Non Violent','Theft','Violent','Drug','Traffic'] 
 df_crime_per_1000 = df_crime_per_1000.fillna(0)
 for col in cols:
     df_crime_per_1000[col] = df_crime_per_1000[col] / df_crime_per_1000.qoutient
-{% endhighlight %}
+```
 
-{% highlight ruby %}
+```python
 df_crime_per_1000 = df_crime_per_1000.replace([np.inf, -np.inf], np.nan)
 df_crime_per_1000 = df_crime_per_1000.dropna()
 
 df_crime_per_1000 = pd.merge(df_crime_per_1000, df_population[['Neighborhood','Borough']].drop_duplicates(),how = 'left',left_on=['Neighborhood'],right_on=['Neighborhood'])
-{% endhighlight %}
+```
 
 <img src="/assets/img/transposed-df-final.png">
 
@@ -328,7 +328,7 @@ df_crime_per_1000 = pd.merge(df_crime_per_1000, df_population[['Neighborhood','B
 Clustering is a form of unsupervised exploratory analysis that aims to segment data based on similar traits. In our case, we a used k-means clustering algorithm, where the number of clusters (K) is specified prior to clustering. In K-Means clustering, k (the selected number of clusters) centroids are chosen as random data points. Our data points are then taken and assigned to the nearest centroid based on Euclidean distance. Once all data points are assigned to a centroid, the mean of each cluster is calculated and determined to be the new centroids. All data points are then reassigned to the nearest new centroid value. This process continues until the data points stop changing clusters, and once this occurs the total variation amongst points in the clusters is then calculated. This entire process is repeated x amount of times and the sequence with the lowest variation is used to cluster the data.
 
 - import libraries
-{% highlight ruby %}
+```python
 import seaborn as sns 
 import plotly as py
 import plotly.graph_objs as go
@@ -341,20 +341,20 @@ warnings.filterwarnings("ignore")
 py.offline.init_notebook_mode(connected = True)
 #Declare dataset with our features for clustering
 features = pd.DataFrame(df_crime_per_1000[['Non Violent','Theft','Violent','Drug','Traffic','Population']])
-{% endhighlight %}
+```
 
 As K-Means uses Euclidean distance between data points, it's important that we standardize data so that our variables are on the same scale.
 
-{% highlight ruby %}
+```python
 #Normalize data
 from sklearn import preprocessing
 features_standardized = preprocessing.scale(features)
 features_standardized = pd.DataFrame(features_standardized)
-{% endhighlight %}
+```
 
 Next, we determine the optimal number of clusters to input into our algorithm. To do this, We'll graph out number of clusters on the x-axis and within-cluster-sum-of-squares (variation) on the y-axis.
 
-{% highlight ruby %}
+```python
 plt.figure(figsize=(10, 8))
 wcss = []
 for i in range(1, 15):
@@ -366,13 +366,13 @@ plt.title('The Elbow Method')
 plt.xlabel('Number of clusters')
 plt.ylabel('WCSS')
 plt.show()
-{% endhighlight %}
+```
 
 <img src="/assets/img/elbow-method.png">
 
 Looking at the graph, I selected 6 clusters
 
-{% highlight ruby %}
+```python
 #Fitting K-Means to the dataset
 kmeans = KMeans(n_clusters = 6, init = 'k-means++')
 y_kmeans = kmeans.fit_predict(features_standardized)
@@ -385,7 +385,7 @@ df_crime_per_1000['cluster'] = cluster
 #Mean of clusters 1 to 4
 kmeans_mean_cluster = pd.DataFrame(round(df_crime_per_1000.groupby('cluster').mean(),1))
 kmeans_mean_cluster
-{% endhighlight %}
+```
 
 <img src="/assets/img/cluster-counts.png">
 
@@ -409,7 +409,7 @@ Here we have some clusters around degrees of crime and population, and some insi
 
 A cool way to visualize the data in python:
 
-{% highlight ruby %}
+```python
 from mnist.loader import MNIST
 import tools
 from pandas.plotting import parallel_coordinates
@@ -421,7 +421,7 @@ fig = px.parallel_coordinates(df_clusters[['Drug', 'General Crime', 'Theft', 'Tr
                              color_continuous_scale=px.colors.diverging.Tealrose,
                              color_continuous_midpoint=2)
 fig.show()
-{% endhighlight %}
+```
 
 <img src="/assets/img/newplot.png">
 
