@@ -32,7 +32,7 @@ Part 1: Developed a model to predict team win % based on 9 key variables.
 - Build out multivariate regression model:
 
 Import libraries, format data
-{% highlight ruby %}
+```python
 import matplotlib.pyplot as plt
 import seaborn as sns
 import pylab
@@ -59,19 +59,19 @@ data_floats=data_floats.astype(float)
 data_floats.index = data_floats['Winning Percentage']
 data_floats = data_floats.dropna(how='any',axis=0)
 data_floats=data_floats.astype(float)
-{% endhighlight %}
+```
 
 Look at correlation matrix and heatmap to determine appropriate variables to include:
-{% highlight ruby %}
+```python
 #print out a correlation matrix of our dataframe
 corr = data_floats.corr()
 display(corr)
 #plot heatmap
 sns.heatmap(corr,xticklabels = corr.columns, yticklabels = corr.columns, cmap='RdBu')
-{% endhighlight %}
+```
 
 Check variance inflation factor and remove redundent variables that could potentially lead to incorrect coefficient values (typically, if > 5 it should be removed)
-{% highlight ruby %}
+```python
 data_before = df_stats
 x1 = sm.tools.add_constant(data_before)
 #create a series for both 
@@ -90,7 +90,7 @@ series_after = pd.Series([variance_inflation_factor(x2.values,i) for i in range(
 print("data After")
 print('-'*100)
 display(round(series_after, 2))
-{% endhighlight %}
+```
 
 Taking the metrics from above into consideration, I decided to use the 9 variables below to build out the model. I wanted to only include the minimum number of key statistics that a general manager can realistically impact with personnel decisions. (e.g Including additional small variables, such as opponents blocks per game, may help improve our model's accuracy, but from a GM's perspective will not provide actionable value)
 
@@ -101,7 +101,7 @@ Taking the metrics from above into consideration, I decided to use the 9 variabl
   - 7/8. Assists/Opponent Assists
   - 9. Rebound Differential
  
-{% highlight ruby %}
+```python
 #Build the model: Define input variable and our output variable (x,y)
 X = data_after.drop('Winning Percentage', axis=1)
 Y = data_after[['Winning Percentage']]
@@ -112,7 +112,7 @@ regression_model = LinearRegression()
 #fit the model
 regression_model.fit(x_train,y_train)
 y_predict = regression_model.predict(x_test)
-{% endhighlight %}
+```
 
 
 **Conculsions**
