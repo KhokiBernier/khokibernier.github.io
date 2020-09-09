@@ -40,7 +40,7 @@ Dark
 The original dataset has 484 columns with confusing headers, so the first step was to identify the columns we need and then rename them.
 <img src="/assets/img/initial-df.png">
 
-{% highlight ruby %}
+```python
 df.rename(columns = {    
     'GeogName': 'Neighborhood',
     'Pop_1E': 'Total Population',
@@ -77,7 +77,7 @@ df_lap = df[['Neighborhood','Borough','GeoID','Total Population','Total Hispanic
 'Central American','Costa Rican','Guatemalan','Honduran','Nicaraguan','Panamanian','Salvadoran','South American',
 'Argentinean','Bolivian','Chilean','Colombian','Ecuadorian','Paraguayan','Peruvian','Uruguayan','Venezuelan',
 'Total Other Hispanic/Latino','Spaniard','Spanish','Spanish American','Other Hispanic/Latino']]
-{% endhighlight %}
+```
 
 <img src="/assets/img/new-df.png">
 
@@ -85,7 +85,7 @@ Our new dataframe has 31 columns with much more intuitive headers. This'll make 
 
 The next step is to transpose/pivot the data. Right now we have each Nationality (28 total) as it's own column, and our 195 neighborhoods as all our rows. After we transpose/pivot the data we'll remove each specific nationality column (Dominican, Guatemalan, etc), and replace it with 1 'Nationality' column. We'll keep our 195 neighborhood rows, and have 195 neighborhood times 28 nationalitys per neighborhood = 5460 rows. The purpose of doing this is that it'll allow us to perform more advanced analysis and aggregations/filtering in Tableau. 
 
-{% highlight ruby %}
+```python
 #Dropping GeoID and Borough (we'll re-add later) and switching Nationalities to rows and Neighborhoods to columns
 df_la_t = df_la.drop(['GeoID','Borough'],axis=1).T
 df_la_t.index = df_la_t.index.rename('Nationality')
@@ -93,7 +93,7 @@ df_la_t.index = df_la_t.index.rename('Nationality')
 df_la_t.columns = df_la_t.iloc[0]
 df_la_t = df_la_t[1:]
 df_la_t
-{% endhighlight %}
+```
 
 Results in the following:
 
@@ -101,7 +101,7 @@ Results in the following:
 
 Next, I looped through the dataframe columns (Neighborhoods) and nested a loop through each nationality (index) and value (values)
 
-{% highlight ruby %}
+```python
 #Declaring a dataframe that we will aggregate our results into
 df_la_pivoted = pd.DataFrame()
 
@@ -114,16 +114,16 @@ for col in df_la_t.columns:
     df_col_neighborhood['Population'] = df_la_t[col].values
     #concatenating an aggregate dataframe with each neighborhood as they get looped through
     df_la_pivoted = pd.concat([df_la_pivoted,df_col_neighborhood],axis=0)
-{% endhighlight %}
+```
 
 <img src="/assets/img/pivoted-df.png">
 
 We see 5,460 rows, which matches what we were expecting.
 We can now merge it to our original dataframe to bring back the 'Borough' and 'GeoID' columns
 
-{% highlight ruby %}
+```python
 df_la_pivoted = pd.merge(df_la_pivoted, df_la[['Neighborhood','GeoID','Borough']], how = 'inner',left_on=['Neighborhood'],right_on=['Neighborhood'])
-{% endhighlight %}
+```
 
 **Step 2. Clean MULTIPOLYGON column and obtain avg latitiude and longitude for each neighborhood from coordinates dataset**
 
@@ -135,7 +135,7 @@ We'll need to write a script to extract the coordinate values because I don't be
 
 When doing this, I first try to identify patterns in the data that can be taken advantage of. We see that each pair of coordinates starts with a negative sign, is seperated by a space, and ends with a comma. Based on geography we are sure that each coordinate pair will start with a negative sign, so we can use this to form our script. We can also remove the text 'MULTIPOLYGON ' as well as the parantheses.
 
-{% highlight ruby %}
+```python
 import statistics
 #Lists where our latitude and longitude final values will be appended
 lat_list = []
@@ -195,7 +195,7 @@ for ind, lat in df_la[['Latitude']].itertuples(index=True):
 for ind, long in df_la[['Longitude']].itertuples(index=True):
     val = df_coordinates[df_coordinates.NTACode == df_la.iloc[ind].GeoID]['Longitude'].values[0]
     df_la.loc[ind, 'Longitude'] = val
-{% endhighlight %}
+```
 
 The reason we want the averages of the coordinates is because the coordinate pairs for each neighborhood are the coordinates of the boarders. Getting the average of the boarder coordinates will plot the neighborhood point in roughly the middle of the neighborhood, making it easy to distinguish between neighborhoods. Another issue for us is that there are too many coordinate pairs (3 million+ rows total) and the file is too large for tableau to handle, even when saved as a CSV.  This is illustrated by the screenshots below:
 
@@ -214,7 +214,7 @@ Tableau when I tried to load all boarders in. Color seperated by borough and whi
 What I did was take the number of rows Tableau can handle from our csv (2.4 million) and subtract that from the total amount that we have 3.15 million (3.15M - 2.4M = .715M). So we need to get rid of about 25% of our coordinates. I then wrote a script to remove 1 out of every 4 coordinates. This difference in the visualization is not noticeable.
 
 Adjusting the script, and using modules to exclude every 4th coordinate:
-{% highlight ruby %}
+```python
 longitude_float = []
         for i in longitude:
             if ctr_long % 4 != 0:
@@ -224,7 +224,7 @@ longitude_float = []
                 long_list.append(float(i))
                 neighbs.append(b)
             ctr_long+=1
-{% endhighlight %}
+```
 
 Tableau with 25% of coordinates removed
 <img src="/assets/img/all-coordinates.png">
@@ -238,7 +238,7 @@ Now we have all the data that we need, but in order to maximize the quality and 
 3. equally distribute the nationalities across all 2.4 million of our boarder coordinate rows
 4. concatenate both dataframes
 Step 3:
-{% highlight ruby %}
+```python
 Nationalities = ['Mexican','Puerto Rican','Cuban','Dominican','Costa Rican','Guatemalan','Honduran','Nicaraguan',
                  'Panamanian','Salvadoran','Argentinean','Bolivian','Chilean','Colombian','Ecuadorian','Paraguayan',
                  'Peruvian','Uruguayan','Venezuelan','Spaniard','Spanish','Spanish American','Other Hispanic/Latino']
@@ -251,11 +251,11 @@ for a in range(102879):
 len(nationalities_list)
 nationalities_list=nationalities_list[0:2366196]
 df_all_coordinates['Nationality'] = nationalities_list
-{% endhighlight %}
+```
 Step 4:
-{% highlight ruby %}
+```python
 df_nyc_concat = pd.concat([df_la_pivoted2,df_all_coordinates])
-{% endhighlight %}
+```
 
 - The purpose of step 1 is to maintain our total neighborhood population when we filter by Nationality in our visualization. This allows us to keep percentage of Total population and other valuable metrics when we filter our data by Nationality
 - The purpose of Step 2 is to keep our Boarder points on the visualization without having them affect the counts in our data. When performing a union (concatenating), we need the columns of both dataframes to match so here we just put a 0 so it doesn't impact our numbers
