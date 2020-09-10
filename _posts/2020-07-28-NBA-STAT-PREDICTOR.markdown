@@ -13,7 +13,7 @@ Built a model to predict NBA Player Season Stats that outperformed ESPN's 2019-2
 - Average Percent Change by Age
 - Prior Year Weighted Averages
 
-# Libraries used:
+# **Libraries used:**
 
 - pandas
 - numpy
@@ -22,7 +22,7 @@ Built a model to predict NBA Player Season Stats that outperformed ESPN's 2019-2
 - sklearn
 - matplotlib
 
-# The following steps were taken, and will be elaborated on with code snippets further below:
+# **The following steps were taken, and will be elaborated on with code snippets further below:**
 
 1. Webscrapped and wrangled 15+ years of NBA team and player data from basketball-reference.com and espn.com.
 2. Built multivariate regression and random forest regresor models for key basketball statistics (points, rebounds, assists, etc) using data pulled in previous setp.
