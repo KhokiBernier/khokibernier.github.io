@@ -5,9 +5,9 @@ date:   2020-07-28 00:16:47 -0400
 classes: wide
 categories: jekyll update
 ---
-**Compilation of data visuals used in projects (refresh page if having issues loading):**
+Compilation of data visuals used in projects (refresh page if having issues loading):
 
-# World Freedom Index
+# **World Freedom Index**
 Color Scheme 1:
 
 <!---
@@ -27,7 +27,7 @@ Color Scheme 2:
 
 <iframe frameborder="0" height="800" width="1400" scrolling="no" src="https://public.tableau.com/views/WorldHumanFreedomIndexv1/HumanFreedom2?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
 
-# Covid US Detail
+# **Covid US Detail**
 <!---
 <img src="/assets/img/covid.jpg">
 
@@ -36,10 +36,10 @@ Color Scheme 2:
 
 <iframe frameborder="0" height="800" width="1400" scrolling="no" src="https://public.tableau.com/views/USCOVIDDeathDetail/USCovidDeaths-B3?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
 
-# KB Model vs ESPN
+# **KB Model vs ESPN**
 <iframe frameborder="0" height="600" width="1050" scrolling="no" src="https://public.tableau.com/views/KBModelvsESPN/Dashboard14?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
 
-# KB Projected vs Actual
+# **KB Projected vs Actual**
 <iframe 
 frameborder="0" 
 height="600" 
@@ -47,7 +47,7 @@ width="770"
 scrolling="no" src="https://public.tableau.com/views/ProjectedvActualVisual/Dashboard5?:language=en&:display_count=y&publish=yes&:origin=viz_share_link:showVizHome=no&:embed=yes">
 </iframe>
 
-# NYC Crimes
+# **NYC Crimes**
 <!---
 <img src="/assets/img/NYC-Crime-Data.png">
 
@@ -55,7 +55,7 @@ scrolling="no" src="https://public.tableau.com/views/ProjectedvActualVisual/Dash
 -->
 <iframe frameborder="0" height="800" width="1400" scrolling="no" src="https://public.tableau.com/shared/SX6ZWFYMF?:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
 
-# NYC Neighborhood Clustering
+# **NYC Neighborhood Clustering**
 <!---
 <img src="/assets/img/NYC-Neighborhood-Dashboard.png">
 
@@ -64,7 +64,7 @@ scrolling="no" src="https://public.tableau.com/views/ProjectedvActualVisual/Dash
 
 <iframe frameborder="0" height="800" width="1400" scrolling="no" src="https://public.tableau.com/shared/TTRM34SMJ?:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
 
-# NYC Neighborhoods Latin Population Breakdown
+# **NYC Neighborhoods Latin Population Breakdown**
 Sankey Diagram
 <iframe frameborder="0" height="800" width="1400" scrolling="no" src="https://public.tableau.com/views/SankeyChartLatinHispanicRegiontoNYCBoroughs/Dashboard1?:language=en&:display_count=y&publish=yes&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
 I thought this looked cool
@@ -78,7 +78,7 @@ Dark Theme
 
 <iframe frameborder="0" height="800" width="1400" scrolling="no" src="https://public.tableau.com/views/NYCLatinHispanicPopulationBreakdown-Dark/Dashboard13?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
 
-# NBA Team Win % Prediction Model
+# **NBA Team Win % Prediction Model**
 <iframe 
 frameborder="0" 
 height="800" 
@@ -86,7 +86,7 @@ width="1400"
 scrolling="no" src="https://public.tableau.com/views/BBallWinPredictor/Dashboard32?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes">
 </iframe>
 
-# NBA Teams Dashboard
+# **NBA Teams Dashboard**
 <iframe frameborder="0" height="800" width="1400" scrolling="no" src="https://public.tableau.com/views/BBallAnalysis/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
 
 <!---
@@ -97,11 +97,15 @@ scrolling="no" src="https://public.tableau.com/views/BBallWinPredictor/Dashboard
 
 <img src="/assets/img/newplot.png">
 
-# FANG Data Science Glassdoor Data
+# **FANG Data Science Glassdoor Data**
 <iframe frameborder="0" height="800" width="1400" scrolling="no" src="https://public.tableau.com/views/FANGInterviewData/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
 
 
-# NBA Player Stat Predictions Detail
-<img src="/assets/img/playerdetail.png">
+# **NBA Player Stat Predictions Detail**
 
-[Player Detail Dashboard Link](https://public.tableau.com/views/NBAPlayerPredictorDetail/Dashboard14?:language=en&:display_count=y&publish=yes&:origin=viz_share_link)
+<iframe 
+frameborder="0" 
+height="800" 
+width="1400" 
+scrolling="no" src="https://public.tableau.com/views/NBAPlayerPredictorDetail/Dashboard14?:language=en&:display_count=y&publish=yes&:origin=viz_share_link:showVizHome=no&:embed=yes">
+</iframe>
