@@ -4,7 +4,7 @@ title:  "NBA Stat Predictor"
 date:   2020-07-28 00:16:46 -0400
 categories: jekyll update
 ---
-**Project Overview**
+# Project Overview
 
 Built a model to predict NBA Player Season Stats that outperformed ESPN's 2019-2020 season projections (to date, the season is still going on). The model was built in Python3 and projections were made using the following:
 
@@ -13,7 +13,7 @@ Built a model to predict NBA Player Season Stats that outperformed ESPN's 2019-2
 - Average Percent Change by Age
 - Prior Year Weighted Averages
 
-**Libraries used:**
+# Libraries used:
 
 - pandas
 - numpy
@@ -22,7 +22,7 @@ Built a model to predict NBA Player Season Stats that outperformed ESPN's 2019-2
 - sklearn
 - matplotlib
 
-**The following steps were taken, and will be elaborated on with code snippets further below:**
+# The following steps were taken, and will be elaborated on with code snippets further below:
 
 1. Webscrapped and wrangled 15+ years of NBA team and player data from basketball-reference.com and espn.com.
 2. Built multivariate regression and random forest regresor models for key basketball statistics (points, rebounds, assists, etc) using data pulled in previous setp.
@@ -444,4 +444,4 @@ Projections vs Actual Player Detail:
 You can interact with the dashboard here: https://public.tableau.com/views/NBAPlayerPredictorDetail/Dashboard14?:language=en&:display_count=y&publish=yes&:origin=viz_share_link
 -->
 
-**Conculsions**
+# Conculsions
