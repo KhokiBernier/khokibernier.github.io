@@ -7,14 +7,14 @@ categories: jekyll update
 
 Documentation in progress..
 
-# Project Overview
+# **Project Overview**
 
 Clustered New York City nieghborhoods by crime type per 1,000 residents and neighborhood population using K-Means algorithm in Python and visualized data in Tableau
 
 
 <img src="/assets/img/NYC-Neighborhood-Dashboard.png">
 
-# Libraries used:
+# **Libraries used:**
 
 - pandas
 - numpy
@@ -23,7 +23,7 @@ Clustered New York City nieghborhoods by crime type per 1,000 residents and neig
 - sklearn
 - plotly
 
-# Links
+# **Links**
 
 - NYC Arrest dataset: https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc
 - Code to get Neighborhoods and venues: https://codekarim.com/node/57 (Note: I do not take credit for this code)
@@ -31,7 +31,7 @@ Clustered New York City nieghborhoods by crime type per 1,000 residents and neig
 - Missing Neighborhood Populations: https://popfactfinder.planning.nyc.gov/
 - NYC Map to verify Midtown South: https://maps.nyc.gov/crime/
 
-# Steps Taken
+# **Steps Taken**
 
 1. Downloaded and cleaned file that contained 5 million+ rows of NYC crime occurances, descriptions, and coordinates
 2. Pulled NYC neighborhood coordinates as well as coordinates from all venues in each neighborhood by following steps in this link https://codekarim.com/node/57 
