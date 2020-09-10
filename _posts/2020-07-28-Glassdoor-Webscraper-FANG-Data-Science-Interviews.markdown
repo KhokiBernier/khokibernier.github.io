@@ -5,14 +5,14 @@ date:   2020-07-28 00:16:43 -0400
 categories: jekyll update
 ---
 
-# Project Overview
+# **Project Overview**
 Compile Glassdoor Interview Questions and Data for FANG Data Science positions
 
-# Project Result
+# **Project Result**
 
 <iframe frameborder="0" height="800" width="1400" scrolling="no" src="https://public.tableau.com/views/FANGInterviewData/Dashboard1?:language=en&:display_count=y&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
 
-# Libraries Used:
+# **Libraries Used:**
 - pandas
 - BeautifulSoup
 - numpy
@@ -20,7 +20,7 @@ Compile Glassdoor Interview Questions and Data for FANG Data Science positions
 - requests
 - collections
 
-# Steps taken:
+# **Steps taken:**
 1. Webscrape Glassdoor Data
 2. Get top 10 most frequent relevant words from interviews
 3. Clean and format data
