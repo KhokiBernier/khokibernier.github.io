@@ -3,6 +3,7 @@ layout: post
 title:  "Titanic Kaggle Competition"
 date:   2020-07-28 00:16:38 -0400
 ---
+Kaggle Titanic Classification Challenge to predict survivors
 
 Will work on adding the Jupyter Notebook to this webpage, but for now:
 
