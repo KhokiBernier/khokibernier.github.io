@@ -13,6 +13,8 @@ Built a model to predict NBA Player Season Stats that outperformed ESPN's 2019-2
 - Average Percent Change by Age
 - Prior Year Weighted Averages
 
+Github Link: https://github.com/KhokiBernier/NBA-Stat-Predictions/blob/main/Basketball%20Player%20Stat%20Modeling.ipynb
+
 # **Libraries used:**
 
 - pandas
