@@ -7,6 +7,8 @@ categories: jekyll update
 
 Documentation in progress..
 
+Github: https://github.com/KhokiBernier/NYC-Neighborhood-Clustering/blob/main/NYC%20Neighborhood%20Clustering%20EDITED.ipynb
+
 # **Project Overview**
 
 Clustered New York City nieghborhoods by crime type per 1,000 residents and neighborhood population using K-Means algorithm in Python and visualized data in Tableau
