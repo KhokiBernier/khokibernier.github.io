@@ -13,6 +13,7 @@ Github: https://github.com/KhokiBernier/NYC-Neighborhood-Clustering/blob/main/NY
 
 Clustered New York City nieghborhoods by crime type per 1,000 residents and neighborhood population using K-Means algorithm in Python and visualized data in Tableau
 
+<iframe frameborder="0" height="800" width="1400" scrolling="no" src="https://public.tableau.com/views/NYCClusteringEDITED/DashboardDark?:language=en&:display_count=y&publish=yes&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
 
 <img src="/assets/img/NYC-Neighborhood-Dashboard.png">
 
