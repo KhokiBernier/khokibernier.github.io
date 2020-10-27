@@ -27,17 +27,21 @@ Clustered New York City nieghborhoods by crime type per 1,000 residents and neig
 - seaborn
 - sklearn
 - plotly
+- statistics
 
 # **Links**
 
 - NYC Arrest dataset: https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc
-- Code to get Neighborhoods and venues: https://codekarim.com/node/57 (Note: I do not take credit for this code)
 - NYC Neighborhood by population file: https://data.cityofnewyork.us/City-Government/New-York-City-Population-By-Neighborhood-Tabulatio/swpk-hqdp
-- Missing Neighborhood Populations: https://popfactfinder.planning.nyc.gov/
+- NYC Neighborhood Coordinates: https://data.cityofnewyork.us/City-Government/Neighborhood-Tabulation-Areas-NTA-/cpf4-rkhq
 - NYC Map to verify Midtown South: https://maps.nyc.gov/crime/
+
+<!--- Code to get Neighborhoods and venues: https://codekarim.com/node/57 (Note: I do not take credit for this code)
+<!--- Missing Neighborhood Populations: https://popfactfinder.planning.nyc.gov/
 
 # **Steps Taken**
 
+<!---
 1. Downloaded and cleaned file that contained 5 million+ rows of NYC crime occurances, descriptions, and coordinates
 2. Pulled NYC neighborhood coordinates as well as coordinates from all venues in each neighborhood by following steps in this link https://codekarim.com/node/57 
 3. Mapped crime location to neighborhood by finding minimum Euclidean distance between crime location and all venues
@@ -52,6 +56,18 @@ Clustered New York City nieghborhoods by crime type per 1,000 residents and neig
 - Neighborhood Population
 6. Performed K-Means Clustering
 7. Visualized data in Tableau
+--->
+
+1. Download and clean data files
+2. Feature Engineering
+  - 2.1 Neighborhood Center Coordinates (Note: This feature is for Tableau Visualization)
+  - Neighborhood Boarder Coordinates (Note: This feature is for Tableau Visualization)
+  - Neighborhood Population
+  - Crime Grouping
+  - Crimes Per 1,000 Population
+3. Outlier Analysis
+4. Clustering
+5. Create Tableau Viz
 
 **Note**
 - Crime rates are relative to other NYC neighborhoods, not to US national averages
