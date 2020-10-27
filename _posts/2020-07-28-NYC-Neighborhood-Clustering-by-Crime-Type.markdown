@@ -38,6 +38,7 @@ Clustered New York City nieghborhoods by crime type per 1,000 residents and neig
 
 <!--- Code to get Neighborhoods and venues: https://codekarim.com/node/57 (Note: I do not take credit for this code)
 <!--- Missing Neighborhood Populations: https://popfactfinder.planning.nyc.gov/
+--->
 
 # **Steps Taken**
 
@@ -60,7 +61,7 @@ Clustered New York City nieghborhoods by crime type per 1,000 residents and neig
 
 1. Download and clean data files
 2. Feature Engineering
-  - 2.1 Neighborhood Center Coordinates (Note: This feature is for Tableau Visualization)
+  - Neighborhood Center Coordinates (Note: This feature is for Tableau Visualization)
   - Neighborhood Boarder Coordinates (Note: This feature is for Tableau Visualization)
   - Neighborhood Population
   - Crime Grouping
