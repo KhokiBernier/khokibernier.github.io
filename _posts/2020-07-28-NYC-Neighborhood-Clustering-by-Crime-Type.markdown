@@ -542,8 +542,6 @@ fig.show()
 ```
 
 <img src="/assets/img/newplot.png">
---->
-
 
 **Step 7. Visualized data in Tableau**
 
@@ -557,3 +555,4 @@ Here's another dashboard I created with just the crime data.
 [NYC Crime Dashboard Link](https://public.tableau.com/profile/kb8769#!/vizhome/NYCCrimeCoordinates/Dashboard1)
 
 **Conculsions**
+--->
