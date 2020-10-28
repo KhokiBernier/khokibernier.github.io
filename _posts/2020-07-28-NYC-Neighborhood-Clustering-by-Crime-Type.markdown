@@ -65,6 +65,8 @@ Clustered New York City nieghborhoods by crime type per 1,000 residents and neig
 4. Clustering
 5. Create Tableau Viz
 
+All code can be found on github (linked above)
+
 **Step 1: Download and format data files**
 
 ```python
@@ -163,7 +165,7 @@ df_crime['Crime Group'] = crime_group_list
 
 **Step 2: Feature Engineering**
 
-The following features were added, code can be found on github (linked above):
+The following features were added:
 
 - Crime Grouping
 - Neighborhood Population
@@ -171,8 +173,48 @@ The following features were added, code can be found on github (linked above):
 - Neighborhood Center Coordinates (Note: This feature is for Tableau Visualization)
 - Neighborhood Boarder Coordinates (Note: This feature is for Tableau Visualization)
 
+**Step 3. Outlier Analysis**
+
+Because the K-Means algorithm uses the mean of clusters, it’s sensitive to outliers and does not perform well with them. Additionally, I’d like to have more meaningful clusters, and our outlier data seems to be of more or less the same variety - very high crime neighborhoods. I decided to group these outliers into 1 ‘High Crime’ cluster, then create a dataset that excludes these neighborhoods and re-run the K-Means algorithm. Outliers accounted for 5 out of 193 (~2.5%) of our neighborhood population.
+
+**Step 4. Clustering**
+
+Clustering is a form of unsupervised exploratory analysis that aims to segment data based on similar traits. In our case, we a used k-means clustering algorithm, where the number of clusters (K) is specified prior to clustering. In K-Means clustering, k (the selected number of clusters) centroids are chosen as random data points. Our data points are then taken and assigned to the nearest centroid based on Euclidean distance. Once all data points are assigned to a centroid, the mean of each cluster is calculated and determined to be the new centroids. All data points are then reassigned to the nearest new centroid value. This process continues until the data points stop changing clusters, and once this occurs the total variation amongst points in the clusters is then calculated. This entire process is repeated x amount of times and the sequence with the lowest variation is used to cluster the data.
+
+The clusters are described as follows:
+
+- Low Crime: Low Population (69 Neighborhoods)
+- Low Crime: High Population (33 Neighborhoods)
+- Medium Crime: Mid Population (59 Neighborhoods)
+- High Violent/Theft, Medium Traffic: Mid Population (25 Neighborhoods)
+- High Crime: Low Population (2 Neighborhoods)
+- Extremely High Crime: Extremely Low Population (4 Neighborhoods) 
+
+Here we have some clusters around degrees of crime and population, and some insight into neighborhoods with high violence and theft with mid level traffic crime. However, it does appear that generally when 1 type of crime is high in a neighborhood all types of crime are high as well. While that in itself is a bit of a relevation, particuralry with types of crime such as traffic, if the data set variables were less linear K-Means clustering could output more interesting clusters.
+
+**Step 5. Create Tableau Viz**
+
+<iframe frameborder="0" height="800" width="1400" scrolling="no" src="https://public.tableau.com/views/NYCClusteringEDITED/DashboardDark?:language=en&:display_count=y&publish=yes&:origin=viz_share_link:showVizHome=no&:embed=yes"> </iframe>
+
+Here's another dashboard I created with just the crime data.
+
+<img src="/assets/img/NYC-Crime-Data.png">
+
+[NYC Crime Dashboard Link](https://public.tableau.com/profile/kb8769#!/vizhome/NYCCrimeCoordinates/Dashboard1)
+
+
+
+
+
+
+
+
+
 
 <!---
+
+COMMENTED OUT STARTS HERE
+
 **Crime Grouping**
 
 Each crime has a description, so we'll group them into categories.
