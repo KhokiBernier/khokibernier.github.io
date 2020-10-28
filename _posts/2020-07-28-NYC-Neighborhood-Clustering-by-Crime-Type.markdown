@@ -35,6 +35,7 @@ Clustered New York City nieghborhoods by crime type per 1,000 residents and neig
 - NYC Neighborhood by population file: https://data.cityofnewyork.us/City-Government/New-York-City-Population-By-Neighborhood-Tabulatio/swpk-hqdp
 - NYC Neighborhood Coordinates: https://data.cityofnewyork.us/City-Government/Neighborhood-Tabulation-Areas-NTA-/cpf4-rkhq
 - NYC Map to verify Midtown South: https://maps.nyc.gov/crime/
+- US Crime Statistics: https://ucr.fbi.gov/crime-in-the-u.s/2012/crime-in-the-u.s.-2012/tables/29tabledatadecpdf
 
 <!--- Code to get Neighborhoods and venues: https://codekarim.com/node/57 (Note: I do not take credit for this code)
 <!--- Missing Neighborhood Populations: https://popfactfinder.planning.nyc.gov/
