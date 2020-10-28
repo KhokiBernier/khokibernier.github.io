@@ -59,20 +59,42 @@ Clustered New York City nieghborhoods by crime type per 1,000 residents and neig
 7. Visualized data in Tableau
 --->
 
-1. Download and clean data files
+1. Download and format data files
 2. Feature Engineering
-  - Neighborhood Center Coordinates (Note: This feature is for Tableau Visualization)
-  - Neighborhood Boarder Coordinates (Note: This feature is for Tableau Visualization)
-  - Neighborhood Population
-  - Crime Grouping
-  - Crimes Per 1,000 Population
 3. Outlier Analysis
 4. Clustering
 5. Create Tableau Viz
 
-**Note**
-- Crime rates are relative to other NYC neighborhoods, not to US national averages
+**Step 1: Download and format data files**
 
+```python
+import pandas as pd
+import statistics
+import numpy as np
+
+#dataframe with coordinates
+df_coordinates = pd.read_csv('nynta.csv')
+#dataframe with population counts
+nyc_pop_data = pd.read_csv('NYC Population Data.csv')
+#dataframe with crimes
+df_crime = pd.read_csv('NYPD_Arrests_Data__Historic_.csv')
+
+df_crime.ARREST_DATE = pd.to_datetime(df_crime.ARREST_DATE)
+df_crime = df_crime[df_crime.ARREST_DATE.dt.year >= 2017]
+
+df_crime.Latitude = df_crime.Latitude.astype(float)
+df_crime.Longitude = df_crime.Longitude.astype(float)
+
+df_crime.Latitude = df_crime.Latitude.replace([np.inf, -np.inf], np.nan)
+df_crime.Longitude = df_crime.Longitude.replace([np.inf, -np.inf], np.nan)
+
+df_crime.Latitude = df_crime.Latitude.dropna()
+df_crime.Longitude = df_crime.Longitude.dropna()
+
+df_crime.Latitude.isna().any()
+```
+
+<!---
 **Step 1: Downloaded and cleaned file that contained 5 million+ rows of NYC crime occurances, descriptions, and coordinates**
 
 - Dataset taken from this link: https://data.cityofnewyork.us/Public-Safety/NYPD-Arrest-Data-Year-to-Date-/uip8-fykc
@@ -137,7 +159,80 @@ for i in df_crime['OFNS_DESC']:
         
 df_crime['Crime Group'] = crime_group_list
 ```
+--->
 
+**Step 2: Feature Engineering**
+
+The following features were added, code can be found on github (linked above):
+
+- Crime Grouping
+- Neighborhood Population
+- Crimes Per 1,000 Population
+- Neighborhood Center Coordinates (Note: This feature is for Tableau Visualization)
+- Neighborhood Boarder Coordinates (Note: This feature is for Tableau Visualization)
+
+
+<!---
+**Crime Grouping**
+
+Each crime has a description, so we'll group them into categories.
+
+```python
+#Listing the descriptions out this way makes them easy to copy and paste
+df_crime.OFNS_DESC.unique()
+```
+Here we create our 5 groupings (Violent, Theft, Drugs, Traffic, and Non_Violent_Other)
+
+```python
+violent = ['MURDER & NON-NEGL. MANSLAUGHTER','HOMICIDE-NEGLIGENT-VEHICLE', 'MURDER & NON-NEGL. MANSLAUGHTE',
+    'HOMICIDE-NEGLIGENT,UNCLASSIFIED','HOMICIDE-NEGLIGENT-VEHICLE','HOMICIDE-NEGLIGENT,UNCLASSIFIE', 
+    'FELONY ASSAULT', 'ASSAULT 3 & RELATED OFFENSES','JOSTLING', 'RAPE','SEX CRIMES','FORCIBLE TOUCHING',
+    'ROBBERY','OFFENSES RELATED TO CHILDREN','KIDNAPPING & RELATED OFFENSES','KIDNAPPING']
+
+traffic = ['OTHER TRAFFIC INFRACTION','VEHICLE AND TRAFFIC LAWS','INTOXICATED & IMPAIRED DRIVING',
+           'INTOXICATED/IMPAIRED DRIVING','UNAUTHORIZED USE OF A VEHICLE 3 (UUV)','PARKING OFFENSES',
+           'UNAUTHORIZED USE OF A VEHICLE']
+
+non_violent = ['THEFT-FRAUD','FORGERY','FRAUDS','OFFENSES INVOLVING FRAUD','FRAUDULENT ACCOSTING','ARSON',
+               'CRIMINAL TRESPASS','DANGEROUS WEAPONS','UNLAWFUL POSS. WEAP. ON SCHOOL GROUNDS',
+               'UNLAWFUL POSS. WEAP. ON SCHOOL','Tresspassing','HARRASSMENT 2','OFFENSES AGAINST PUBLIC SAFETY',
+               'HARASSMENT','PROSTITUTION & RELATED OFFENSES']
+
+theft = ['GRAND LARCENY','PETIT LARCENY','OTHER OFFENSES RELATED TO THEF','THEFT OF SERVICES',
+         'OTHER OFFENSES RELATED TO THEFT', 'PETIT LARCENY','GRAND LARCENY OF MOTOR VEHICLE',
+         'POSSESSION OF STOLEN PROPERTY','POSSESSION OF STOLEN PROPERTY 5','BURGLARY']
+
+drugs = ['DANGEROUS DRUGS','LOITERING FOR DRUG PURPOSES']
+
+crime_group = []
+
+for i in df_crime.OFNS_DESC:
+    if (i in violent) == True:
+        crime_group.append('Violent')
+    elif (i in non_violent) == True:
+        crime_group.append('Non Violent')
+    elif (i in traffic) == True:
+        crime_group.append('Traffic')
+    elif (i in theft) == True:
+        crime_group.append('Theft')
+    elif (i in drugs) == True:
+        crime_group.append('Drug')
+    else:
+        crime_group.append('Non Violent')
+        
+df_crime['Crime Group'] = crime_group
+```
+
+**Neighborhood Population**
+
+Map NYC Population to Neighborhoods
+
+```python
+
+```
+--->
+
+<!---
 **Step 2: Pulled NYC neighborhood coordinates as well as coordinates from all venues in each neighborhood by following steps in this link https://codekarim.com/node/57**
 
 - I copied the steps listed in the link and adjusted a few things in order to get all neighborhood and venue coordinates for all 5 boroughs
@@ -345,6 +440,7 @@ df_crime_per_1000 = pd.merge(df_crime_per_1000, df_population[['Neighborhood','B
 
 <img src="/assets/img/transposed-df-final.png">
 
+
 **Step 6: Perform K-Means Clustering**
 
 Clustering is a form of unsupervised exploratory analysis that aims to segment data based on similar traits. In our case, we a used k-means clustering algorithm, where the number of clusters (K) is specified prior to clustering. In K-Means clustering, k (the selected number of clusters) centroids are chosen as random data points. Our data points are then taken and assigned to the nearest centroid based on Euclidean distance. Once all data points are assigned to a centroid, the mean of each cluster is calculated and determined to be the new centroids. All data points are then reassigned to the nearest new centroid value. This process continues until the data points stop changing clusters, and once this occurs the total variation amongst points in the clusters is then calculated. This entire process is repeated x amount of times and the sequence with the lowest variation is used to cluster the data.
@@ -446,6 +542,8 @@ fig.show()
 ```
 
 <img src="/assets/img/newplot.png">
+--->
+
 
 **Step 7. Visualized data in Tableau**
 
